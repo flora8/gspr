@@ -53,7 +53,7 @@ def Home():
 
 # Create the GSPR page
 def GSPR():
-    excel = pd.ExcelFile('project0.xlsm') # Load the excel data
+    excel = pd.ExcelFile('GSPRproject.xlsm') # Load the excel data
     emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
     st.header("EMDN code")
