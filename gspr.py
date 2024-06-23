@@ -2,7 +2,6 @@
 import streamlit as st
 import pandas as pd
 import datetime
-import streamlit_gsheets import GSheetsConnection
 import numpy as np
 
 
