@@ -3,6 +3,8 @@ import streamlit as st
 import pandas as pd
 import datetime
 import numpy as np
+import requests as rq
+from io import BytesIO
 
 
 ''' Create the Home page '''
@@ -50,8 +52,10 @@ def Home():
 
 # Create the GSPR page
 def GSPR():
-    excel = pd.ExcelFile('https://github.com/yenhua-flora/gspr/raw/main/GSPRproject.xlsx') # Load the excel data
-    emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
+    url = 'https://github.com/yenhua-flora/gspr/raw/main/GSPRproject.xlsx' # Load the excel data
+    emdn = rq.get(url).content
+    emdn = pd.read_excel(BytesIO(emdn))
+    #emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
     st.header("EMDN code")
     st.write("Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels")
