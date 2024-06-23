@@ -50,7 +50,7 @@ def Home():
 
 # Create the GSPR page
 def GSPR():
-    excel = pd.ExcelFile('GSPRproject.csv') # Load the excel data
+    excel = pd.ExcelFile('https://github.com/yenhua-flora/gspr/raw/main/GSPRproject.xlsx') # Load the excel data
     emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
     st.header("EMDN code")
@@ -152,7 +152,7 @@ def GSPR():
                     "What other information would you like to see on this page?": information,
                     "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                     }])])
-                userdata.to_excel("Userdata.csv", index=False)
+                userdata.to_excel("Userdata.xlsx", index=False)
                 st.success("Successfully submitted. !! Thank you so much for your support !! ")
 
 
