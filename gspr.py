@@ -1,18 +1,12 @@
-# https://www.youtube.com/watch?v=JwSS70SZdyM
-# https://www.youtube.com/watch?v=JwSS70SZdyM&t=5867s
-# https://www.youtube.com/watch?v=ElSB8KR_CdA
-# https://www.youtube.com/watch?v=mUdnZ3EgwyE
-# https://www.youtube.com/watch?v=ZBzwERMiMlk
-
-
 ''' Load libraries '''
-import pandas as pd
 import streamlit as st
+import pandas as pd
 import datetime
+import streamlit_gsheets import GSheetsConnection
 import numpy as np
 
 
-# Create the Home page
+''' Create the Home page '''
 def Home():
     st.title("Medical Device Regulation Decision Tool")
 
@@ -48,7 +42,12 @@ def Home():
                 如果您對於本研究有任何疑問或需要更多信息，請透過以下電子郵件聯絡：k23018577@kcl.ac.uk
                 """)
 
+# # Establishing a Google sheets connection
+# url = https://docs.google.com/spreadsheets/d/1f0Scol-OvZT-AioFyd78qFsgmSvkWFTkKw4LMPf2FBI/edit?usp=sharing
+# conn = st.experimental_connection("gsheets", type=GSheetsConnection)
 
+# # Fetch existing data
+# data = conn.read(spreadsheet=url, worksheet="0")
 
 # Create the GSPR page
 def GSPR():
