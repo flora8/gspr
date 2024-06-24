@@ -2,7 +2,8 @@
 import pandas as pd
 import streamlit as st
 import datetime
-import pip install openpyxl
+import pip
+import openpyxl
 # import openpyxl
 # from openpyxl import Workbook
 # import pip
