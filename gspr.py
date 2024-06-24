@@ -50,9 +50,7 @@ def EMDNen():
     st.header("EMDN code")
     st.write("Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels")
     
-    url = 'https://github.com/flora8/gspr/raw/main/GSPRen.xlsx' # Load the excel data
-    data = rq.get(url).content
-    #df = pd.read_excel(BytesIO(data))
+    excel = pd.ExcelFile('GSPRproject.csv')
     emdn = pd.read_excel(data, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
     st.dataframe(emdn) # Display the EMDN code data
