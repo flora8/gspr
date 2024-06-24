@@ -1,8 +1,9 @@
 import pandas as pd
 import streamlit as st
 import datetime
+import pip3
 import openpyxl
-import pip
+
 
 
 # Create the Home page
