@@ -214,7 +214,7 @@ def SURVEYcn(emdn_type):  # User requirement data functions
 
 
 # # Create the sidebar for choosing the specific page
-options = st.sidebar.radio("Pages", options=["Home", "GSPR (EN)", "GSPR (CN)", "Survey (CN)"])
+options = st.sidebar.radio("Pages", options=["Home", "GSPR (EN)", "GSPR (CN)"])
 
 if options == "Home":
     Home()
