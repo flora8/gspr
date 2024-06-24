@@ -1,4 +1,3 @@
-''' Load libraries '''
 import pandas as pd
 import streamlit as st
 import datetime
