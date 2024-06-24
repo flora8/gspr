@@ -4,6 +4,7 @@ import streamlit as st
 import datetime
 import numpy as np
 import requests as rq
+from io import BytesIO
 
 
 # Create the Home page
@@ -50,8 +51,9 @@ def EMDNen():
     st.header("EMDN code")
     st.write("Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels")
     
-    excel = pd.ExcelFile('https://github.com/flora8/gspr/raw/main/GSPRen.csv')
-    emdn = pd.read_excel(data, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
+    excel = 'https://github.com/flora8/gspr/raw/main/GSPRen.csv'
+    excel = rq.get(excel).content
+    emdn = pd.read_excel(BytesIO(data), sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
     st.dataframe(emdn) # Display the EMDN code data
 
