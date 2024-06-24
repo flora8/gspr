@@ -2,9 +2,10 @@
 import pandas as pd
 import streamlit as st
 import datetime
-import openpyxl==3.0.14
-import requests
-from io import BytesIO
+import openpyxl
+from openpyxl import Workbook
+import pip
+
 
 
 # Create the Home page
