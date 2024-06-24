@@ -2,7 +2,7 @@
 import pandas as pd
 import streamlit as st
 import datetime
-import openpyxl
+import openpyxl==3.0.14
 import requests
 from io import BytesIO
 
