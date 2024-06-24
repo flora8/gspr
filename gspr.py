@@ -52,8 +52,8 @@ def Home():
 # Create the GSPR page
 def GSPR():
     url = 'https://github.com/yenhua-flora/gspr/raw/main/GSPRproject.xlsx' # Load the excel data
-    emdn = requests.get(url)
-    emdn = pd.read_excel(emdn.content)
+    url = requests.get(url).content
+    emdn = pd.read_excel(url, sheet_name='EMDN', na_filter=False, header=2)
     #emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
     st.header("EMDN code")
