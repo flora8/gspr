@@ -6,7 +6,7 @@ import numpy as np
 import requests
 
 
-''' Create the Home page '''
+# Create the Home page
 def Home():
     st.title("Medical Device Regulation Decision Tool")
 
