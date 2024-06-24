@@ -92,7 +92,7 @@ def GSPRen(excel, emdn_type):
 
     with Standards: # Get Standard details in English
         st.subheader("Standards List")
-        standards_E = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="K:L", header=2) # replace NaN as blank
+        standards_E = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_E = standards_E.iloc[:30]
         st.dataframe(standards_E)
@@ -178,7 +178,7 @@ def GSPRcn(excel, emdn_type):
 
     with 標準清單: # Get Standard details in Mandarin
         st.subheader("標準清單")
-        standards_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="K:L", header=2) # replace NaN as blank
+        standards_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_C = standards_C.iloc[:30]
         st.dataframe(standards_C)
