@@ -53,7 +53,7 @@ def EMDNen():
     
     excel = 'https://github.com/flora8/gspr/raw/main/GSPRen.xlsx'
     excel = rq.get(excel).content
-    emdn = pd.read_excel(BytesIO(excel), sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
+    emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
     st.dataframe(emdn) # Display the EMDN code data
 
