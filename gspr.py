@@ -2,7 +2,7 @@
 import pandas as pd
 import streamlit as st
 import datetime
-#import openpyxl
+import openpyxl
 from openpyxl import Workbook
 import pip
 
@@ -52,8 +52,8 @@ def EMDNen():
     st.header("EMDN code")
     st.write("Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels")
     
-    excel = pandas.ExcelFile('https://github.com/flora8/gspr/raw/main/GSPRen.xlsx')
-    emdn = pandas.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
+    excel = pd.ExcelFile('GSPRen.xlsx')
+    emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
     st.dataframe(emdn) # Display the EMDN code data
 
