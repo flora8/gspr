@@ -1,8 +1,8 @@
 import pandas as pd
 import streamlit as st
 import datetime
-import pip3
-import openpyxl
+import pip
+import openpyxl==3.1.2
 
 
 
