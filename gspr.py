@@ -1,19 +1,22 @@
 import pandas as pd
 import streamlit as st
-import datetime
+import matplotlib.pyplot as plt
 import openpyxl
+import datetime
+import numpy as np
+
 
 
 # Create the Home page
 def Home():
-    st.title("Medical Device Regulation Decision Tool")
+    st.title("Medical Device Regulation Decision Tool :stethoscope: ")
 
     st.markdown("""
                 
-                Research Title: Design of a Medical Device Regulation Decision Tool 
+                Research Title: Design of a Medical Device Regulation Decision Tool
 
-                Thank you so much for taking the time to participate in this research for a postgraduate student dissertation. This study aims to design a decision tool to correctly filter and select the appropriate regulatory requirements that need to be met by medical devices. After testing this tool, collect user experience to efficiently improve the system application and encourage widespread use in the future.
-                
+                Thank you so much for taking the time to participate in this research for a postgraduate student dissertation. This study aims to design a decision tool to correctly filter and select the appropriate regulatory requirements that need to be met by medical devices. After testing this tool, collect user experience to efficiently analyse search results and improve the system application for encouraging widespread use in the future.
+
                 In more detail, this system briefly analyses the European Union (EU) regulation requirements with relative standards for medical devices from the European Medical Device Nomenclature (EMDN), which according to Annex I: general safety and performance requirements (GSPR) as listed in the Medical Device Regulation (MDR) (2017/745) as well as the In Vitro Diagnostic Medical Devices Regulation (IVDR) (2017/746).
                 * **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
                 * **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
@@ -28,8 +31,8 @@ def Home():
                             
                 研究主題：醫療器材監管決策工具的設計
 
-                非常感謝您抽出寶貴時間參與這項碩士生論文研究。本研究旨在設計一種決策工具，以正確過濾和選擇醫療器材所需滿足的適當監管要求。經過測試後收集使用者體驗，以有效改善應用系統及鼓勵未來廣泛的使用。
-                
+                非常感謝您抽出寶貴時間參與這項碩士生論文研究。本研究旨在設計一種決策工具，以正確過濾和選擇醫療器材所需滿足的適當監管要求。經過測試後收集使用者體驗，以有效分析搜尋結果並改善應用系統進一步促進未來廣泛的使用。
+
                 該系統根據歐洲醫療器材命名法(EMDN)所提及的醫療器材，簡要分析了歐盟(EU)法規要求的相關標準。而歐盟法規來源於參考醫療器材法規(MDR)(2017/745)、以及體外診斷醫療器材法規(IVDR)(2017/746)中，其中附件一的一般安全和性能要求(GSPR)所列出內容。
                 * **醫療器材法規:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
                 * **體外診斷醫療器材法規:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
@@ -42,113 +45,84 @@ def Home():
 
 
 
+# Load excel data
+excel_E = pd.ExcelFile('GSPRen.xlsx') # Load the excel data in English
+emdn_E = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
+excel_C = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data in Mandarin
+emdn_C = pd.read_excel(excel_C, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
+
+
 # Create the GSPR page in English
-def EMDNen():
-    st.header("EMDN code")
+def EMDN_E():
+    st.header(" :star2:  EMDN code")
     st.write("Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels")
-    
-    excel = pd.ExcelFile('GSPRen.xlsx') # Load the excel data
-    emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
-    st.dataframe(emdn) # Display the EMDN code data
+    st.dataframe(emdn_E) # Display the EMDN code data
 
-    emdn_category = st.selectbox("Please select the EMDN code category", list(emdn)) # List the EMDN code category
-    grouped_emdn = emdn.groupby(by=[emdn_category], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-    emdn_type = st.selectbox("Please select the EMDN code type", list(grouped_emdn.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
+    category_E = st.selectbox("Please select the EMDN code category", list(emdn_E)) # List the EMDN code category
+    group_E = emdn_E.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
+    type_E = st.selectbox("Please select the EMDN code type", list(group_E.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
 
     if st.button("Search"): # Set up the button
-        st.success("Please wait a few minutes; the page turns on medical device: {} information".format(emdn_type))
-        GSPRen(excel, emdn_type)
-        SURVEYen(emdn_type)
+        st.success("Please wait a few minutes; the page turns on medical device: {} information".format(type_E))
+        GSPR_E(type_E)
 
 
-def GSPRen(excel, emdn_type):
-    st.header("General Safety and Performance Requirements (Annex I)")
-    st.write("The {} information shown can be searched, fullscreen, and downloaded as an Excel file for personal records and edits".format(emdn_type))
+def GSPR_E(type_E):
+    st.header("	:star2: General Safety and Performance Requirements (Annex I)")
+    st.write("The {} information shown can be searched, fullscreen, and downloaded as an Excel file for personal records and edits".format(type_E))
 
     # Set up different tabs
     ChapterI, ChapterII, ChapterIII, Standards = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards"])
 
     with ChapterI: # Get Chapter I General requirements details in English
-        st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterI_E = pd.read_excel(excel, sheet_name=emdn_type, na_filter=False, usecols="A:C", header=2) # replace NaN as blank, read the columns from A to C to get English details, and the header is 2nd row of excel
+        st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
+        chapterI_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:C", header=2) # replace NaN as blank, read the columns from A to C to get English details, and the header is 2nd row of excel
         chapterI_E = chapterI_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
         st.dataframe(chapterI_E)
 
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
-        st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterII_E = pd.read_excel(excel, sheet_name=emdn_type, na_filter=False, usecols="A:C", header=26)
+        st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
+        chapterII_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:C", header=26)
         chapterII_E = chapterII_E.replace("\n", ", ", regex=True) 
         chapterII_E = chapterII_E.iloc[:141] # Selecting all row from header 26 to row 141
         st.dataframe(chapterII_E)
 
     with ChapterIII: # Get Chapter III Requirements regarding the information supplied with the device details in English
-        st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=168).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterIII_E = pd.read_excel(excel, sheet_name=emdn_type, na_filter=False, usecols="A:C", header=169)
+        st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=168).iloc[0,0])) # use iloc to read the value of one cell as a header
+        chapterIII_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:C", header=169)
         chapterIII_E = chapterIII_E.replace("\n", ", ", regex=True) 
         chapterIII_E = chapterIII_E.iloc[:265]
         st.dataframe(chapterIII_E)
 
     with Standards: # Get Standard details in English
         st.subheader("Standards List")
-        standards_E = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
+        standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_E = standards_E.iloc[:30]
         st.dataframe(standards_E)
 
-
-def SURVEYen(emdn_type): # User requirement data functions
-    st.subheader("User Experience Survey")
-
-    with st.form(key="Information form"):
-        day = st.text_input("Date ", (datetime.date.today()), disabled=True)
-        medicaldevice = st.text_input("Searched medical devices", (emdn_type), disabled=True)
-        background = st.selectbox("Background", ("", "Academics", "Manufacturer", "Importer", "Distributor", "Others",))
-        role = st.selectbox("Role", ("", "Professionals", "Professor", "Student", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
-        clear = st.selectbox("How would you rate the provided device information on this website overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear", "5: Absolutely inappropriate and unclear"))
-        useful = st.selectbox("How would you rate your overall experience with this website on a scale?", ("","1: Extremely useful", "2: Slightly useful", "3: Neither useful nor useless", "4: Slightly useless", "5: Extremely useless"))
-        information = st.text_area("What other information would you like to see on this page?")
-        feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?")
-        submission = st.form_submit_button(label="Submit")
-        if submission == True:
-            userdata = pd.concat([pd.read_excel("SurveyEn.xlsx", sheet_name="DataEn"), pd.DataFrame.from_records([{
-                "Date": day,
-                "Device": medicaldevice,
-                "Background": background,
-                "Role": role,
-                "How would you rate the provided device information on this website overall?": clear,
-                "How would you rate your overall experience with this website on a scale?": useful,
-                "What other information would you like to see on this page?": information,
-                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-                }])])
-            userdata.to_excel("SurveyEn.xlsx", sheet_name="DataEn", index=False)
-            st.success("Successfully submitted. !! Thank you so much for your support !! ")
-
-
+ 
 
 
 
 # Create the GSPR page in Ｍandarin
-def EMDNcn():
-    excel = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data
-    emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
-
-    st.header("EMDN 代碼")
+def EMDN_C():
+    st.header(" :star2: EMDN 代碼")
     st.write("表格所示為歐洲醫療器材命名法(EMDN)結構，該結構將醫療器材劃分為不同種類")
-    st.dataframe(emdn) # Display the EMDN code data
+    st.dataframe(emdn_C) # Display the EMDN code data in Mandarin
 
-    emdn_category = st.selectbox("請選擇 EMDN 代碼類別", list(emdn)) # List the EMDN code category
-    grouped_emdn = emdn.groupby(by=[emdn_category], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-    emdn_type = st.selectbox("請選擇 EMDN 代碼類型", list(grouped_emdn.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
+    category_C = st.selectbox("請選擇 EMDN 代碼類別", list(emdn_C)) # List the EMDN code category
+    group_C = emdn_C.groupby(by=[category_C], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
+    type_C = st.selectbox("請選擇 EMDN 代碼類型", list(group_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
 
     if st.button("搜尋"): # Set up the button
-        st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(emdn_type))
-        GSPRcn(excel, emdn_type)
-        SURVEYcn(emdn_type)
+        st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(type_C))
+        GSPR_C(type_C)
 
 
-def GSPRcn(excel, emdn_type):
+def GSPR_C(type_C):
     st.header("一般安全和性能要求 (附錄 I)")
     st.write("顯示的資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯")
 
@@ -156,72 +130,128 @@ def GSPRcn(excel, emdn_type):
     第一章, 第二章, 第三章, 標準清單 = st.tabs(["第一章", "第二章", "第三章", "標準清單"])
 
     with 第一章: # Get Chapter I General requirements details in Mandarin
-        st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterI_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter=False, usecols="A:C", header=2)  # replace NaN as blank, read the columns from E to G to get Chinese details, and the header is 2nd row of excel
+        st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
+        chapterI_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter=False, usecols="A:C", header=2)  # replace NaN as blank, read the columns from E to G to get Chinese details, and the header is 2nd row of excel
         chapterI_C = chapterI_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_C = chapterI_C.iloc[:22] # Selecting all row from header 2 to row 22
         st.dataframe(chapterI_C)
 
     with 第二章: # Get Chapter II Requirements regarding design and manufacture details in Mandarin
-        st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterII_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter=False, usecols="A:C", header=26)
+        st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
+        chapterII_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter=False, usecols="A:C", header=26)
         chapterII_C = chapterII_C.replace("\n", ", ", regex=True) 
         chapterII_C = chapterII_C.iloc[:141]
         st.dataframe(chapterII_C)
 
     with 第三章: # Get Chapter III Requirements regarding the information supplied with the device details in Mandarin
-        st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=168).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterIII_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter=False, usecols="A:C", header=169)
+        st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=168).iloc[0,0])) # use iloc to read the value of one cell as a header
+        chapterIII_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter=False, usecols="A:C", header=169)
         chapterIII_C = chapterIII_C.replace("\n", ", ", regex=True) 
         chapterIII_C = chapterIII_C.iloc[:265]
         st.dataframe(chapterIII_C)
 
     with 標準清單: # Get Standard details in Mandarin
         st.subheader("標準清單")
-        standards_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
+        standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_C = standards_C.iloc[:30]
         st.dataframe(standards_C)
 
 
-def SURVEYcn(emdn_type):  # User requirement data functions
-    st.subheader("使用者體驗調查")
-
-    survey_C = st.form("資料表單")
-    day = survey_C.text_input("日期", (datetime.date.today()), disabled=True)
-    medicaldevice = survey_C.text_input("醫療器材", (emdn_type), disabled=True)
-    background = survey_C.selectbox("請問您的背景", ("", "學術", "製造商", "進口商", "經銷商", "其他",))
-    role = survey_C.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))
-    clear = survey_C.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確", "5: 非常不適當和不明確"))
-    useful = survey_C.selectbox("請問您對本網站的整體體驗有何評價？", ("","1: 非常有用", "2: 稍微有用", "3: 普通", "4: 稍微沒用", "5: 非常沒用"))
-    information = survey_C.text_area("請問您希望在此頁面上看到哪些其他資訊？")
-    feedback = survey_C.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
-    submission = survey_C.form_submit_button(label="提交")
-
-    if submission == True:
-        userdata = pd.concat([pd.read_excel("SurveyCn.xlsx"), pd.DataFrame.from_records([{
-            "日期": day,
-            "醫療器材": medicaldevice,
-            "背景": background,
-            "職位": role,
-            "請問您對本網站所提供的整體醫材資訊評價如何？": clear,
-            "請問您對本網站的整體體驗有何評價？": useful,
-            "請問您希望在此頁面上看到哪些其他資訊？": information,
-            "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback
-            }])])
-        userdata.to_excel("SurveyCn.xlsx", index=False)
-        st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
 
 
-# # Create the sidebar for choosing the specific page
-options = st.sidebar.radio("Pages", options=["Home", "GSPR (EN)", "GSPR (CN)"])
 
-if options == "Home":
-    Home()
-elif options == "GSPR (EN)":
-    EMDNen()
-elif options == "GSPR (CN)":
-    EMDNcn()
+def Survey(): # Collecting user inputs 
+    st.markdown("""
+                Thank you so much for providing your experience after testing this system in English or Mandarin for later analysis, and the collected result data will displayed on the next page for every participant to understand more information. :thought_balloon:
+                
+                非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
+                """)
+    col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])   
+    #col1, col2 = st.columns(2)
+
+    with col1:
+        st.subheader(" :page_facing_up: User Experience Survey")
+        day = st.text_input("Date ", (datetime.date.today()), disabled=True)
+        background = st.selectbox("Background", ("", "Academics", "Manufacturer", "Importer", "Distributor", "Others",))
+        role = st.selectbox("Role", ("", "Professionals", "Professor", "Student", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
+
+        device_category = st.selectbox("Which EMDN category of medical device are you particularly interested in searching for?", list(emdn_E))
+        group_E = emdn_E.groupby(by=[device_category], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
+        device_type = st.selectbox("Which EMDN type of medical device are you particularly interested in searching for?", list(group_E.iloc[:,0]))
+        
+        clear = st.selectbox("How would you rate the provided device information on this website overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear", "5: Absolutely inappropriate and unclear"))
+        useful = st.selectbox("How would you rate your overall experience with this website on a scale?", ("","1: Extremely useful", "2: Slightly useful", "3: Neither useful nor useless", "4: Slightly useless", "5: Extremely useless"))
+        information = st.text_area("What other information would you like to see on this page?")
+        feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?")
+
+        if st.button(label="Submit"):
+            userdata = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
+                "Date": day,
+                "Background": background,
+                "Role": role,
+                "EMDN category": device_category,
+                "EMDN type": device_type,
+                "How would you rate the provided device information on this website overall?": clear,
+                "How would you rate your overall experience with this website on a scale?": useful,
+                "What other information would you like to see on this page?": information,
+                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
+                }])])
+            userdata.to_excel("Survey.xlsx", index=False)
+            st.success("Successfully submitted. !! Thank you so much for your support !! ")
+
+
+    with col2:
+        st.subheader(" :page_with_curl: 使用者體驗調查")
+        day_C = st.text_input("日期", (datetime.date.today()), disabled=True)
+        background_C = st.selectbox("請問您的背景", ("", "學術", "製造商", "進口商", "經銷商", "其他",))
+        role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
+    
+        device_category_C = st.selectbox("請問您對哪種 EMDN 分類的醫療器材特別感興趣搜尋?", list(emdn_C))
+        group_C = emdn_C.groupby(by=[device_category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
+        device_type_C = st.selectbox("請問您對哪種 EMDN 類型的醫療器材特別感興趣搜尋?", list(group_C.iloc[:,0]))
+
+        clear_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確", "5: 非常不適當和不明確"))
+        useful_C = st.selectbox("請問您對本網站的整體體驗有何評價？", ("","1: 非常有用", "2: 稍微有用", "3: 普通", "4: 稍微沒用", "5: 非常沒用"))
+        information_C = st.text_area("請問您希望在此頁面上看到哪些其他資訊？")
+        feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
+
+        if st.button(label="提交"):
+            userdata_C = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
+                "日期": day_C,
+                "背景": background_C,
+                "職位": role_C,
+                "EMDN類別": device_category_C,
+                "EMDN類型": device_type_C,
+                "請問您對本網站所提供的整體醫材資訊評價如何？": clear_C,
+                "請問您對本網站的整體體驗有何評價？": useful_C,
+                "請問您希望在此頁面上看到哪些其他資訊？": information_C,
+                "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback_C
+                }])])
+            userdata_C.to_excel("Survey.xlsx", index=False)
+            st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
+
+
+
+def Analysis(): # Plotting and data visualisation to analyse user experience survey result
+    st.markdown("""
+                Thank you so much for participating in this research. The data plotting and visualisation shown are according to user experience survey results, which combine information from English and Mandarin for statistical analysis. Please note that the data illustrated is only for personal review because some related information may be incorrect. :blush:
+                
+                非常感謝您參與這項研究。所顯示的數據圖表和視覺化是根據使用者體驗調查結果，其結合英文和中文的資料進行統計分析。請注意，所示數據僅供個人參考，因為某些相關資訊可能不正確。:blush:
+                """)
+    
+    excel = pd.read_excel('Survey.xlsx')
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        date = pd.to_datetime(excel["Date"]).min()
+        date1 = pd.to_datetime(st.date_input("Select the date:", date))
+        background = st.multiselect("Select the background:", options=excel["Background"].unique(), default=excel["Background"].unique())
+        
+
+    st.header(" :bar_chart: Data Analysis")
+
+
 
 
 
@@ -237,7 +267,7 @@ elif options == "GSPR (CN)":
 #     st.header("EMDN code")
 #     st.write("Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels")
     
-#     excel = pd.ExcelFile('GSPRen.xlsx')
+#     excel = pd.ExcelFile('GSPRen.xlsx') # Load the excel data
 #     emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
 #     st.dataframe(emdn) # Display the EMDN code data
@@ -258,7 +288,6 @@ elif options == "GSPR (CN)":
 
 #     # Set up different tabs
 #     ChapterI, ChapterII, ChapterIII, Standards = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards"])
-
 
 #     with ChapterI: # Get Chapter I General requirements details in English
 #         st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -283,14 +312,13 @@ elif options == "GSPR (CN)":
 
 #     with Standards: # Get Standard details in English
 #         st.subheader("Standards List")
-#         standards_E = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="K:L", header=2) # replace NaN as blank
+#         standards_E = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
 #         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
 #         standards_E = standards_E.iloc[:30]
 #         st.dataframe(standards_E)
 
 
-# def SURVEYen(emdn_type):
-#     # User requirement data functions
+# def SURVEYen(emdn_type): # User requirement data functions
 #     st.subheader("User Experience Survey")
 
 #     with st.form(key="Information form"):
@@ -322,7 +350,7 @@ elif options == "GSPR (CN)":
 
 
 # # Create the GSPR page in Ｍandarin
-# def GSPRcn():
+# def EMDNcn():
 #     excel = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data
 #     emdn = pd.read_excel(excel, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
@@ -336,68 +364,81 @@ elif options == "GSPR (CN)":
 
 #     if st.button("搜尋"): # Set up the button
 #         st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(emdn_type))
+#         GSPRcn(excel, emdn_type)
+#         SURVEYcn(emdn_type)
 
-#         # Set up different tabs
-#         #一般安全和性能要求, 標準清單, 使用者體驗調查 = st.tabs(["一般安全和性能要求", "標準清單", "使用者體驗調查"])
 
-#         #with 一般安全和性能要求:
-#         st.header("一般安全和性能要求 (附錄 I)")
-#         st.write("顯示的資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯")
+# def GSPRcn(excel, emdn_type):
+#     st.header("一般安全和性能要求 (附錄 I)")
+#     st.write("顯示的資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯")
 
-#         # Get Chapter I General requirements details in Mandarin
+#     #Set up different tabs
+#     第一章, 第二章, 第三章, 標準清單 = st.tabs(["第一章", "第二章", "第三章", "標準清單"])
+
+#     with 第一章: # Get Chapter I General requirements details in Mandarin
 #         st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
 #         chapterI_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter=False, usecols="A:C", header=2)  # replace NaN as blank, read the columns from E to G to get Chinese details, and the header is 2nd row of excel
 #         chapterI_C = chapterI_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
 #         chapterI_C = chapterI_C.iloc[:22] # Selecting all row from header 2 to row 22
 #         st.dataframe(chapterI_C)
 
-#         # Get Chapter II Requirements regarding design and manufacture details in Mandarin
+#     with 第二章: # Get Chapter II Requirements regarding design and manufacture details in Mandarin
 #         st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
 #         chapterII_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter=False, usecols="A:C", header=26)
 #         chapterII_C = chapterII_C.replace("\n", ", ", regex=True) 
 #         chapterII_C = chapterII_C.iloc[:141]
 #         st.dataframe(chapterII_C)
 
-#         # Get Chapter III Requirements regarding the information supplied with the device details in Mandarin
+#     with 第三章: # Get Chapter III Requirements regarding the information supplied with the device details in Mandarin
 #         st.subheader("{}".format(pd.read_excel(excel, sheet_name=emdn_type, usecols="A", header=168).iloc[0,0])) # use iloc to read the value of one cell as a header
 #         chapterIII_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter=False, usecols="A:C", header=169)
 #         chapterIII_C = chapterIII_C.replace("\n", ", ", regex=True) 
 #         chapterIII_C = chapterIII_C.iloc[:265]
 #         st.dataframe(chapterIII_C)
 
-
-#         #with 標準清單:
-#         # Get Standard details in Mandarin
+#     with 標準清單: # Get Standard details in Mandarin
 #         st.subheader("標準清單")
-#         standards_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="K:L", header=2) # replace NaN as blank
+#         standards_C = pd.read_excel(excel, sheet_name=emdn_type, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
 #         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
 #         standards_C = standards_C.iloc[:30]
 #         st.dataframe(standards_C)
 
 
-#         #with 使用者體驗調查:
-#         # User requirement data functions
-#         conn = sqlite3.connect('data.db', check_same_thread=False)
-#         cur = conn.cursor()
+# def SURVEYcn(emdn_type):  # User requirement data functions
+#     st.subheader("使用者體驗調查")
 
-#         st.subheader("使用者體驗調查")
-#         survey = st.form("資料表單")
-#         day = survey.text_input("日期", (datetime.date.today()), disabled=True)
-#         medicaldevice = survey.text_input("醫療器材", (emdn_type), disabled=True)
-#         background = survey.selectbox("請問您的背景", ("", "學術", "製造商", "進口商", "經銷商", "其他",))
-#         role = survey.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))
-#         submission = survey.form_submit_button(label="提交")
-        
+#     survey_C = st.form("資料表單")
+#     day = survey_C.text_input("日期", (datetime.date.today()), disabled=True)
+#     medicaldevice = survey_C.text_input("醫療器材", (emdn_type), disabled=True)
+#     background = survey_C.selectbox("請問您的背景", ("", "學術", "製造商", "進口商", "經銷商", "其他",))
+#     role = survey_C.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))
+#     clear = survey_C.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確", "5: 非常不適當和不明確"))
+#     useful = survey_C.selectbox("請問您對本網站的整體體驗有何評價？", ("","1: 非常有用", "2: 稍微有用", "3: 普通", "4: 稍微沒用", "5: 非常沒用"))
+#     information = survey_C.text_area("請問您希望在此頁面上看到哪些其他資訊？")
+#     feedback = survey_C.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
+#     submission = survey_C.form_submit_button(label="提交")
 
-#         if submission == True:
-#             userdata = pd.concat([pd.read_excel("SurveyCn.xlsx"), pd.DataFrame.from_records([{
-#                 "日期": day,
-#                 "醫療器材": medicaldevice,
-#                 "背景": background,
-#                 "職位": role,
-#                 }])])
-#             userdata.to_excel("SurveyCn.xlsx", index=False)
-#             st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
+#     if submission == True:
+#         userdata = pd.concat([pd.read_excel("SurveyCn.xlsx"), pd.DataFrame.from_records([{
+#             "日期": day,
+#             "醫療器材": medicaldevice,
+#             "背景": background,
+#             "職位": role,
+#             "請問您對本網站所提供的整體醫材資訊評價如何？": clear,
+#             "請問您對本網站的整體體驗有何評價？": useful,
+#             "請問您希望在此頁面上看到哪些其他資訊？": information,
+#             "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback
+#             }])])
+#         userdata.to_excel("SurveyCn.xlsx", index=False)
+#         st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
 
 
+# # # Create the sidebar for choosing the specific page
+# options = st.sidebar.radio("Pages", options=["Home", "GSPR (EN)", "GSPR (CN)"])
 
+# if options == "Home":
+#     Home()
+# elif options == "GSPR (EN)":
+#     EMDNen()
+# elif options == "GSPR (CN)":
+#     EMDNcn()
