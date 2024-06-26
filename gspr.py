@@ -1,10 +1,9 @@
 import pandas as pd
 import streamlit as st
-#import matplotlib.pyplot as plt
-import seaborn as sns
+import plotly.express as px
+import datetime
 import openpyxl
 import pip
-import datetime
 import numpy as np
 
 
@@ -163,7 +162,8 @@ def GSPR_C(type_C):
 
 
 
-def Survey(): # Collecting user inputs 
+def Survey(): # Collecting user inputs for later analysis
+    st.header(" :memo: Survey 調查")
     st.markdown("""
                 Thank you so much for providing your experience after testing this system in English or Mandarin for later analysis, and the collected result data will displayed on the next page for every participant to understand more information. :thought_balloon:
                 
@@ -173,10 +173,10 @@ def Survey(): # Collecting user inputs
     #col1, col2 = st.columns(2)
 
     with col1:
-        st.subheader(" :page_facing_up: User Experience Survey")
+        st.subheader("User Experience Survey")
         day = st.text_input("Date ", (datetime.date.today()), disabled=True)
-        background = st.selectbox("Background", ("", "Academics", "Manufacturer", "Importer", "Distributor", "Others",))
-        role = st.selectbox("Role", ("", "Professionals", "Professor", "Student", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
+        background = st.selectbox("Please select your background", ("", "Academics", "Manufacturer", "Importer", "Distributor", "Others",))
+        role = st.selectbox("Please select your current role", ("", "Professionals", "Professor", "Student", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
 
         device_category = st.selectbox("Which EMDN category of medical device are you particularly interested in searching for?", list(emdn_E))
         group_E = emdn_E.groupby(by=[device_category], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
@@ -194,8 +194,8 @@ def Survey(): # Collecting user inputs
                 "Role": role,
                 "EMDN category": device_category,
                 "EMDN type": device_type,
-                "How would you rate the provided device information on this website overall?": clear,
-                "How would you rate your overall experience with this website on a scale?": useful,
+                "device information": clear,
+                "overall experience": useful,
                 "What other information would you like to see on this page?": information,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])])
@@ -204,7 +204,7 @@ def Survey(): # Collecting user inputs
 
 
     with col2:
-        st.subheader(" :page_with_curl: 使用者體驗調查")
+        st.subheader("使用者體驗調查")
         day_C = st.text_input("日期", (datetime.date.today()), disabled=True)
         background_C = st.selectbox("請問您的背景", ("", "學術", "製造商", "進口商", "經銷商", "其他",))
         role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
@@ -213,7 +213,7 @@ def Survey(): # Collecting user inputs
         group_C = emdn_C.groupby(by=[device_category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
         device_type_C = st.selectbox("請問您對哪種 EMDN 類型的醫療器材特別感興趣搜尋?", list(group_C.iloc[:,0]))
 
-        clear_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確", "5: 非常不適當和不明確"))
+        value_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確", "5: 非常不適當和不明確"))
         useful_C = st.selectbox("請問您對本網站的整體體驗有何評價？", ("","1: 非常有用", "2: 稍微有用", "3: 普通", "4: 稍微沒用", "5: 非常沒用"))
         information_C = st.text_area("請問您希望在此頁面上看到哪些其他資訊？")
         feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
@@ -225,8 +225,8 @@ def Survey(): # Collecting user inputs
                 "職位": role_C,
                 "EMDN類別": device_category_C,
                 "EMDN類型": device_type_C,
-                "請問您對本網站所提供的整體醫材資訊評價如何？": clear_C,
-                "請問您對本網站的整體體驗有何評價？": useful_C,
+                "醫材資訊": value_C,
+                "整體體驗": useful_C,
                 "請問您希望在此頁面上看到哪些其他資訊？": information_C,
                 "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback_C
                 }])])
@@ -235,7 +235,10 @@ def Survey(): # Collecting user inputs
 
 
 
+
+
 def Analysis(): # Plotting and data visualisation to analyse user experience survey result
+    st.header(" :bar_chart: Data Analysis 數據分析")
     st.markdown("""
                 Thank you so much for participating in this research. The data plotting and visualisation shown are according to user experience survey results, which combine information from English and Mandarin for statistical analysis. Please note that the data illustrated is only for personal review because some related information may be incorrect. :blush:
                 
@@ -244,14 +247,62 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     
     excel = pd.read_excel('Survey.xlsx')
 
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        date = pd.to_datetime(excel["Date"]).min()
-        date1 = pd.to_datetime(st.date_input("Select the date:", date))
-        background = st.multiselect("Select the background:", options=excel["Background"].unique(), default=excel["Background"].unique())
-        
+    Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
-    st.header(" :bar_chart: Data Analysis")
+    with Counts: # User select the x-axis to plot the counts
+        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=excel.columns[1:7])
+        count_E = excel[xvalue_E].value_counts()
+        st.bar_chart(count_E)
+        expander_E = st.expander("Count Results")
+        expander_E.write(count_E)
+
+    with Analysis: # User select the x-axis and y-axis value to plot the analysis data
+        xaxis_E = st.selectbox("Please select X-Axis value", options=excel.columns[0:7])
+        yaxis_E = st.selectbox("Please select Y-Axis value", options=excel.columns[1:7])        
+        plot_E = px.scatter(excel, x=xaxis_E, y=yaxis_E, labels={xaxis_E:yaxis_E}, title="The searched {} by {} results".format(xaxis_E,yaxis_E))
+        color_E = st.color_picker("Please select the plot color") # user select the particular color                
+        plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen
+        st.plotly_chart(plot_E, use_container_width=True) # Display the data
+        expander2_E = st.expander("Analysis Results")
+        data2_E = excel[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
+        expander2_E.write(data2_E)
+
+    with 數量: # User select the x-axis to plot the counts  
+        xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=excel.columns[11:17])
+        count_C = excel[xvalue_C].value_counts()
+        st.bar_chart(count_C)
+        expander_C = st.expander("計算結果")
+        expander_C.write(count_C)
+
+    with 分析: # User select the x-axis and y-axis value to plot the analysis data
+        xaxis_C = st.selectbox("請選擇X軸值", options=excel.columns[10:17])
+        yaxis_C = st.selectbox("請選擇Y軸值", options=excel.columns[11:17])        
+        plot_C = px.scatter(excel, x=xaxis_C, y=yaxis_C, labels={xaxis_C:yaxis_C}, title="依照 {} 搜尋 {} 的結果".format(xaxis_C,yaxis_C))
+        st.plotly_chart(plot_C, use_container_width=True) # Display the data
+        expander2_C = st.expander("分析結果")
+        data2 = excel[[xaxis_C, yaxis_C]].groupby(by=xaxis_C)[yaxis_C].sum()
+        expander2_C.write(data2)
+
+
+
+
+
+# Create the sidebar for choosing the specific page
+options = st.sidebar.radio("Pages", options=["Home", "GSPR (EN)", "GSPR (CN)", "Survey", "Analysis"])
+
+if options == "Home":
+    Home()
+elif options == "GSPR (EN)":
+    EMDN_E()
+elif options == "GSPR (CN)":
+    EMDN_C()
+elif options == "Survey":
+    Survey()
+elif options == "Analysis":
+    Analysis()
+
+
+
 
 
 
