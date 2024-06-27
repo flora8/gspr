@@ -53,24 +53,46 @@ excel_C = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data in Mandarin
 emdn_C = pd.read_excel(excel_C, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 
 
-# Create the GSPR page in English
-def EMDN_E():
-    st.header(" :star2:  EMDN code")
-    st.write("Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels")
+def EMDN(): # Create the EMDN page
+    st.header(" :star2:  General Safety and Performance Requirements 一般安全和性能要求")
+    st.markdown("""
+                Thank you so much for testing the system function. The table below shows each EMDN code category and type corresponds with specific medical device data. Please select English or Mandarin to offer the EMDN code you would like to search for; then, the system will load the related information immediately. 
+                
+                非常感謝您測試本系統的功能。下表顯示了每個 EMDN 代碼類別和類型對應特定的醫療器材資料。請選擇英文或中文給予預計搜尋之 EMDN 代碼；然後，系統會立即載入相關資訊供您參考。
+                """)
+    
+    col1, col2 = st.tabs(["EMDN code","EMDN 代碼"])
 
-    st.dataframe(emdn_E) # Display the EMDN code data
+    with col1:  # Create the EMDN page in English
+        st.header("EMDN code")
+        st.write("""Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels""")
+        st.dataframe(emdn_E) # Display the EMDN code data
 
-    category_E = st.selectbox("Please select the EMDN code category", list(emdn_E)) # List the EMDN code category
-    group_E = emdn_E.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-    type_E = st.selectbox("Please select the EMDN code type", list(group_E.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
+        category_E = st.selectbox("Please select the EMDN code category", list(emdn_E)) # List the EMDN code category
+        group_E = emdn_E.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
+        type_E = st.selectbox("Please select the EMDN code type", list(group_E.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
 
-    if st.button("Search"): # Set up the button
-        st.success("Please wait a few minutes; the page turns on medical device: {} information".format(type_E))
-        GSPR_E(type_E)
+        if st.button("Search"): # Set up the button
+            st.success("Please wait a few minutes; the page turns on medical device: {} information".format(type_E))
+            GSPR_E(type_E) # The EMDN type will retun to the GSPR_E function
 
 
-def GSPR_E(type_E):
-    st.header("	:star2: General Safety and Performance Requirements (Annex I)")
+    with col2:  # Create the EMDN page in Mandarin
+        st.header("EMDN 代碼")
+        st.write("""表格所示為歐洲醫療器材命名法(EMDN)結構，該結構將醫療器材劃分為不同種類""")
+        st.dataframe(emdn_C) # Display the EMDN code data in Mandarin
+
+        category_C = st.selectbox("請選擇 EMDN 代碼類別", list(emdn_C)) # List the EMDN code category
+        group_C = emdn_C.groupby(by=[category_C], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
+        type_C = st.selectbox("請選擇 EMDN 代碼類型", list(group_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
+
+        if st.button("搜尋"): # Set up the button
+            st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(type_C))
+            GSPR_C(type_C)
+
+
+
+def GSPR_E(type_E):  # Create the GSPR page in English
     st.write("The {} information shown can be searched, fullscreen, and downloaded as an Excel file for personal records and edits".format(type_E))
 
     # Set up different tabs
@@ -104,27 +126,9 @@ def GSPR_E(type_E):
         standards_E = standards_E.iloc[:30]
         st.dataframe(standards_E)
 
- 
 
 
-
-# Create the GSPR page in Ｍandarin
-def EMDN_C():
-    st.header(" :star2: EMDN 代碼")
-    st.write("表格所示為歐洲醫療器材命名法(EMDN)結構，該結構將醫療器材劃分為不同種類")
-    st.dataframe(emdn_C) # Display the EMDN code data in Mandarin
-
-    category_C = st.selectbox("請選擇 EMDN 代碼類別", list(emdn_C)) # List the EMDN code category
-    group_C = emdn_C.groupby(by=[category_C], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-    type_C = st.selectbox("請選擇 EMDN 代碼類型", list(group_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
-
-    if st.button("搜尋"): # Set up the button
-        st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(type_C))
-        GSPR_C(type_C)
-
-
-def GSPR_C(type_C):
-    st.header("一般安全和性能要求 (附錄 I)")
+def GSPR_C(type_C):  # Create the GSPR page in Mandarin
     st.write("顯示的資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯")
 
     #Set up different tabs
@@ -256,6 +260,9 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         expander_E = st.expander("Count Results")
         expander_E.write(count_E)
 
+
+
+
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_E = st.selectbox("Please select X-Axis value", options=excel.columns[0:7])
         yaxis_E = st.selectbox("Please select Y-Axis value", options=excel.columns[1:7])        
@@ -263,6 +270,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen
         st.plotly_chart(plot_E, use_container_width=True) # Display the data
+        
         expander2_E = st.expander("Analysis Results")
         data2_E = excel[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
         expander2_E.write(data2_E)
@@ -288,19 +296,16 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
 
 # Create the sidebar for choosing the specific page
-options = st.sidebar.radio("Pages", options=["Home", "GSPR (EN)", "GSPR (CN)", "Survey", "Analysis"])
+options = st.sidebar.radio("Pages", options=[":stethoscope: Home", " :star2: GSPR", " :memo: Survey", " :bar_chart: Analysis"])
 
-if options == "Home":
+if options == ":stethoscope: Home":
     Home()
-elif options == "GSPR (EN)":
-    EMDN_E()
-elif options == "GSPR (CN)":
-    EMDN_C()
-elif options == "Survey":
+elif options == " :star2: GSPR":
+    EMDN()
+elif options == " :memo: Survey":
     Survey()
-elif options == "Analysis":
+elif options == " :bar_chart: Analysis":
     Analysis()
-
 
 
 
