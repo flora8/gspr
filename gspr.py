@@ -311,8 +311,8 @@ def Prediction():
         y = st.selectbox("Please select y-Axis value to calculate the total values", options=df.columns[1:7])
         X = df.dropna(subset=[X]) # remove nan values from a dataframe
         y = df.dropna(subset=[y]) # remove nan values from a dataframe
-        X = np.array(df[X]).reshape(-1,1) # independant variable 
-        y = np.array(df[y]).reshape(-1,1) # dependent variable
+        X = X.iloc[:,0] # independant variable 
+        y = y.iloc[:,0] # dependent variable
         
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number)
