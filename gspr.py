@@ -313,7 +313,7 @@ def Prediction():
         y = np.array(df[y]).reshape(-1,1) # dependent variable
         
 
-        X_train, X_test, y_train, y_test = train_test_split(X_train, X_test, y_train, y_test, test_size=split_size, random_state=seed_number)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number)
         log_reg = LinearRegression().fit(X_train, y_train) # fit scaled training data and label
         predictions_train = log_reg.score(X_train, y_train) # fit the data to the model
         predictions_test = log_reg.score(X_test, y_test) # predict the test data
