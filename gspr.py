@@ -2,9 +2,17 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import datetime
+import seaborn as sns
+import matplotlib.pyplot as plt
 import openpyxl
 import pip
 import numpy as np
+
+from sklearn.model_selection import train_test_split
+from lazypredict.Supervised import LazyRegressor
+from sklearn.metrics import mean_squared_error, r2_score
+import base64
+import io
 
 
 
@@ -293,10 +301,130 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
 
 
+#---------------------------------#
+def Prediction():
+    st.header(" :mag: Predictive Model 預測模型")
+    st.markdown("""Prediction response value by using Lazy Regressor""")       
+        
+    def model(df):
+        X = df.iloc[:,:-1] # Using all column except for the last column as X
+        y = df.iloc[:,-1] # Selecting the last column as y
+        
+        st.markdown('**1.2. Data dimension**')
+        st.write('X')
+        st.info(X.shape)
+        st.write('y')
+        st.info(y.shape)
+
+        st.markdown('**1.3. Variable details**:')
+        st.write('X variable (first 20 are shown)')
+        st.info(list(X.columns[:20]))
+        st.write('y variable')
+        st.info(y.name)
+
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number) # keeping 5% of data for testing, 95% for training
+        reg = LazyRegressor(verbose=0, ignore_warnings=False, custom_metric=None)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number) # keeping 5% of data for testing, 95% for training
+        models_train, predictions_train = reg.fit(X_train, X_train, y_train, y_train)
+        models_test, predictions_test = reg.fit(X_train, X_test, y_train, y_test)
+
+        st.subheader("2. Table of Model Performance")
+        st.write('Training set')
+        st.write(predictions_train)
+        st.markdown(filedownload(predictions_train, 'training.xlsx'), unsafe_allow_html=True)
+        st.write('Test set')
+        st.write(predictions_test)
+        st.markdown(filedownload(predictions_test, 'test.xlsx'), unsafe_allow_html=True)
+
+        st.subheader('3. Plot of Model Performance (Test set)')
+        with st.markdown('**R-squared**'):
+            # Tall
+            predictions_test["R-Squared"] = [0 if i < 0 else i for i in predictions_test["R-Squared"] ]
+            plt.figure(figsize=(3, 9))
+            sns.set_theme(style="whitegrid")
+            ax1 = sns.barplot(y=predictions_test.index, x="R-Squared", data=predictions_test)
+            ax1.set(xlim=(0, 1))
+        st.markdown(imagedownload(plt,'plot-r2-tall.pdf'), unsafe_allow_html=True)
+        # Wide
+        plt.figure(figsize=(9, 3))
+        sns.set_theme(style="whitegrid")
+        ax1 = sns.barplot(x=predictions_test.index, y="R-Squared", data=predictions_test)
+        ax1.set(ylim=(0, 1))
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+        st.markdown(imagedownload(plt,'plot-r2-wide.pdf'), unsafe_allow_html=True)
+
+        with st.markdown('**RMSE (capped at 50)**'):
+            # Tall
+            predictions_test["RMSE"] = [50 if i > 50 else i for i in predictions_test["RMSE"] ]
+            plt.figure(figsize=(3, 9))
+            sns.set_theme(style="whitegrid")
+            ax2 = sns.barplot(y=predictions_test.index, x="RMSE", data=predictions_test)
+        st.markdown(imagedownload(plt,'plot-rmse-tall.pdf'), unsafe_allow_html=True)
+            # Wide
+        plt.figure(figsize=(9, 3))
+        sns.set_theme(style="whitegrid")
+        ax2 = sns.barplot(x=predictions_test.index, y="RMSE", data=predictions_test)
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+        st.markdown(imagedownload(plt,'plot-rmse-wide.pdf'), unsafe_allow_html=True)
+
+        with st.markdown('**Calculation time**'):
+            # Tall
+            predictions_test["Time Taken"] = [0 if i < 0 else i for i in predictions_test["Time Taken"] ]
+            plt.figure(figsize=(3, 9))
+            sns.set_theme(style="whitegrid")
+            ax3 = sns.barplot(y=predictions_test.index, x="Time Taken", data=predictions_test)
+        st.markdown(imagedownload(plt,'plot-calculation-time-tall.pdf'), unsafe_allow_html=True)
+            # Wide
+        plt.figure(figsize=(9, 3))
+        sns.set_theme(style="whitegrid")
+        ax3 = sns.barplot(x=predictions_test.index, y="Time Taken", data=predictions_test)
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+        st.markdown(imagedownload(plt,'plot-calculation-time-wide.pdf'), unsafe_allow_html=True)
+
+    # Download CSV data
+    def filedownload(df, filename):
+        csv = df.to_csv(index=False)
+        b64 = base64.b64encode(csv.encode()).decode()  # strings <-> bytes conversions
+        href = f'<a href="data:file/csv;base64,{b64}" download={filename}>Download {filename} File</a>'
+        return href
+
+    def imagedownload(plt, filename):
+        s = io.BytesIO()
+        plt.savefig(s, format='pdf', bbox_inches='tight')
+        plt.close()
+        b64 = base64.b64encode(s.getvalue()).decode()  # strings <-> bytes conversions
+        href = f'<a href="data:image/png;base64,{b64}" download={filename}>Download {filename} File</a>'
+        return href
+
+    #---------------------------------#
+    st.write("""
+             # The Machine Learning Algorithm Comparison App
+            In this implementation, the **lazypredict** library is used for building several machine learning models at once.
+            """)
+
+    #---------------------------------#
+    # Sidebar - Specify parameter settings
+    with st.sidebar.header('Set Parameters'):
+        split_size = st.sidebar.slider('Data split ratio (% for Training Set)', 10, 90, 80, 5)
+        seed_number = st.sidebar.slider('Set the random seed number', 1, 100, 42, 1)
+
+    #---------------------------------#
+    # Main panel
+    st.subheader('1. Dataset') # Displays the dataset
+    st.markdown('**1.1. Glimpse of User  Survey data**')
+    file = pd.read_excel('Survey.xlsx', usecols="A:G")
+    st.write(file)
+    model(file)
 
 
+
+
+#---------------------------------#
 # Create the sidebar for choosing the specific page
-options = st.sidebar.radio("Pages", options=[":stethoscope: Home", " :star2: GSPR", " :memo: Survey", " :bar_chart: Analysis"])
+options = st.sidebar.radio("Pages", options=[":stethoscope: Home", " :star2: GSPR", " :memo: Survey", " :bar_chart: Analysis", " :mag: Prediction"])
 
 if options == ":stethoscope: Home":
     Home()
@@ -306,7 +434,8 @@ elif options == " :memo: Survey":
     Survey()
 elif options == " :bar_chart: Analysis":
     Analysis()
-
+elif options == " :mag: Prediction":
+    Prediction()
 
 
 
