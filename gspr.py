@@ -9,8 +9,7 @@ import pip
 import numpy as np
 
 from sklearn.model_selection import train_test_split
-import lazypredict
-from lazypredict.Supervised import LazyRegressor
+from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 import base64
 import io
@@ -324,7 +323,7 @@ def Prediction():
         st.info(y.name)
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number) # keeping 5% of data for testing, 95% for training
-        reg = LazyRegressor(verbose=0, ignore_warnings=False, custom_metric=None)
+        reg = LinearRegression(verbose=0, ignore_warnings=False, custom_metric=None)
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number) # keeping 5% of data for testing, 95% for training
         models_train, predictions_train = reg.fit(X_train, X_train, y_train, y_train)
         models_test, predictions_test = reg.fit(X_train, X_test, y_train, y_test)
