@@ -309,8 +309,8 @@ def Prediction():
     def model(df):
         X = st.selectbox("Please select X-Axis value to calculate the total values", options=df.columns[:7])
         y = st.selectbox("Please select y-Axis value to calculate the total values", options=df.columns[1:7])
-        X = np.array(df[X]
-        y = np.array(df[y]
+        X = np.array(df[X])
+        y = np.array(df[y])
         
         st.markdown('**1.2. Data dimension**')
         st.write('X')
