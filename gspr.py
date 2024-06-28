@@ -312,17 +312,17 @@ def Prediction():
         X = np.array(df[X]).reshape(-1,1) # independant variable 
         y = np.array(df[y]).reshape(-1,1) # dependent variable
         
-        st.markdown('**1.2. Data dimension**')
-        st.write('X')
-        st.info(X.shape)
-        st.write('y')
-        st.info(y.shape)
+        # st.markdown('**1.2. Data dimension**')
+        # st.write('X')
+        # st.info(X.shape)
+        # st.write('y')
+        # st.info(y.shape)
 
-        st.markdown('**1.3. Variable details**:')
-        st.write('X variable')
-        st.info(X.name)
-        st.write('y variable')
-        st.info(y.name)
+        # st.markdown('**1.3. Variable details**:')
+        # st.write('X variable')
+        # st.info(X.name)
+        # st.write('y variable')
+        # st.info(y.name)
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number) # keeping 5% of data for testing, 95% for training
         reg = LinearRegression(verbose=0, ignore_warnings=False, custom_metric=None)
