@@ -263,7 +263,6 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=excel.columns[1:7])
-        xvalue_E = excel.dropna(subset=xvalue_E) # remove nan values from a dataframe
         count_E = excel[xvalue_E].value_counts()
         st.bar_chart(count_E)
         expander_E = st.expander("Count Results")
@@ -272,9 +271,6 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_E = st.selectbox("Please select X-Axis value", options=excel.columns[0:7])
         yaxis_E = st.selectbox("Please select Y-Axis value", options=excel.columns[1:7])
-        xaxis_E = excel.dropna(subset=xaxis_E) # remove nan values from a dataframe
-        yaxis_E = excel.dropna(subset=yaxis_E) # remove nan values from a dataframe
-        
         plot_E = px.scatter(excel, x=xaxis_E, y=yaxis_E, labels={xaxis_E:yaxis_E}, title="The searched {} by {} results".format(xaxis_E,yaxis_E))
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen
