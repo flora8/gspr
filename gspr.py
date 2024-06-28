@@ -307,12 +307,14 @@ def Prediction():
     st.markdown("""Prediction response value by using linear regression statistical model""")       
         
     def model(df):
-        X = st.selectbox("Please select X-Axis value to calculate the total values", options=df.columns[:7])
-        y = st.selectbox("Please select y-Axis value to calculate the total values", options=df.columns[1:7])
-        X = df.dropna(subset=[X]) # remove nan values from a dataframe
-        y = df.dropna(subset=[y]) # remove nan values from a dataframe
-        X = X.iloc[:,0] # independant variable 
-        y = y.iloc[:,0] # dependent variable
+        X_E = st.selectbox("Please select X-Axis value to calculate the total values", options=df.columns[:7])
+        y_E = st.selectbox("Please select y-Axis value to calculate the total values", options=df.columns[1:7])
+        X_E = df.dropna(subset=[X_E]) # remove nan values from a dataframe
+        y_E = df.dropna(subset=[y_E]) # remove nan values from a dataframe
+        X_E = X_E.groupby(by=[X_E], as_index=False)[[]].sum() 
+        y_E = y_E.groupby(by=[y_E], as_index=False)[[]].sum() 
+        X = X_E.iloc[:,0] # independant variable 
+        y = y_E.iloc[:,0] # dependent variable
         
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number)
