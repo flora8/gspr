@@ -300,7 +300,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
 #---------------------------------#
 # Create the sidebar for choosing the specific page
-options = st.sidebar.radio("Pages", options=[":stethoscope: Home", " :star2: GSPR", " :memo: Survey", " :bar_chart: Analysis"])
+options = st.sidebar.radio("# Pages", options=[":stethoscope: Home", " :star2: GSPR", " :memo: Survey", " :bar_chart: Analysis"])
 
 if options == ":stethoscope: Home":
     Home()
