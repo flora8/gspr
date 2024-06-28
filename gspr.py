@@ -304,7 +304,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 #---------------------------------#
 def Prediction():
     st.header(" :mag: Predictive Model 預測模型")
-    st.markdown("""Prediction response value by using Lazy Regressor""")       
+    st.markdown("""Prediction response value by using linear regression statistical model""")       
         
     def model(df):
         X = df.iloc[:,:-1] # Using all column except for the last column as X
@@ -398,12 +398,6 @@ def Prediction():
         b64 = base64.b64encode(s.getvalue()).decode()  # strings <-> bytes conversions
         href = f'<a href="data:image/png;base64,{b64}" download={filename}>Download {filename} File</a>'
         return href
-
-    #---------------------------------#
-    st.write("""
-             # The Machine Learning Algorithm Comparison App
-            In this implementation, the **lazypredict** library is used for building several machine learning models at once.
-            """)
 
     #---------------------------------#
     # Sidebar - Specify parameter settings
