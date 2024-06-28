@@ -309,8 +309,8 @@ def Prediction():
     def model(df):
         X = st.selectbox("Please select X-Axis value to calculate the total values", options=df.columns[:7])
         y = st.selectbox("Please select y-Axis value to calculate the total values", options=df.columns[1:7])
-        X = df[X].dropna().tolist() # remove nan values from a dataframe
-        y = df[y].dropna().tolist() # remove nan values from a dataframe
+        X = df[X].dropna(axis=0).tolist() # remove nan values from a dataframe
+        y = df[y].dropna(axis=0).tolist() # remove nan values from a dataframe
         X = np.array(df[X]).reshape(-1,1) # independant variable 
         y = np.array(df[y]).reshape(-1,1) # dependent variable
         
