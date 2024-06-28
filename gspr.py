@@ -392,7 +392,7 @@ def Prediction():
     #---------------------------------#
     # Sidebar - Specify parameter settings
     with st.sidebar.header('Set Parameters'):
-        split_size = st.sidebar.slider('Data split ratio (% for Training Set)', 10, 90, 80, 5)
+        split_size = st.sidebar.slider('Data split ratio (% for Training Set)', 0, 90, 80, 1)
         seed_number = st.sidebar.slider('Set the random seed number', 1, 100, 42, 1)
 
     #---------------------------------#
