@@ -10,14 +10,14 @@ requests==2.32.3
 matplotlib==3.9.0
 seaborn==0.13.2
 
-base58==2.1.1
-pillow==10.3.0
-scikit-learn==1.5.0
-lazypredict==0.2.12
-xgboost==2.1.0
-lightgbm==4.4.0
-pytest==8.2.2
-tqdm==4.66.4
+base58
+pillow
+scikit-learn
+lazypredict
+xgboost
+lightgbm
+pytest
+tqdm
 
 
 click
