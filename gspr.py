@@ -275,9 +275,6 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen
         st.plotly_chart(plot_E, use_container_width=True) # Display the data
-
-        fig = px.line(x=xaxis_E, y=yaxis_E, title="The searched {} by {} results".format(xaxis_E,yaxis_E))
-        st.plotly_chart(fig)
         
         expander2_E = st.expander("Analysis Results")
         data2_E = excel[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
