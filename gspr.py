@@ -309,8 +309,8 @@ def Prediction():
     def model(df):
         X = st.selectbox("Please select X-Axis value to calculate the total values", options=df.columns[:7])
         y = st.selectbox("Please select y-Axis value to calculate the total values", options=df.columns[1:7])
-        X = df[X].iloc[:,0]
-        y = df[y].iloc[:,0]
+        X = np.array(df[X]).reshape(-1,1) # independant variable 
+        y = np.array(df[y]).reshape(-1,1) # dependent variable
         
         st.markdown('**1.2. Data dimension**')
         st.write('X')
@@ -326,7 +326,6 @@ def Prediction():
 
         X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number) # keeping 5% of data for testing, 95% for training
         reg = LinearRegression(verbose=0, ignore_warnings=False, custom_metric=None)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=split_size, random_state=seed_number) # keeping 5% of data for testing, 95% for training
         models_train, predictions_train = reg.fit(X_train, X_train, y_train, y_train)
         models_test, predictions_test = reg.fit(X_train, X_test, y_train, y_test)
 
