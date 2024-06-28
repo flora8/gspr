@@ -307,7 +307,7 @@ def Prediction():
     st.markdown("""Prediction response value by using linear regression statistical model""")       
         
     def model(df):
-        X = st.selectbox("Please select X-Axis value to calculate the total values", options=df.columns[1:7])
+        X = st.selectbox("Please select X-Axis value to calculate the total values", options=df.columns[:7])
         y = st.selectbox("Please select X-Axis value to calculate the total values", options=df.columns[1:7])
         # X = df[x_E]
         # y = df[y_E]
@@ -319,7 +319,7 @@ def Prediction():
         st.info(y.shape)
 
         st.markdown('**1.3. Variable details**:')
-        st.write('X variable (first 20 are shown)')
+        st.write('X variable')
         st.info(X.name)
         st.write('y variable')
         st.info(y.name)
