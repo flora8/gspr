@@ -204,10 +204,10 @@ def Survey(): # Collecting user inputs for later analysis
                 "Date": day,
                 "Background": background,
                 "Role": role,
-                "EMDN category": device_category,
-                "EMDN type": device_type,
-                "Device information": clear,
-                "Overall experience": useful,
+                "EMDN Category": device_category,
+                "EMDN Type": device_type,
+                "Device Information": clear,
+                "Overall Experience": useful,
                 "What other information would you like to see on this page?": information,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])])
