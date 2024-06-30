@@ -108,21 +108,21 @@ def GSPR_E(type_E):  # Create the GSPR page in English
 
     with ChapterI: # Get Chapter I General requirements details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterI_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:C", header=2) # replace NaN as blank, read the columns from A to C to get English details, and the header is 2nd row of excel
+        chapterI_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:D", header=2) # replace NaN as blank, read the columns from A to C to get English details, and the header is 2nd row of excel
         chapterI_E = chapterI_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
         st.dataframe(chapterI_E)
 
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterII_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:C", header=26)
+        chapterII_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:D", header=26)
         chapterII_E = chapterII_E.replace("\n", ", ", regex=True) 
         chapterII_E = chapterII_E.iloc[:141] # Selecting all row from header 26 to row 141
         st.dataframe(chapterII_E)
 
     with ChapterIII: # Get Chapter III Requirements regarding the information supplied with the device details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=168).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterIII_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:C", header=169)
+        chapterIII_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:D", header=169)
         chapterIII_E = chapterIII_E.replace("\n", ", ", regex=True) 
         chapterIII_E = chapterIII_E.iloc[:265]
         st.dataframe(chapterIII_E)
@@ -144,21 +144,21 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
 
     with 第一章: # Get Chapter I General requirements details in Mandarin
         st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterI_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter=False, usecols="A:C", header=2)  # replace NaN as blank, read the columns from E to G to get Chinese details, and the header is 2nd row of excel
+        chapterI_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter=False, usecols="A:D", header=2)  # replace NaN as blank, read the columns from E to G to get Chinese details, and the header is 2nd row of excel
         chapterI_C = chapterI_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_C = chapterI_C.iloc[:22] # Selecting all row from header 2 to row 22
         st.dataframe(chapterI_C)
 
     with 第二章: # Get Chapter II Requirements regarding design and manufacture details in Mandarin
         st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterII_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter=False, usecols="A:C", header=26)
+        chapterII_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter=False, usecols="A:D", header=26)
         chapterII_C = chapterII_C.replace("\n", ", ", regex=True) 
         chapterII_C = chapterII_C.iloc[:141]
         st.dataframe(chapterII_C)
 
     with 第三章: # Get Chapter III Requirements regarding the information supplied with the device details in Mandarin
         st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=168).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterIII_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter=False, usecols="A:C", header=169)
+        chapterIII_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter=False, usecols="A:D", header=169)
         chapterIII_C = chapterIII_C.replace("\n", ", ", regex=True) 
         chapterIII_C = chapterIII_C.iloc[:265]
         st.dataframe(chapterIII_C)
