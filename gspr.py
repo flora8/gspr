@@ -8,7 +8,8 @@ import openpyxl
 import pip
 import numpy as np
 
-from streamlit_gsheets import GSheetsConnection
+import sqlite3
+
 # from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LinearRegression
 # from sklearn.metrics import mean_squared_error, r2_score
@@ -209,45 +210,55 @@ def Survey(): # Collecting user inputs for later analysis
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
+
+    conn = sqlite3.connect('Survey.db', check_same_thread=False)
+    cursor = conn.cursor()
     
-    # Establishing a google sheets connection
-    conn = st.experimental_connection("eugspr", type=GSheetsConnection)
-    url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4/edit?gid=0#gid=0"
-    # Fetch existing survey data
-    survey_data = conn.read(spreadsheet=url, usecols=list(range(19)), ttl=5) # time to live, so ttl to 5 sec. This code will return the spreadsheet data in pandas dataframe 
-    st.dataframe(survey_data)
+    # # Establishing a google sheets connection
+    # conn = st.experimental_connection("eugspr", type=GSheetsConnection)
+    # url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4/edit?gid=0#gid=0"
+    # # Fetch existing survey data
+    # survey_data = conn.read(spreadsheet=url, usecols=list(range(19)), ttl=5) # time to live, so ttl to 5 sec. This code will return the spreadsheet data in pandas dataframe 
+    # st.dataframe(survey_data)
 
     
     with col1:
         st.subheader("User Experience Survey")
-        day = st.text_input("Date ", (datetime.date.today()), disabled=True)
+        date = st.text_input("Date ", (datetime.date.today()), disabled=True)
         background = st.selectbox("Please select the business type of your background?", ("", "Academics", "Manufacturer", "Importer", "Distributor", "Wholesaler","Retailer", "Others",))
         role = st.selectbox("Please select your current role?", ("", "Professionals", "Professor", "Student", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
 
-        device_category = st.selectbox("Which EMDN category of medical device are you particularly interested in searching for?", list(emdn_E), index=None) # set index to none means there is no default options
-        group_E = emdn_E.groupby(by=[device_category], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        device_type = st.selectbox("Which EMDN type of medical device are you particularly interested in searching for?", list(group_E.iloc[:,0]))
+        EMDN_category = st.selectbox("Which EMDN category of medical device are you particularly interested in searching for?", list(emdn_E), index=None) # set index to none means there is no default options
+        group_E = emdn_E.groupby(by=[EMDN_category], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
+        EMDN_type = st.selectbox("Which EMDN type of medical device are you particularly interested in searching for?", list(group_E.iloc[:,0]))
         
-        clear = st.selectbox("How would you rate the provided device information on this website overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear", "5: Absolutely inappropriate and unclear"))
-        useful = st.selectbox("How would you rate your overall experience with this website on a scale?", ("","1: Extremely useful", "2: Slightly useful", "3: Neither useful nor useless", "4: Slightly useless", "5: Extremely useless"))
-        information = st.text_area("What other information would you like to see on this page? (Optional)")
+        information = st.selectbox("How would you rate the provided device information on this website overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear", "5: Absolutely inappropriate and unclear"))
+        experience = st.selectbox("How would you rate your overall experience with this website on a scale?", ("","1: Extremely useful", "2: Slightly useful", "3: Neither useful nor useless", "4: Slightly useless", "5: Extremely useless"))
+        others = st.text_area("What other information would you like to see on this page? (Optional)")
         feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve? (Optional)")
+        submit = st.button(label="Submit")
+        
+        if submit == True: # if the submit button is pressed
+            #st.success("Successfully submitted. !! Thank you so much for your support !! ") 
+            info_E(date, background, role, EMDN_category, EMDN_type, information, experience, others, feedback)
 
-        if st.button(label="Submit"): # if the submit button is pressed
-            userdata_E = pd.DataFrame([{
-                "Date": day,
-                "Background": background,
-                "Role": role,
-                "EMDN Category": device_category,
-                "EMDN Type": device_type,
-                "Device Information": clear,
-                "Overall Experience": useful,
-                "What other information would you like to see on this page?": information,
-                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-                }])
-            update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
-            conn.update(worksheet="Survey", data=update_E) # update google sheets with the user input data
-            st.success("Successfully submitted. !! Thank you so much for your support !! ")    
+
+
+            
+            # userdata_E = pd.DataFrame([{
+            #     "Date": day,
+            #     "Background": background,
+            #     "Role": role,
+            #     "EMDN Category": device_category,
+            #     "EMDN Type": device_type,
+            #     "Device Information": clear,
+            #     "Overall Experience": useful,
+            #     "What other information would you like to see on this page?": information,
+            #     "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
+            #     }])
+            # update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
+            # conn.update(worksheet="Survey", data=update_E) # update google sheets with the user input data
+            # st.success("Successfully submitted. !! Thank you so much for your support !! ")    
 
 
         # if st.button(label="Submit"): # if the submit button is pressed
@@ -271,34 +282,56 @@ def Survey(): # Collecting user inputs for later analysis
 
     with col2:
         st.subheader("使用者體驗調查")
-        day_C = st.text_input("日期", (datetime.date.today()), disabled=True)
+        date_C = st.text_input("日期", (datetime.date.today()), disabled=True)
         background_C = st.selectbox("請問您的背景", ("", "學術", "製造商", "進口商", "經銷商", "批發商", "其他",))
         role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
     
-        device_category_C = st.selectbox("請問您對哪種 EMDN 分類的醫療器材特別感興趣搜尋?", list(emdn_C), index=None) # set index to none means there is no default options
-        group_C = emdn_C.groupby(by=[device_category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
-        device_type_C = st.selectbox("請問您對哪種 EMDN 類型的醫療器材特別感興趣搜尋?", list(group_C.iloc[:,0]))
+        EMDN_category_C = st.selectbox("請問您對哪種 EMDN 分類的醫療器材特別感興趣搜尋?", list(emdn_C), index=None) # set index to none means there is no default options
+        group_C = emdn_C.groupby(by=[EMDN_category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
+        EMDN_type_C = st.selectbox("請問您對哪種 EMDN 類型的醫療器材特別感興趣搜尋?", list(group_C.iloc[:,0]))
 
-        value_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確", "5: 非常不適當和不明確"))
-        useful_C = st.selectbox("請問您對本網站的整體體驗有何評價？", ("","1: 非常有用", "2: 稍微有用", "3: 普通", "4: 稍微沒用", "5: 非常沒用"))
-        information_C = st.text_area("請問您希望在此頁面上看到哪些其他資訊？")
+        information_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確", "5: 非常不適當和不明確"))
+        experience_C = st.selectbox("請問您對本網站的整體體驗有何評價？", ("","1: 非常有用", "2: 稍微有用", "3: 普通", "4: 稍微沒用", "5: 非常沒用"))
+        others_C = st.text_area("請問您希望在此頁面上看到哪些其他資訊？")
         feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
+        submit_C = st.button(label="提交")
         
-        if st.button(label="提交"): # if the submit button is pressed
-            userdata_C = pd.DataFrame([{
-                "日期": day_C,
-                "背景": background_C,
-                "職位": role_C,
-                "EMDN類別": device_category_C,
-                "EMDN類型": device_type_C,
-                "醫材資訊": value_C,
-                "整體體驗": useful_C,
-                "請問您希望在此頁面上看到哪些其他資訊？": information_C,
-                "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback_C
-                }])
-            update_C = pd.concat([survey_data, userdata_C], ignore_idex=True) # add the user input data to the survey excel
-            conn.update(worksheet="Survey", data=update_C) # update google sheets with the user input data
-            st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
+        if submit_C == True: # if the submit button is pressed
+            #st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
+            info_C(date_C, background_C, role_C, EMDN_category_C, EMDN_type_C, information_C, experience_C, others_C, feedback_C)
+
+
+def info_E(a, b, c, d, e, f, g, h, i):
+    cur.execute("""CREATE TABLE user_information(Date integer, Background text, Role text, EMDN_category text, EMDN_type text, Information text, Experience text, Others text, Feedback text);""")
+    cur.execute("INSERT INTO user_information VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
+    conn.commit()
+    conn.close()
+    st.success("Successfully submitted. !! Thank you so much for your support !! ")
+
+
+def info_C(a, b, c, d, e, f, g, h, i):
+    cur.execute("""CREATE TABLE user_information(日期 integer, 背景 text, 職位 text, EMDN類別 text, EMDN類型 text, 資材資訊 text, 體驗 text, 其他資訊 text, 回饋 text);""")
+    cur.execute("INSERT INTO user_information VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
+    conn.commit()
+    conn.close()
+    st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
+
+    
+            
+            # userdata_C = pd.DataFrame([{
+            #     "日期": day_C,
+            #     "背景": background_C,
+            #     "職位": role_C,
+            #     "EMDN類別": device_category_C,
+            #     "EMDN類型": device_type_C,
+            #     "醫材資訊": value_C,
+            #     "整體體驗": useful_C,
+            #     "請問您希望在此頁面上看到哪其他資訊？": information_C,
+            #     "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback_C
+            #     }])
+            # update_C = pd.concat([survey_data, userdata_C], ignore_idex=True) # add the user input data to the survey excel
+            # conn.update(worksheet="Survey", data=update_C) # update google sheets with the user input data
+            # st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
             
 
         
