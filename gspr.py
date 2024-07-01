@@ -270,13 +270,11 @@ def Survey(): # Collecting user inputs for later analysis
                 }])])
             userdata_C.to_excel("Survey.xlsx", index=False)
             st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
-            
-    if userdata is not None:
-        user = userdata.getvalue()
+
+    df = pd.read_excel("Survey.xlsx")
+    if df is not None:
+        user = df.getvalue()
         st.write(user)
-    if userdata_C is not None:
-        user_C = userdata_C.getvalue()
-        st.write(user_C)
         
 
 #---------------------------------#
