@@ -212,10 +212,12 @@ def Survey(): # Collecting user inputs for later analysis
     
     # Establishing a google sheets connection
     conn = st.experimental_connection("eugspr", type=GSheetsConnection)
+    url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4/edit?gid=0#gid=0"
     # Fetch existing survey data
-    survey_data = conn.read(worksheet="Survey", usecols=list(range(19)), ttl=5) # time to live, so ttl to 5 sec. This code will return the spreadsheet data in pandas dataframe 
+    survey_data = conn.read(worksheet=url, usecols=list(range(19)), ttl=5) # time to live, so ttl to 5 sec. This code will return the spreadsheet data in pandas dataframe 
+    st.dataframe(survey_data)
 
-
+    
     with col1:
         st.subheader("User Experience Survey")
         day = st.text_input("Date ", (datetime.date.today()), disabled=True)
