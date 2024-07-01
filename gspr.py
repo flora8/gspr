@@ -348,7 +348,7 @@ def info_C(a, b, c, d, e, f, g, h, i):
         #         "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback_C
         #         }])])
         #     userdata_C.to_excel("Survey.xlsx", index=False)
-            st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
+            #st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
 
 
         
