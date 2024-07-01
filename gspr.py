@@ -8,6 +8,7 @@ import openpyxl
 import pip
 import numpy as np
 
+from streamlit_gsheets import GSheetsConnection
 # from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LinearRegression
 # from sklearn.metrics import mean_squared_error, r2_score
@@ -271,10 +272,11 @@ def Survey(): # Collecting user inputs for later analysis
             userdata_C.to_excel("Survey.xlsx", index=False)
             st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
 
-    df = pd.read_excel("Survey.xlsx")
-    if df is not None:
-        user = df.getvalue()
-        st.write(user)
+    # Establishing a google sheets connection
+    conn = st.experimental_connection("gsheets", type=GSheetsConnection)
+    # Fetch existing survey data
+    existing = conn.read(worksheet="Survey", usecols=list(range(19)), ttl=5) # time to live, so ttl to 5 sec. This code will return the spreadsheet data in pandas dataframe 
+    st.dataframe(existing)
         
 
 #---------------------------------#
