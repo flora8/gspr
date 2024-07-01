@@ -211,7 +211,7 @@ def Survey(): # Collecting user inputs for later analysis
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
     
     # Establishing a google sheets connection
-    conn = st.experimental_connection("Survey", type=GSheetsConnection)
+    conn = st.experimental_connection("eugspr", type=GSheetsConnection)
     # Fetch existing survey data
     survey_data = conn.read(worksheet="Survey", usecols=list(range(19)), ttl=5) # time to live, so ttl to 5 sec. This code will return the spreadsheet data in pandas dataframe 
 
