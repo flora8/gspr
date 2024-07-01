@@ -49,7 +49,7 @@ def Home():
 
                 User participation in this research study is entirely voluntary and will take around 5 minutes to complete. The survey is anonymous, and the users' answers will only be utilized for the purpose of writing a research report. Any report or publication resulting from this study cannot and will not personally identify the user.
                 
-                If you have any questions or require more information about this research, please use the following contact email: k23018577@kcl.ac.uk
+                Please be aware that all information this system provides is for reference only, as regulations are updated frequently and the database may delay follow-up. Please be aware that all information this system provides is for reference only, as regulations are updated frequently. If you have any questions or require more information about this research, please use the following contact email: k23018577@kcl.ac.uk
                 """)
     
     st.markdown("""
@@ -65,7 +65,7 @@ def Home():
 
                 使用者參與本研究完全是自願的，花費時間約3~5分鐘完成。該調查是匿名的，使用戶的回答將僅用於撰寫研究報告為目的。而本研究產生的任何報告或出版物不能也不會識別使用者的個人身分。
                 
-                如果您對於本研究有任何疑問或需要更多信息，請透過以下電子郵件聯絡：k23018577@kcl.ac.uk
+                請注意，本系統提供的所有資訊僅供參考，因法規日益更新而資料庫可能延遲跟進。如果您對於本研究有任何疑問或需要更多信息，請透過以下電子郵件聯絡：k23018577@kcl.ac.uk
                 """)
 
 
