@@ -114,9 +114,9 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
         st.dataframe(chapterI_E)
 
-        option_chapterI_E = chapterI_E['Apply\nY/N'].unique()
+        option_chapterI_E = chapterI_E['Apply Y/N'].unique()
         select_chapterI_E = st.multiselect("Select apply:", options=option_chapterI_E, default=option_chapterI_E)
-        filter_chapterI_E = chapterI_E[chapterI_E['Apply\nY/N'].isin(select_chapterI_E)]
+        filter_chapterI_E = chapterI_E[chapterI_E['Apply Y/N'].isin(select_chapterI_E)]
         st.dataframe(filter_chapterI_E)
     
         #st.dataframe(chapterI_E)
