@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-import streamlit_pandas as sp
 import plotly.express as px
 import datetime
 import seaborn as sns
@@ -104,9 +103,6 @@ def EMDN(): # Create the EMDN page
 def GSPR_E(type_E):  # Create the GSPR page in English
     st.write("The {} information shown can be searched, fullscreen, and downloaded as an Excel file for personal records and edits".format(type_E))
     
-    all_widgets = sp.create_widgets(excel)
-    res = sp.filter_df(excel, all_widges)
-    st.write(res)
     
     # Set up different tabs
     ChapterI, ChapterII, ChapterIII, Standards = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards"])
@@ -116,7 +112,13 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         chapterI_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:D", header=2) # replace NaN as blank, read the columns from A to C to get English details, and the header is 2nd row of excel
         chapterI_E = chapterI_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
-        st.dataframe(chapterI_E)
+
+        option_chapterI_E = chapterI_E['Apply\nY/N'].unique()
+        select_chapterI_E = st.multiselect("Select apply:", options=option_chapterI_E, default=option_chapterI_E)
+        filter_chapterI_E = chapterI_E[chapterI_E['Apply\nY/N'].isin(select_chapterI_E)]
+        st.dataframe(filter_chapterI_E)
+    
+        #st.dataframe(chapterI_E)
 
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
