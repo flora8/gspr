@@ -226,7 +226,7 @@ def Survey(): # Collecting user inputs for later analysis
         feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?")
 
         if st.button(label="Submit"):
-            userdata = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
+            userdata_E = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
                 "Date": day,
                 "Background": background,
                 "Role": role,
@@ -237,7 +237,7 @@ def Survey(): # Collecting user inputs for later analysis
                 "What other information would you like to see on this page?": information,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])])
-            userdata.to_excel("Survey.xlsx", index=False)
+            userdata_E.to_excel("Survey.xlsx", index=False)
             st.success("Successfully submitted. !! Thank you so much for your support !! ")
 
 
