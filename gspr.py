@@ -232,7 +232,7 @@ def Survey(): # Collecting user inputs for later analysis
         feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve? (Optional)")
 
         if st.button(label="Submit"): # if the submit button is pressed
-            userdata_E = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
+            userdata_E = pd.DataFrame([{
                 "Date": day,
                 "Background": background,
                 "Role": role,
@@ -242,7 +242,7 @@ def Survey(): # Collecting user inputs for later analysis
                 "Overall Experience": useful,
                 "What other information would you like to see on this page?": information,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-                }])])
+                }])
             update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
             conn.update(worksheet="Survey", data=update_E) # update google sheets with the user input data
             st.success("Successfully submitted. !! Thank you so much for your support !! ")    
@@ -289,7 +289,7 @@ def Survey(): # Collecting user inputs for later analysis
                 "整體體驗": useful_C,
                 "請問您希望在此頁面上看到哪些其他資訊？": information_C,
                 "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback_C
-                }])])
+                }])
             update_C = pd.concat([survey_data, userdata_C], ignore_idex=True) # add the user input data to the survey excel
             conn.update(worksheet="Survey", data=update_C) # update google sheets with the user input data
             st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
