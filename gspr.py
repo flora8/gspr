@@ -8,14 +8,30 @@ import openpyxl
 import pip
 import numpy as np
 
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error, r2_score
-import base64
-import io
+# from sklearn.model_selection import train_test_split
+# from sklearn.linear_model import LinearRegression
+# from sklearn.metrics import mean_squared_error, r2_score
+# import base64
+# import io
 
 
 
+
+
+#---------------------------------#
+# Hide menu in Streamlit apps
+hide = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """
+st.markdown(hide, unsafe_allow_html=True)
+
+
+
+#---------------------------------#
 # Create the Home page
 def Home():
     st.title("Medical Device Regulation Decision Tool :stethoscope: ")
@@ -54,6 +70,7 @@ def Home():
 
 
 
+#---------------------------------#
 # Load excel data
 excel_E = pd.ExcelFile('GSPRen.xlsx') # Load the excel data in English
 emdn_E = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
@@ -182,7 +199,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
 
 
 
-
+#---------------------------------#
 def Survey(): # Collecting user inputs for later analysis
     st.header(" :memo: Survey 調查")
     st.markdown("""
@@ -257,7 +274,7 @@ def Survey(): # Collecting user inputs for later analysis
 
 
 
-
+#---------------------------------#
 def Analysis(): # Plotting and data visualisation to analyse user experience survey result
     st.header(" :bar_chart: Data Analysis 數據分析")
     st.markdown("""
