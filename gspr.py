@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import streamlit_pandas as sp
 import plotly.express as px
 import datetime
 import seaborn as sns
@@ -102,7 +103,11 @@ def EMDN(): # Create the EMDN page
 
 def GSPR_E(type_E):  # Create the GSPR page in English
     st.write("The {} information shown can be searched, fullscreen, and downloaded as an Excel file for personal records and edits".format(type_E))
-
+    
+    all_widgets = sp.create_widgets(excel)
+    res = sp.filter_df(excel, all_widges)
+    st.write(res)
+    
     # Set up different tabs
     ChapterI, ChapterII, ChapterIII, Standards = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards"])
 
