@@ -8,21 +8,8 @@ plotly==5.22.0
 numpy==1.26.0
 requests==2.32.3
 matplotlib==3.9.0
-seaborn==0.13.2
+#seaborn==0.13.2
 
 #streamlit_gsheets>=1.28
 git+https://github.com/streamlit/gsheets-connection
 
-base58
-pillow
-scikit-learn
-lazypredict
-xgboost
-lightgbm
-pytest
-tqdm
-
-
-click
-joblib
-xgboost
