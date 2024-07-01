@@ -226,7 +226,7 @@ def Survey(): # Collecting user inputs for later analysis
         feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?")
 
         if st.button(label="Submit"):
-            userdata_E = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
+            userdata = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
                 "Date": day,
                 "Background": background,
                 "Role": role,
@@ -237,7 +237,7 @@ def Survey(): # Collecting user inputs for later analysis
                 "What other information would you like to see on this page?": information,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])])
-            userdata_E.to_excel("Survey.xlsx", index=False)
+            userdata.to_excel("Survey.xlsx", index=False)
             st.success("Successfully submitted. !! Thank you so much for your support !! ")
 
 
@@ -271,9 +271,9 @@ def Survey(): # Collecting user inputs for later analysis
             userdata_C.to_excel("Survey.xlsx", index=False)
             st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
             
-    if userdata_E is not None:
-        user_E = userdata_E.getvalue()
-        st.write(user_E)
+    if userdata is not None:
+        user = userdata.getvalue()
+        st.write(user)
     if userdata_C is not None:
         user_C = userdata_C.getvalue()
         st.write(user_C)
