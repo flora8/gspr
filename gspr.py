@@ -234,7 +234,7 @@ def Survey(): # Collecting user inputs for later analysis
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ") 
             
-            userdata_E = pd.DataFrame({
+            userdata_E = pd.DataFrame.from_records([{
                 "Date": day,
                 "Background": background,
                 "Role": role,
@@ -244,7 +244,7 @@ def Survey(): # Collecting user inputs for later analysis
                 "Overall Experience": experience,
                 "What other information would you like to see on this page?": others,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-                })
+                }])
             #update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
             conn.create(worksheet="Survey", data=update_E) # update google sheets with the user input data
             st.success("Successfully submitted. !! Thank you so much for your support !! ")    
