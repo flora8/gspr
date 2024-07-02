@@ -238,11 +238,11 @@ def Survey(): # Collecting user inputs for later analysis
                 "Date": day,
                 "Background": background,
                 "Role": role,
-                "EMDN Category": device_category,
-                "EMDN Type": device_type,
-                "Device Information": clear,
-                "Overall Experience": useful,
-                "What other information would you like to see on this page?": information,
+                "EMDN Category": EMDN_category,
+                "EMDN Type": EMDN_type,
+                "Device Information": information,
+                "Overall Experience": experience,
+                "What other information would you like to see on this page?": others,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 })
             #update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
