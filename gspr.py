@@ -211,15 +211,9 @@ def Survey(): # Collecting user inputs for later analysis
                 """)
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
 
-    conn = sqlite3.connect('Survey.db', check_same_thread=False)
+    conn = sqlite3.connect('Survey.db', check_same_thread=False) # Establishing a SQL data
     cursor = conn.cursor()
     
-    # # Establishing a google sheets connection
-    # conn = st.experimental_connection("eugspr", type=GSheetsConnection)
-    # url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4/edit?gid=0#gid=0"
-    # # Fetch existing survey data
-    # survey_data = conn.read(spreadsheet=url, usecols=list(range(19)), ttl=5) # time to live, so ttl to 5 sec. This code will return the spreadsheet data in pandas dataframe 
-    # st.dataframe(survey_data)
 
     
     with col1:
@@ -228,7 +222,7 @@ def Survey(): # Collecting user inputs for later analysis
         background = st.selectbox("Please select the business type of your background?", ("", "Academics", "Manufacturer", "Importer", "Distributor", "Wholesaler","Retailer", "Others",))
         role = st.selectbox("Please select your current role?", ("", "Professionals", "Professor", "Student", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
 
-        EMDN_category = st.selectbox("Which EMDN category of medical device are you particularly interested in searching for?", list(emdn_E), index=None) # set index to none means there is no default options
+        EMDN_category = st.selectbox("Which EMDN category of medical device are you particularly interested in searching for?", list(emdn_E)) # set index to none means there is no default options
         group_E = emdn_E.groupby(by=[EMDN_category], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         EMDN_type = st.selectbox("Which EMDN type of medical device are you particularly interested in searching for?", list(group_E.iloc[:,0]))
         
@@ -286,7 +280,7 @@ def Survey(): # Collecting user inputs for later analysis
         background_C = st.selectbox("請問您的背景", ("", "學術", "製造商", "進口商", "經銷商", "批發商", "其他",))
         role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
     
-        EMDN_category_C = st.selectbox("請問您對哪種 EMDN 分類的醫療器材特別感興趣搜尋?", list(emdn_C), index=None) # set index to none means there is no default options
+        EMDN_category_C = st.selectbox("請問您對哪種 EMDN 分類的醫療器材特別感興趣搜尋?", list(emdn_C)) # set index to none means there is no default options
         group_C = emdn_C.groupby(by=[EMDN_category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
         EMDN_type_C = st.selectbox("請問您對哪種 EMDN 類型的醫療器材特別感興趣搜尋?", list(group_C.iloc[:,0]))
 
