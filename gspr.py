@@ -8,7 +8,7 @@ import openpyxl
 import pip
 import numpy as np
 
-import sqlite3
+from streamlit_gsheets import GSheetsConnection
 
 # from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LinearRegression
@@ -211,8 +211,10 @@ def Survey(): # Collecting user inputs for later analysis
                 """)
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
 
-    #conn = sqlite3.connect('Survey.db', check_same_thread=False) # Establishing a SQL data
-    #cursor = conn.cursor()
+    conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a gheets data
+    excel = conn.read(worksheet="Survey", usecols=list(range(19)))
+    st.dataframe(excel)
+    
     
 
     
@@ -233,9 +235,7 @@ def Survey(): # Collecting user inputs for later analysis
         submit = st.button(label="Submit")
         
         if submit == True: # if the submit button is pressed
-            #st.success("Successfully submitted. !! Thank you so much for your support !! ") 
-            info_E(date, background, role, EMDN_category, EMDN_type, information, experience, others, feedback)
-
+            st.success("Successfully submitted. !! Thank you so much for your support !! ") 
 
 
             
@@ -291,29 +291,7 @@ def Survey(): # Collecting user inputs for later analysis
         submit_C = st.button(label="提交")
         
         if submit_C == True: # if the submit button is pressed
-            #st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
-            info_C(date_C, background_C, role_C, EMDN_category_C, EMDN_type_C, information_C, experience_C, others_C, feedback_C)
-
-
-def info_E(a, b, c, d, e, f, g, h, i):
-    conn = sqlite3.connect('Survey.db', check_same_thread=False) # Establishing a SQL data
-    cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS survey(Date DATE, Background TEXT, Role TEXT, EMDN_category TEXT, EMDN_type TEXT, Information TEXT, Experience TEXT, Others TEXT, Feedback TEXT)""")
-    cursor.execute("INSERT INTO survey VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
-    conn.commit()
-    conn.close()
-    st.success("Successfully submitted. !! Thank you so much for your support !! ")
-
-
-def info_C(a, b, c, d, e, f, g, h, i):
-    conn = sqlite3.connect('Survey.db', check_same_thread=False) # Establishing a SQL data
-    cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE IF NOT EXISTS survey(日期 DATE, 背景 TEXT, 職位 TEXT, EMDN類別 TEXT, EMDN類型 TEXT, 資材資訊 TEXT, 體驗 TEXT, 其他資訊 TEXT, 回饋 TEXT)""")
-    cursor.execute("INSERT INTO survey VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
-    conn.commit()
-    conn.close()
-    st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
-
+            st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
     
             
             # userdata_C = pd.DataFrame([{
