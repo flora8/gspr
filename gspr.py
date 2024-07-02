@@ -308,7 +308,7 @@ def info_E(a, b, c, d, e, f, g, h, i):
 def info_C(a, b, c, d, e, f, g, h, i):
     conn = sqlite3.connect('Survey.db', check_same_thread=False) # Establishing a SQL data
     cursor = conn.cursor()
-    cursor.execute("""CREATE TABLE survey(日期 integer, 背景 text, 職位 text, EMDN類別 text, EMDN類型 text, 資材資訊 text, 體驗 text, 其他資訊 text, 回饋 text)""")
+    cursor.execute("""CREATE TABLE IF NOT EXISTS survey(日期 DATE, 背景 TEXT, 職位 TEXT, EMDN類別 TEXT, EMDN類型 TEXT, 資材資訊 TEXT, 體驗 TEXT, 其他資訊 TEXT, 回饋 TEXT)""")
     cursor.execute("INSERT INTO survey VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
     conn.commit()
     conn.close()
