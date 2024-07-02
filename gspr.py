@@ -209,15 +209,12 @@ def Survey(): # Collecting user inputs for later analysis
                 
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
-    col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
-
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a gheets data
     excel = conn.read(worksheet="Survey", usecols=list(range(19)))
     st.dataframe(excel)
-    
-    
 
-    
+    col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
+ 
     with col1:
         st.subheader("User Experience Survey")
         date = st.text_input("Date ", (datetime.date.today()), disabled=True)
