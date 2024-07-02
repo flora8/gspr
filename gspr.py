@@ -296,16 +296,16 @@ def Survey(): # Collecting user inputs for later analysis
 
 
 def info_E(a, b, c, d, e, f, g, h, i):
-    cursor.execute("""CREATE TABLE IF NOT EXISTS Survey(Date integer, Background text, Role text, EMDN_category text, EMDN_type text, Information text, Experience text, Others text, Feedback text);""")
-    cursor.execute("INSERT INTO Survey VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
+    cursor.execute("""CREATE TABLE IF NOT EXISTS survey(Date DATE, Background TEXT, Role TEXT, EMDN_category TEXT, EMDN_type TEXT, Information TEXT, Experience TEXT, Others TEXT, Feedback TEXT)""")
+    cursor.execute("INSERT INTO survey VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
     conn.commit()
     conn.close()
     st.success("Successfully submitted. !! Thank you so much for your support !! ")
 
 
 def info_C(a, b, c, d, e, f, g, h, i):
-    cursor.execute("""CREATE TABLE Survey(日期 integer, 背景 text, 職位 text, EMDN類別 text, EMDN類型 text, 資材資訊 text, 體驗 text, 其他資訊 text, 回饋 text);""")
-    cursor.execute("INSERT INTO Survey VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
+    cursor.execute("""CREATE TABLE survey(日期 integer, 背景 text, 職位 text, EMDN類別 text, EMDN類型 text, 資材資訊 text, 體驗 text, 其他資訊 text, 回饋 text)""")
+    cursor.execute("INSERT INTO survey VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
     conn.commit()
     conn.close()
     st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
