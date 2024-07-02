@@ -234,7 +234,7 @@ def Survey(): # Collecting user inputs for later analysis
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ") 
             
-            userdata_E = pd.DataFrame.from_records([{
+            userdata_E = pd.DataFrame([{
                 "Date": day,
                 "Background": background,
                 "Role": role,
