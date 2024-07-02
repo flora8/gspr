@@ -250,7 +250,7 @@ def Survey(): # Collecting user inputs for later analysis
             st.cache_data.clear()
             st.experimental_rerun()
             st.success("Successfully submitted. !! Thank you so much for your support !! ")    
-        st.dataframe(df.head(10))
+            st.dataframe(df.head(10))
 
         # if st.button(label="Submit"): # if the submit button is pressed
         #     userdata = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
