@@ -210,8 +210,8 @@ def Survey(): # Collecting user inputs for later analysis
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a gheets data
-    excel = conn.read(worksheet="Survey", usecols=list(range(19)))
-    st.dataframe(excel)
+    # excel = conn.read(worksheet="Survey", usecols=list(range(19)))
+    # st.dataframe(excel)
 
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
  
@@ -233,23 +233,21 @@ def Survey(): # Collecting user inputs for later analysis
         
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ") 
-
-
             
-            # userdata_E = pd.DataFrame([{
-            #     "Date": day,
-            #     "Background": background,
-            #     "Role": role,
-            #     "EMDN Category": device_category,
-            #     "EMDN Type": device_type,
-            #     "Device Information": clear,
-            #     "Overall Experience": useful,
-            #     "What other information would you like to see on this page?": information,
-            #     "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-            #     }])
-            # update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
-            # conn.update(worksheet="Survey", data=update_E) # update google sheets with the user input data
-            # st.success("Successfully submitted. !! Thank you so much for your support !! ")    
+            userdata_E = pd.DataFrame({
+                "Date": day,
+                "Background": background,
+                "Role": role,
+                "EMDN Category": device_category,
+                "EMDN Type": device_type,
+                "Device Information": clear,
+                "Overall Experience": useful,
+                "What other information would you like to see on this page?": information,
+                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
+                })
+            #update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
+            conn.create(worksheet="Survey", data=update_E) # update google sheets with the user input data
+            st.success("Successfully submitted. !! Thank you so much for your support !! ")    
 
 
         # if st.button(label="Submit"): # if the submit button is pressed
