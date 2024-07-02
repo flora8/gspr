@@ -211,8 +211,8 @@ def Survey(): # Collecting user inputs for later analysis
                 """)
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
 
-    conn = sqlite3.connect('Survey.db', check_same_thread=False) # Establishing a SQL data
-    cursor = conn.cursor()
+    #conn = sqlite3.connect('Survey.db', check_same_thread=False) # Establishing a SQL data
+    #cursor = conn.cursor()
     
 
     
@@ -296,6 +296,8 @@ def Survey(): # Collecting user inputs for later analysis
 
 
 def info_E(a, b, c, d, e, f, g, h, i):
+    conn = sqlite3.connect('Survey.db', check_same_thread=False) # Establishing a SQL data
+    cursor = conn.cursor()
     cursor.execute("""CREATE TABLE IF NOT EXISTS survey(Date DATE, Background TEXT, Role TEXT, EMDN_category TEXT, EMDN_type TEXT, Information TEXT, Experience TEXT, Others TEXT, Feedback TEXT)""")
     cursor.execute("INSERT INTO survey VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
     conn.commit()
@@ -304,6 +306,8 @@ def info_E(a, b, c, d, e, f, g, h, i):
 
 
 def info_C(a, b, c, d, e, f, g, h, i):
+    conn = sqlite3.connect('Survey.db', check_same_thread=False) # Establishing a SQL data
+    cursor = conn.cursor()
     cursor.execute("""CREATE TABLE survey(日期 integer, 背景 text, 職位 text, EMDN類別 text, EMDN類型 text, 資材資訊 text, 體驗 text, 其他資訊 text, 回饋 text)""")
     cursor.execute("INSERT INTO survey VALUES(?,?,?,?,?,?,?,?,?)", (a,b,c,d,e,f,g,h,i))
     conn.commit()
