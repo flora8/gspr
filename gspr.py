@@ -217,7 +217,7 @@ def Survey(): # Collecting user inputs for later analysis
  
     with col1:
         st.subheader("User Experience Survey")
-        date = st.text_input("Date ", (datetime.date.today()), disabled=True)
+        day = st.text_input("Date ", (datetime.date.today()), disabled=True)
         background = st.selectbox("Please select the business type of your background?", ("", "Academics", "Manufacturer", "Importer", "Distributor", "Wholesaler","Retailer", "Others",))
         role = st.selectbox("Please select your current role?", ("", "Professionals", "Professor", "Student", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
 
@@ -271,7 +271,7 @@ def Survey(): # Collecting user inputs for later analysis
 
     with col2:
         st.subheader("使用者體驗調查")
-        date_C = st.text_input("日期", (datetime.date.today()), disabled=True)
+        day_C = st.text_input("日期", (datetime.date.today()), disabled=True)
         background_C = st.selectbox("請問您的背景", ("", "學術", "製造商", "進口商", "經銷商", "批發商", "其他",))
         role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
     
