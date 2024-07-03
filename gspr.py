@@ -229,9 +229,6 @@ def Survey(): # Collecting user inputs for later analysis
         
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ")       
-            # url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
-            # creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) # Set up Google API credentials
-            # client = gspread.authorize(creds)
             sheet = client.open_by_url(url).worksheet('survey')  # Access the Google Sheet
             data = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback] # Read data from the user input
             sheet.append_row(data) # Append data to the Google sheet
@@ -255,9 +252,6 @@ def Survey(): # Collecting user inputs for later analysis
         
         if submit_C == True: # if the submit button is pressed
             st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")      
-            # url_C = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
-            # creds_C = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) # Set up Google API credentials
-            # client_C = gspread.authorize(creds_C)
             sheet_C = client.open_by_url(url).worksheet('調查')  # Access the Google Sheet
             data_C = [day_C,background_C,role_C,EMDN_category_C,EMDN_type_C,information_C,experience_C,others_C,feedback_C] # Read data from the user input
             sheet_C.append_row(data_C) # Append data to the Google sheet    
@@ -273,10 +267,13 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
                 非常感謝您參與這項研究。所顯示的數據圖表和視覺化是根據使用者體驗調查結果，其結合英文和中文的資料進行統計分析。請注意，所示數據僅供個人參考，因為某些相關資訊可能不正確。:blush:
                 """)
     
-    url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
+    #url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
     conn = st.experimental_connection("gsheets", type=GSheetsConnection)
-    data_E = conn.read(spreadsheet=url, worksheet="survey", usecols=list(range(10)))
-    data_C = conn.read(spreadsheet=url, worksheet="調查", usecols=list(range(10)))
+    data_E = conn.read(worksheet="survey", usecols=list(range(8)))
+    data_C = conn.read(worksheet="調查", usecols=list(range(8)))
+    
+    # data_E = conn.read(spreadsheet=url, usecols=list(range(8)), worksheet="survey")
+    # data_C = conn.read(spreadsheet=url, usecols=list(range(8)), worksheet="調查")
     # excel = pd.read_excel('Survey.xlsx')
 
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
