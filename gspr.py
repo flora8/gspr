@@ -213,9 +213,10 @@ def Survey(): # Collecting user inputs for later analysis
                 
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
-    
+    url = "https://docs.google.com/spreadsheets/d/197jQ6FAOapTyQO7a7pzLz2LImWDRe6OMMxAgOAXfRhw/edit?usp=sharing"
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
-    
+    data = conn.read(spreadsheet=url, usecols=[0, 19])
+    st.dataframe(data)
     # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
     # st.dataframe(excel)
