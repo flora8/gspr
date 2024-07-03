@@ -282,7 +282,7 @@ def Survey(): # Collecting user inputs for later analysis
             # credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
             # client = storage.Client(credentials=credentials)
 
-            file_E = json.loads(st.secrets["flora8_service_account"])  # or use the JSON key file path directly
+            file_E = json.loads(st.secrets["gcp_service_account"])  # or use the JSON key file path directly
             scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
             creds_E = ServiceAccountCredentials.from_json_keyfile_dict(file_E, scope_E) # Authorize the credentials
             client_E = gspread.authorize(creds_E)
