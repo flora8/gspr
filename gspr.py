@@ -214,13 +214,13 @@ def Survey(): # Collecting user inputs for later analysis
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
     
-    # Function to save data to Google Sheets
-    def save_gsheets(data): # Authentication
-        creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
-        client = gspread.authorize(creds)
-        sheet = client.open_by_url(st.secrets["Survey"]) # Open Google Sheet by name or URL
-        worksheet = sheet.get_worksheet(0) # Select the first sheet
-        worksheet.append_row(data) # Append data to the sheet
+    # # Function to save data to Google Sheets
+    # def save_gsheets(data): # Authentication
+    #     creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
+    #     client = gspread.authorize(creds)
+    #     sheet = client.open_by_url(st.secrets["Survey"]) # Open Google Sheet by name or URL
+    #     worksheet = sheet.get_worksheet(0) # Select the first sheet
+    #     worksheet.append_row(data) # Append data to the sheet
     
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
     # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
@@ -246,20 +246,41 @@ def Survey(): # Collecting user inputs for later analysis
         submit = st.button(label="Submit")
         
         if submit == True: # if the submit button is pressed
+            credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=["https://www.googleapis.com/auth/spreadsheets",],)
+            connection = connect(":memory:", adapter_kwargs={
+                "gsheetaspi" : { 
+                "service_account_info" : {
+                    "type" : st.secrets["gcp_service_account"]["type"],
+                    "project_id" : st.secrets["gcp_service_account"]["project_id"],
+                    "private_key_id" : st.secrets["gcp_service_account"]["private_key_id"],
+                    "private_key" : st.secrets["gcp_service_account"]["private_key"],
+                    "client_email" : st.secrets["gcp_service_account"]["client_email"],
+                    "client_id" : st.secrets["gcp_service_account"]["client_id"],
+                    "auth_uri" : st.secrets["gcp_service_account"]["auth_uri"],
+                    "token_uri" : st.secrets["gcp_service_account"]["token_uri"],
+                    "auth_provider_x509_cert_url" : st.secrets["gcp_service_account"]["auth_provider_x509_cert_url"],
+                    "client_x509_cert_url" : st.secrets["gcp_service_account"]["client_x509_cert_url"],
+                    }
+                },
+            })
+            cursor = connection.cursor()
+            sheet_url = st.secrets["url"]
+            query = f'INSERT INTO "{sheet_url}" VALUES ("{day}", "{background}", "{role}", "{EMDN_category}", "{EMDN_type}", "{information}", "{experience}", "{others}", "{feedback}")'
+            cursor.execute(query)
             st.success("Successfully submitted. !! Thank you so much for your support !! ") 
             
-            userdata_E = pd.DataFrame([{
-                "Date": day,
-                "Background": background,
-                "Role": role,
-                "EMDN Category": EMDN_category,
-                "EMDN Type": EMDN_type,
-                "Device Information": information,
-                "Overall Experience": experience,
-                "What other information would you like to see on this page?": others,
-                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-                }])
-            save_gsheets(userdata_E)
+            # userdata_E = pd.DataFrame([{
+            #     "Date": day,
+            #     "Background": background,
+            #     "Role": role,
+            #     "EMDN Category": EMDN_category,
+            #     "EMDN Type": EMDN_type,
+            #     "Device Information": information,
+            #     "Overall Experience": experience,
+            #     "What other information would you like to see on this page?": others,
+            #     "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
+            #     }])
+            # save_gsheets(userdata_E)
             
         
 
