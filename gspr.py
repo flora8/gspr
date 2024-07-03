@@ -247,8 +247,8 @@ def Survey(): # Collecting user inputs for later analysis
         
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ") 
-            data = [day, background, role, EMDN_category, EMDN_type, information, experience, others, feedback]
-            save_gsheets(data)
+            # data = [day, background, role, EMDN_category, EMDN_type, information, experience, others, feedback]
+            # save_gsheets(data)
 
     
             # credentials = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=["https://www.googleapis.com/auth/spreadsheets",],)
@@ -274,17 +274,18 @@ def Survey(): # Collecting user inputs for later analysis
             # cursor.execute(query)
             
             
-            # userdata_E = pd.DataFrame([{
-            #     "Date": day,
-            #     "Background": background,
-            #     "Role": role,
-            #     "EMDN Category": EMDN_category,
-            #     "EMDN Type": EMDN_type,
-            #     "Device Information": information,
-            #     "Overall Experience": experience,
-            #     "What other information would you like to see on this page?": others,
-            #     "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-            #     }])
+            userdata_E = pd.DataFrame([{
+                "Date": day,
+                "Background": background,
+                "Role": role,
+                "EMDN Category": EMDN_category,
+                "EMDN Type": EMDN_type,
+                "Device Information": information,
+                "Overall Experience": experience,
+                "What other information would you like to see on this page?": others,
+                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
+                }])
+            conn.create(worksheet="survey", data=userdata_E)
 
             # creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
             # client = gspread.authorize(creds)
