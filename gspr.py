@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import openpyxl
 import pip
 import numpy as np
-import base64
 
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
@@ -160,17 +159,9 @@ def GSPR_E(type_E):  # Create the GSPR page in English
     with Example:
         st.subheader("Example template")
         st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
-        pdf = 'mdcg2021-8_annex6.pdf'
-        base64_pdf = base64.b64encode(pdf.read()).decode('utf-8')
-        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">' 
-        st.markdown(pdf_display, unsafe_allow_html=True)
-        # def display(file):
-        #     #with open(file,"rb") as f:
-        #     bytes_data = file.getvalue() # Read file as bytes:
-        #     base64_pdf = base64.b64encode(bytes_data).decode('utf-8') # Convert to utf-8
-        #     display = f'<iframe src="data:application/pdf;base64,{base64_pdf}#page={page_nr}" width="700" height="1000" type="application/pdf"></iframe>'
-        #     st.markdown(display, unsafe_allow_html=True) # Display file
-        # display('mdcg2021-8_annex6.pdf')
+        #image = Image.open('mdcg2021-8_annex6.jpg')
+        st.image('mdcg_imageA.jpg', caption='A. Standards, common specifications, scientific advice')
+        st.image('mdcg_imageB.jpg', caption='B. Matrix of General safety and performance requirements')
 
 
 def GSPR_C(type_C):  # Create the GSPR page in Mandarin
