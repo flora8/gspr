@@ -152,15 +152,15 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.dataframe(chapterIII_E)
 
     with Standards: # Get Standard details in English
-        st.subheader("Standards List")
+        st.subheader("Standards list")
         standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_E = standards_E.iloc[:30]
         st.dataframe(standards_E)
 
     with Example:
-        st.subheader("Example Template")
-        st.markdown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
+        st.subheader("Example template")
+        st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
 
 
 def GSPR_C(type_C):  # Create the GSPR page in Mandarin
