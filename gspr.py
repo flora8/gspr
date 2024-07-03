@@ -219,7 +219,8 @@ def Survey(): # Collecting user inputs for later analysis
     def save_gsheets(data): # Authentication
         creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
         client = gspread.authorize(creds)
-        sheet = client.open('Survey').worksheet('survey') 
+        sheet = client.open_by_url(st.secrets["spreadsheet"])
+        worksheet = sheet.get_worksheet(0)
         sheet.append_row(data) # Append data to the sheet
     
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
