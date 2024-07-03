@@ -280,9 +280,14 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) # Set up Google API credentials
     client = gspread.authorize(creds)
     
-    sheet_E = client.open_by_url(url).worksheet("survey")
+    sheet_E = client.open_by_url(url).worksheet("survey") # the survey in English
     data_E = sheet_E.get_all_values()
     data_E = pd.DataFrame(data_E[1:], columns=data_E[0])
+    
+    sheet_C = client.open_by_url(url).worksheet("調查") # the survey in Mandarin
+    data_C = sheet_C.get_all_values()
+    data_C = pd.DataFrame(data_C[1:], columns=data_C[0])
+    st.table(data_E)
     
     # data_E = conn.read(spreadsheet=url, usecols=list(range(8)), worksheet="survey")
     # data_C = conn.read(spreadsheet=url, usecols=list(range(8)), worksheet="調查")
@@ -298,32 +303,32 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         expander_E.write(count_E)
 
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
-        xaxis_E = st.selectbox("Please select X-Axis value", options=excel.columns[0:7])
-        yaxis_E = st.selectbox("Please select Y-Axis value", options=excel.columns[1:7])
-        plot_E = px.scatter(excel, x=xaxis_E, y=yaxis_E, labels={xaxis_E:yaxis_E}, title="The searched {} by {} results".format(xaxis_E,yaxis_E))
+        xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:7])
+        yaxis_E = st.selectbox("Please select Y-Axis value", options=data_E.columns[1:7])
+        plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, labels={xaxis_E:yaxis_E}, title="The searched {} by {} results".format(xaxis_E,yaxis_E))
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen
         st.plotly_chart(plot_E, use_container_width=True) # Display the data
         
         expander2_E = st.expander("Analysis Results")
-        data2_E = excel[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
+        data2_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
         expander2_E.write(data2_E)
 
     with 數量: # User select the x-axis to plot the counts  
-        xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=excel.columns[11:17])
-        count_C = excel[xvalue_C].value_counts()
+        xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[11:17])
+        count_C = data_C[xvalue_C].value_counts()
         st.bar_chart(count_C)
         expander_C = st.expander("計算結果")
         expander_C.write(count_C)
 
     with 分析: # User select the x-axis and y-axis value to plot the analysis data
-        xaxis_C = st.selectbox("請選擇X軸值", options=excel.columns[10:17])
-        yaxis_C = st.selectbox("請選擇Y軸值", options=excel.columns[11:17])        
-        plot_C = px.scatter(excel, x=xaxis_C, y=yaxis_C, labels={xaxis_C:yaxis_C}, title="依照 {} 搜尋 {} 的結果".format(xaxis_C,yaxis_C))
+        xaxis_C = st.selectbox("請選擇X軸值", options=data_C.columns[10:17])
+        yaxis_C = st.selectbox("請選擇Y軸值", options=data_C.columns[11:17])        
+        plot_C = px.scatter(data_C, x=xaxis_C, y=yaxis_C, labels={xaxis_C:yaxis_C}, title="依照 {} 搜尋 {} 的結果".format(xaxis_C,yaxis_C))
         st.plotly_chart(plot_C, use_container_width=True) # Display the data
         expander2_C = st.expander("分析結果")
-        data2 = excel[[xaxis_C, yaxis_C]].groupby(by=xaxis_C)[yaxis_C].sum()
-        expander2_C.write(data2)
+        data2_C = data_C[[xaxis_C, yaxis_C]].groupby(by=xaxis_C)[yaxis_C].sum()
+        expander2_C.write(data2_C)
 
 
 
