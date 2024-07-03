@@ -267,10 +267,10 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
                 非常感謝您參與這項研究。所顯示的數據圖表和視覺化是根據使用者體驗調查結果，其結合英文和中文的資料進行統計分析。請注意，所示數據僅供個人參考，因為某些相關資訊可能不正確。:blush:
                 """)
     
-    #url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
+    url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
     conn = st.experimental_connection("gsheets", type=GSheetsConnection)
-    data_E = conn.read(worksheet="survey", usecols=list(range(8)))
-    data_C = conn.read(worksheet="調查", usecols=list(range(8)))
+    data_E = conn.read(url, worksheet="survey")
+    data_C = conn.read(url, worksheet="調查")
     
     # data_E = conn.read(spreadsheet=url, usecols=list(range(8)), worksheet="survey")
     # data_C = conn.read(spreadsheet=url, usecols=list(range(8)), worksheet="調查")
