@@ -282,9 +282,14 @@ def Survey(): # Collecting user inputs for later analysis
             # credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
             # client = storage.Client(credentials=credentials)
 
-            file_E = json.loads(st.secrets["gcp_service_account"]) # or use the JSON key file path directly
+            try:
+                key_file = json.loads(st.secrets["gcp_service_account"])
+            except KeyError:
+                st.error("The 'gcp_service_account' key is missing in Streamlit secrets.")
+                st.stop()
+
             scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
-            creds_E = ServiceAccountCredentials.from_json_keyfile_dict(file_E, scope_E) # Authorize the credentials
+            creds_E = ServiceAccountCredentials.from_json_keyfile_dict(key_file, scope_E) # Authorize the credentials
             client_E = gspread.authorize(creds_E)
             sheet_E = client_E.open('Survey').worksheet('survey')  
             sheet_E.append_row(userdata_E)
