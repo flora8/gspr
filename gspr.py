@@ -213,15 +213,11 @@ def Survey(): # Collecting user inputs for later analysis
                 
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
-    url = "https://docs.google.com/spreadsheets/d/197jQ6FAOapTyQO7a7pzLz2LImWDRe6OMMxAgOAXfRhw/edit?usp=sharing"
-    conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
-    data = conn.read(spreadsheet=url, usecols=list(range(16))) # Fetch existing vendors data
-    data = data.dropna(how="all")
     
-    # st.dataframe(data)
-    # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
-    # excel = excel.dropna(how="all") 
-    # st.dataframe(excel)
+    conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
+    excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
+    excel = excel.dropna(how="all") 
+    st.dataframe(excel)
 
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
  
@@ -282,8 +278,8 @@ def Survey(): # Collecting user inputs for later analysis
                 "What other information would you like to see on this page?": others,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])
-            updated_E = pd.concat([data, userdata_E], ignore_index=True) # Add the new user input data to the existing data
-            conn.update(worksheet="1723319194", data=updated_E)
+            updated_E = pd.concat([excel, userdata_E], ignore_index=True) # Add the new user input data to the existing data
+            conn.update(worksheet="Survey", data=updated_E)
 
             
             # conn.create(worksheet="Survey", data=userdata_E)
