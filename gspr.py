@@ -220,7 +220,7 @@ def Survey(): # Collecting user inputs for later analysis
         return client
     
     def insert_gsheet(sheet, data): # Function to insert data into Google Sheets
-    sheet.append_row(data)
+        sheet.append_row(data)
 
     client = connect_gsheets()
     sheet_E = client.open('Survey').worksheet('survey') 
