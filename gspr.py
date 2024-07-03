@@ -275,13 +275,19 @@ def Survey(): # Collecting user inputs for later analysis
         # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
     # st.dataframe(excel)
+            from google.oauth2 import service_account
+            from google.cloud import storage
 
-            file_E = json.loads(st.secrets["https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4"])  # or use the JSON key file path directly
-            scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
-            creds_E = ServiceAccountCredentials.from_json_keyfile_dict(file_E, scope_E) # Authorize the credentials
-            client_E = gspread.authorize(creds_E)
-            sheet_E = client_E.open('Survey').worksheet('survey')  
-            sheet_E.append_row(userdata_E)
+            # Create API client.
+            credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
+            client = storage.Client(credentials=credentials)
+
+            # file_E = json.loads(st.secrets["https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4"])  # or use the JSON key file path directly
+            # scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
+            # creds_E = ServiceAccountCredentials.from_json_keyfile_dict(file_E, scope_E) # Authorize the credentials
+            # client_E = gspread.authorize(creds_E)
+            # sheet_E = client_E.open('Survey').worksheet('survey')  
+            # sheet_E.append_row(userdata_E)
 
 
         # if st.button(label="Submit"): # if the submit button is pressed
