@@ -137,14 +137,6 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
         st.dataframe(chapterI_E)
 
-        # apply_chapterI_E = chapterI_E['Apply Y/N'].unique()
-        # apply_chapterI_E = st.multiselect("Select apply:", options=option_chapterI_E)
-        # standard_chapterI_E = chapterI_E['Relevant Standard(s)'].unique()
-        # standard_chapterI_E = st.multiselect("Select standard:", options=standard_chapterI_E)
-        # filter_chapterI_E = chapterI_E[chapterI_E['Apply Y/N'].isin(select_chapterI_E)]    
-        # st.dataframe(filter_chapterI_E)
-    
-
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
         chapterII_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:D", header=26)
@@ -213,12 +205,10 @@ def Survey(): # Collecting user inputs for later analysis
                 
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
+    url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
+    creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) # Set up Google API credentials
+    client = gspread.authorize(creds)
     
-    #conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
-    # excel = conn.read(worksheet="survey", usecols=list(range(19))) # Fetch existing survey data
-    # excel = excel.dropna(how="all") 
-    # st.dataframe(excel)
-
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
  
     with col1:
@@ -238,100 +228,13 @@ def Survey(): # Collecting user inputs for later analysis
         submit = st.button(label="Submit")
         
         if submit == True: # if the submit button is pressed
-            st.success("Successfully submitted. !! Thank you so much for your support !! ") 
-
-            # data = [day, background, role, EMDN_category, EMDN_type, information, experience, others, feedback]
-            # save_gsheets(data)
-
-    
-            # credentials = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=["https://www.googleapis.com/auth/spreadsheets",],)
-            # connection = connect(":memory:", adapter_kwargs={
-            #     "gsheetsapi" : { 
-            #     "service_account_info" : {
-            #         "type" : st.secrets["gcp_service_account"]["type"],
-            #         "project_id" : st.secrets["gcp_service_account"]["project_id"],
-            #         "private_key_id" : st.secrets["gcp_service_account"]["private_key_id"],
-            #         "private_key" : st.secrets["gcp_service_account"]["private_key"],
-            #         "client_email" : st.secrets["gcp_service_account"]["client_email"],
-            #         "client_id" : st.secrets["gcp_service_account"]["client_id"],
-            #         "auth_uri" : st.secrets["gcp_service_account"]["auth_uri"],
-            #         "token_uri" : st.secrets["gcp_service_account"]["token_uri"],
-            #         "auth_provider_x509_cert_url" : st.secrets["gcp_service_account"]["auth_provider_x509_cert_url"],
-            #         "client_x509_cert_url" : st.secrets["gcp_service_account"]["client_x509_cert_url"],
-            #         }
-            #     },
-            # })
-            # cursor = connection.cursor()
-            # sheet_url = st.secrets["spreadsheet"]
-            # query = f'INSERT INTO "{sheet_url}" VALUES ("{day}", "{background}", "{role}", "{EMDN_category}", "{EMDN_type}", "{information}", "{experience}", "{others}", "{feedback}")'
-            # cursor.execute(query)
-            
-            
-            userdata_E = pd.DataFrame([{
-                "Date": day,
-                "Background": background,
-                "Role": role,
-                "EMDN Category": EMDN_category,
-                "EMDN Type": EMDN_type,
-                "Device Information": information,
-                "Overall Experience": experience,
-                "What other information would you like to see on this page?": others,
-                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-                }])
-            # updated_E = pd.concat([excel, userdata_E], ignore_index=True) # Add the new user input data to the existing data
-            # conn.update(worksheet="Survey", data=updated_E)
-
-            
-            # conn.create(worksheet="Survey", data=userdata_E)
-           
-            url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4"
-            creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
-            client = gspread.authorize(creds)
-            sheet = client.open_by_url(url).worksheet('survey')  
-            row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]
-            sheet.append_row(row) # Append data to the sheet
-            # save_gsheets(userdata_E)
-
-            # scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-            # creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets["gcp_service_account"], scope)
+            st.success("Successfully submitted. !! Thank you so much for your support !! ")       
+            # url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
+            # creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) # Set up Google API credentials
             # client = gspread.authorize(creds)
-            # sh = client.open('Survey').worksheet('survey')  
-            row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]       
-            # sh.append_row(row)
-
-            
-        
-
-        # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
-    # excel = excel.dropna(how="all") 
-    # st.dataframe(excel)
-
-            # from google.oauth2.service_account import Credentials
-            # key_file = json.loads(st.secrets["gcp_service_account"])
-            # scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
-            # creds_E = Credentials.from_service_account_file(key_file, scopes=scope_E)
-            # client_E = gspread.authorize(creds_E)
-            # sheet_E = client_E.open('Survey').worksheet('survey')  
-            # sheet_E.append_row(userdata_E)
-
-
-        # if st.button(label="Submit"): # if the submit button is pressed
-        #     userdata = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
-        #         "Date": day,
-        #         "Background": background,
-        #         "Role": role,
-        #         "EMDN Category": device_category,
-        #         "EMDN Type": device_type,
-        #         "Device Information": clear,
-        #         "Overall Experience": useful,
-        #         "What other information would you like to see on this page?": information,
-        #         "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-        #         }])])
-        #     userdata.to_excel("Survey.xlsx", index=False)
-        #     created_files.append("Survey.xlsx")
-            
-            
-            # st.success("Successfully submitted. !! Thank you so much for your support !! ")
+            sheet = client.open_by_url(url).worksheet('survey')  # Access the Google Sheet
+            data = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback] # Read data from the user input
+            sheet.append_row(data) # Append data to the Google sheet
 
 
     with col2:
@@ -351,43 +254,15 @@ def Survey(): # Collecting user inputs for later analysis
         submit_C = st.button(label="提交")
         
         if submit_C == True: # if the submit button is pressed
-            st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
-    
+            st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")      
+            # url_C = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
+            # creds_C = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) # Set up Google API credentials
+            # client_C = gspread.authorize(creds_C)
+            sheet_C = client.open_by_url(url).worksheet('調查')  # Access the Google Sheet
+            data_C = [day_C,background_C,role_C,EMDN_category_C,EMDN_type_C,information_C,experience_C,others_C,feedback_C] # Read data from the user input
+            sheet_C.append_row(data_C) # Append data to the Google sheet    
             
-            # userdata_C = pd.DataFrame([{
-            #     "日期": day_C,
-            #     "背景": background_C,
-            #     "職位": role_C,
-            #     "EMDN類別": device_category_C,
-            #     "EMDN類型": device_type_C,
-            #     "醫材資訊": value_C,
-            #     "整體體驗": useful_C,
-            #     "請問您希望在此頁面上看到哪其他資訊？": information_C,
-            #     "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback_C
-            #     }])
-            # update_C = pd.concat([survey_data, userdata_C], ignore_idex=True) # add the user input data to the survey excel
-            # conn.update(worksheet="Survey", data=update_C) # update google sheets with the user input data
-            # st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
-            
-
-        
-        # if st.button(label="提交"): # if the submit button is pressed
-        #     userdata_C = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
-        #         "日期": day_C,
-        #         "背景": background_C,
-        #         "職位": role_C,
-        #         "EMDN類別": device_category_C,
-        #         "EMDN類型": device_type_C,
-        #         "醫材資訊": value_C,
-        #         "整體體驗": useful_C,
-        #         "請問您希望在此頁面上看到哪些其他資訊？": information_C,
-        #         "請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？": feedback_C
-        #         }])])
-        #     userdata_C.to_excel("Survey.xlsx", index=False)
-            #st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")
-
-
-        
+     
 
 #---------------------------------#
 def Analysis(): # Plotting and data visualisation to analyse user experience survey result
@@ -398,13 +273,17 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
                 非常感謝您參與這項研究。所顯示的數據圖表和視覺化是根據使用者體驗調查結果，其結合英文和中文的資料進行統計分析。請注意，所示數據僅供個人參考，因為某些相關資訊可能不正確。:blush:
                 """)
     
-    excel = pd.read_excel('Survey.xlsx')
+    url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
+    conn = st.experimental_connection("gsheets", type=GSheetsConnection)
+    data_E = conn.read(spreadsheet=url, worksheet="survey", usecols=list(range(10)))
+    data_C = conn.read(spreadsheet=url, worksheet="調查", usecols=list(range(10)))
+    # excel = pd.read_excel('Survey.xlsx')
 
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
-        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=excel.columns[1:7])
-        count_E = excel[xvalue_E].value_counts()
+        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
+        count_E = data_E[xvalue_E].value_counts()
         st.bar_chart(count_E)
         expander_E = st.expander("Count Results")
         expander_E.write(count_E)
