@@ -214,7 +214,7 @@ def Survey(): # Collecting user inputs for later analysis
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
     
-    conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
+    #conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
     # excel = conn.read(worksheet="survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
     # st.dataframe(excel)
@@ -283,8 +283,9 @@ def Survey(): # Collecting user inputs for later analysis
 
             
             # conn.create(worksheet="Survey", data=userdata_E)
+            conn = GSheetsConnection(client_secret=st.secrets["gcp_service_account"], scopes=['https://www.googleapis.com/auth/spreadsheets'])
             url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4"
-            creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
+            #creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
                     
             # client = gspread.authorize(creds)
             # sheet = client.open(url).worksheet('survey')  
