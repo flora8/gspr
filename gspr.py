@@ -268,24 +268,31 @@ def Survey(): # Collecting user inputs for later analysis
             # cursor.execute(query)
             
             
-            userdata_E = pd.DataFrame([{
-                "Date": day,
-                "Background": background,
-                "Role": role,
-                "EMDN Category": EMDN_category,
-                "EMDN Type": EMDN_type,
-                "Device Information": information,
-                "Overall Experience": experience,
-                "What other information would you like to see on this page?": others,
-                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-                }])
+            # userdata_E = pd.DataFrame([{
+            #     "Date": day,
+            #     "Background": background,
+            #     "Role": role,
+            #     "EMDN Category": EMDN_category,
+            #     "EMDN Type": EMDN_type,
+            #     "Device Information": information,
+            #     "Overall Experience": experience,
+            #     "What other information would you like to see on this page?": others,
+            #     "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
+            #     }])
             # conn.create(worksheet="Survey", data=userdata_E)
 
-            creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
+            # creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
+            # client = gspread.authorize(creds)
+            # sheet = client.open('Survey').worksheet('survey')  
+            # sheet.append_row(userdata_E) # Append data to the sheet
+            # save_gsheets(userdata_E)
+
+            scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+            creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets["gcp_service_account"], scope)
             client = gspread.authorize(creds)
-            sheet = client.open('Survey').worksheet('survey')  
-            sheet.append_row(userdata_E) # Append data to the sheet
-            save_gsheets(userdata_E)
+            sh = client.open('Survey').worksheet('survey')  
+            row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]
+            sh.append_row(row)
 
             
         
