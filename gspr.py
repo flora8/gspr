@@ -290,7 +290,7 @@ def Survey(): # Collecting user inputs for later analysis
             #scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
             #creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets["gcp_service_account"], scope)
             client = gspread.authorize(creds)
-            sh = client.open('https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4').worksheet('198771350')  
+            sh = client.open('Survey').worksheet('survey')  
             row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]
             sh.append_row(row)
 
