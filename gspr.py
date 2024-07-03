@@ -310,15 +310,15 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         expander2_E.write(data2_E)
 
     with 數量: # User select the x-axis to plot the counts  
-        xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[11:17])
+        xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[1:7])
         count_C = data_C[xvalue_C].value_counts()
         st.bar_chart(count_C)
         expander_C = st.expander("計算結果")
         expander_C.write(count_C)
 
     with 分析: # User select the x-axis and y-axis value to plot the analysis data
-        xaxis_C = st.selectbox("請選擇X軸值", options=data_C.columns[10:17])
-        yaxis_C = st.selectbox("請選擇Y軸值", options=data_C.columns[11:17])        
+        xaxis_C = st.selectbox("請選擇X軸值", options=data_C.columns[0:7])
+        yaxis_C = st.selectbox("請選擇Y軸值", options=data_C.columns[1:7])        
         plot_C = px.scatter(data_C, x=xaxis_C, y=yaxis_C, labels={xaxis_C:yaxis_C}, title="依照 {} 搜尋 {} 的結果".format(xaxis_C,yaxis_C))
         st.plotly_chart(plot_C, use_container_width=True) # Display the data
         expander2_C = st.expander("分析結果")
