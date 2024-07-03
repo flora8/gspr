@@ -246,7 +246,7 @@ def Survey(): # Collecting user inputs for later analysis
         submit = st.button(label="Submit")
         
         if submit == True: # if the submit button is pressed
-            credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=["https://www.googleapis.com/auth/spreadsheets",],)
+            credentials = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=["https://www.googleapis.com/auth/spreadsheets",],)
             connection = connect(":memory:", adapter_kwargs={
                 "gsheetsapi" : { 
                 "service_account_info" : {
