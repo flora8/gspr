@@ -276,7 +276,7 @@ def Survey(): # Collecting user inputs for later analysis
     # excel = excel.dropna(how="all") 
     # st.dataframe(excel)
 
-            file_E = json.loads(st.secrets[""service_account""])  # or use the JSON key file path directly
+            file_E = json.loads(st.secrets["service_account"])  # or use the JSON key file path directly
             scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
             creds_E = ServiceAccountCredentials.from_json_keyfile_dict(file_E, scope_E) # Authorize the credentials
             client_E = gspread.authorize(creds_E)
