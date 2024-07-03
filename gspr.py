@@ -302,8 +302,7 @@ def Survey(): # Collecting user inputs for later analysis
             # creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets["gcp_service_account"], scope)
             # client = gspread.authorize(creds)
             # sh = client.open('Survey').worksheet('survey')  
-            row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]
-            conn.write(url, 'survey', row)            
+            row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]       
             # sh.append_row(row)
 
             
