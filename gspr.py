@@ -161,11 +161,16 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.subheader("Example template")
         st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
         
-        def show_pdf(file_path):
-            with open(file_path,"rb") as f:
+        def show_pdf(file):
+            with open(file,"rb") as f:
                 base64_pdf = base64.b64encode(f.read()).decode('utf-8') # Convert to utf-8
-            pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="800" height="800" type="application/pdf"></iframe>' # Embed PDF in HTML
-            st.markdown(pdf_display, unsafe_allow_html=True) # Display file
+            display = f"""<embed
+            class="pdfobject"
+            type="application/pdf"
+            title="Embedded PDF"
+            src="data:application/pdf;base64,{base64_pdf}"
+            style="overflow: auto; width: 100%; height: 100%;">""" # Embed PDF in HTML
+            st.markdown(display, unsafe_allow_html=True) # Display file
         show_pdf('mdcg2021-8_annex6.pdf')
 
 
