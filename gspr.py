@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import datetime
-import seaborn as sns
+#import seaborn as sns
 import matplotlib.pyplot as plt
 import openpyxl
 import pip
@@ -10,7 +10,7 @@ import numpy as np
 
 from streamlit_gsheets import GSheetsConnection
 import gspread
-from oauth2client.service_account import ServiceAccountCredentials
+
 
 # from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LinearRegression
@@ -259,9 +259,11 @@ def Survey(): # Collecting user inputs for later analysis
         # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
     # st.dataframe(excel)
-
+            # from google.oauth2.service_account import Credentials
+            # from googleapiclient.discovery import build
+            from oauth2client.service_account import ServiceAccountCredentials
             scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-            creds_E = ServiceAccountCredentials.from_json_keyfile_name('eugspr-gsheets-8a87340cbb99.json', scope)
+            creds_E = ServiceAccountCredentials.from_json_keyfile_dict('eugspr-gsheets-8a87340cbb99.json', scopes=scope_E)
             client_E = gspread.authorize(creds_E)
             sh_E = client_E.open('Survey').worksheet('survey')  
             sh_E.append_row(userdata_E)
