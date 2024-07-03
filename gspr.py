@@ -215,7 +215,7 @@ def Survey(): # Collecting user inputs for later analysis
                 """)
     url = "https://docs.google.com/spreadsheets/d/197jQ6FAOapTyQO7a7pzLz2LImWDRe6OMMxAgOAXfRhw/edit?usp=sharing"
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
-    data = conn.read(spreadsheet=url, usecols=[0, 19])
+    data = conn.read(spreadsheet=url, usecols="A:K")
     st.dataframe(data)
     # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
