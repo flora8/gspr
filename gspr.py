@@ -210,6 +210,10 @@ def Survey(): # Collecting user inputs for later analysis
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a gheets data
+    df = conn.read()
+    # Print results.
+    for row in df.itertuples():
+        st.write(f"{row.name} has a :{row.pet}:")
     # excel = conn.read(worksheet="Survey", usecols=list(range(19)))
     # st.dataframe(excel)
 
