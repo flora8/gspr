@@ -226,8 +226,8 @@ def Survey(): # Collecting user inputs for later analysis
         
         information = st.selectbox("How would you rate the provided device information on this website overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear", "5: Absolutely inappropriate and unclear"))
         experience = st.selectbox("How would you rate your overall experience with this website on a scale?", ("","1: Extremely useful", "2: Slightly useful", "3: Neither useful nor useless", "4: Slightly useless", "5: Extremely useless"))
-        others = st.text_area("What other information would you like to see on this page? (Optional)")
-        feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve? (Optional)")
+        others = st.text_area("What other information would you like to see on this page?", "(Optional)")
+        feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?","(Optional)")
         submit = st.button(label="Submit")
         
         if submit == True: # if the submit button is pressed
@@ -249,8 +249,8 @@ def Survey(): # Collecting user inputs for later analysis
 
         information_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確", "5: 非常不適當和不明確"))
         experience_C = st.selectbox("請問您對本網站的整體體驗有何評價？", ("","1: 非常有用", "2: 稍微有用", "3: 普通", "4: 稍微沒用", "5: 非常沒用"))
-        others_C = st.text_area("請問您希望在此頁面上看到哪些其他資訊？")
-        feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
+        others_C = st.text_area("請問您希望在此頁面上看到哪些其他資訊？","(Optional)")
+        feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？","(Optional)")
         submit_C = st.button(label="提交")
         
         if submit_C == True: # if the submit button is pressed
