@@ -128,7 +128,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
     
     
     # Set up different tabs
-    ChapterI, ChapterII, ChapterIII, Standards = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards"])
+    ChapterI, ChapterII, ChapterIII, Standards, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards", "Example"])
 
     with ChapterI: # Get Chapter I General requirements details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -158,6 +158,9 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         standards_E = standards_E.iloc[:30]
         st.dataframe(standards_E)
 
+    with Example:
+        st.subheader("Example Template")
+        st.makedown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
 
 
 def GSPR_C(type_C):  # Create the GSPR page in Mandarin
