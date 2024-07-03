@@ -9,6 +9,8 @@ import pip
 import numpy as np
 
 from streamlit_gsheets import GSheetsConnection
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 # from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LinearRegression
@@ -210,9 +212,9 @@ def Survey(): # Collecting user inputs for later analysis
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
-    excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
-    excel = excel.dropna(how="all") 
-    st.dataframe(excel)
+    # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
+    # excel = excel.dropna(how="all") 
+    # st.dataframe(excel)
 
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
  
@@ -247,11 +249,23 @@ def Survey(): # Collecting user inputs for later analysis
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])
             #update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
-            df = conn.create(worksheet="Survey", data=userdata_E) # update google sheets with the user input data
-            st.cache_data.clear()
-            st.experimental_rerun()
-            st.success("Successfully submitted. !! Thank you so much for your support !! ")    
-            st.dataframe(df.head(10))
+            #  = conn.create(worksheet="Survey", data=userdata_E) # update google sheets with the user input data
+            # st.cache_data.clear()
+            # st.experimental_rerun()
+            # st.success("Successfully submitted. !! Thank you so much for your support !! ")    
+            # st.dataframe(df.head(10))
+
+
+        # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
+    # excel = excel.dropna(how="all") 
+    # st.dataframe(excel)
+
+            scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+            creds_E = ServiceAccountCredentials.from_json_keyfile_name('eugspr-gsheets-8a87340cbb99.json', scope)
+            client_E = gspread.authorize(creds_E)
+            sh_E = client_E.open('Survey').worksheet('survey')  
+            sh_E.append_row(userdata_E)
+
 
         # if st.button(label="Submit"): # if the submit button is pressed
         #     userdata = pd.concat([pd.read_excel("Survey.xlsx"), pd.DataFrame.from_records([{
