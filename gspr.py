@@ -7,7 +7,6 @@ import openpyxl
 import pip
 import numpy as np
 import base64
-from streamlit_pdf_viewer import pdf_viewer
 
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
@@ -162,8 +161,10 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.subheader("Example template")
         st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
         pdf = 'mdcg2021-8_annex6.pdf'
-        binary_data = pdf.getvalue()
-        pdf_viewer(input=binary_data, width=700)
+        with open(pdf, "rb") as f:
+            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
+        display = f"""<iframe src="data:application/pdf;base64,{base64_pdf}#toolbar=0&navpanes=0&scrollbar=0" width="100%" height="300px" type="application/pdf"></iframe>"""
+        st.markdown(display, unsafe_allow_html=True)
         # def display(file):
         #     #with open(file,"rb") as f:
         #     bytes_data = file.getvalue() # Read file as bytes:
