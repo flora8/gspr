@@ -285,7 +285,7 @@ def Survey(): # Collecting user inputs for later analysis
                 "What other information would you like to see on this page?": others,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])
-            conn.create(worksheet="survey", data=userdata_E)
+            conn.create(worksheet="Survey", data=userdata_E)
 
             # creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
             # client = gspread.authorize(creds)
