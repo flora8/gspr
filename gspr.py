@@ -9,7 +9,6 @@ import numpy as np
 
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
-from googleapiclient import discovery
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import json
