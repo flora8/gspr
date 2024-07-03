@@ -283,7 +283,7 @@ def Survey(): # Collecting user inputs for later analysis
             # client = storage.Client(credentials=credentials)
 
             try:
-                key_file = json.loads(st.secrets["gcp_service_account"])
+                key_file = json.loads(st.secrets[gcp_service_account])
             except KeyError:
                 st.error("The 'gcp_service_account' key is missing in Streamlit secrets.")
                 st.stop()
