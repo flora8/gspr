@@ -264,28 +264,16 @@ def Survey(): # Collecting user inputs for later analysis
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])
             
-            #update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
-            #  = conn.create(worksheet="Survey", data=userdata_E) # update google sheets with the user input data
-            # st.cache_data.clear()
-            # st.experimental_rerun()
-            # st.success("Successfully submitted. !! Thank you so much for your support !! ")    
-            # st.dataframe(df.head(10))
-
+        
 
         # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
     # st.dataframe(excel)
-            # from google.oauth2 import service_account
-            # from google.cloud import storage
 
-            # # Create API client.
-            # credentials = service_account.Credentials.from_service_account_info(st.secrets["gcp_service_account"])
-            # client = storage.Client(credentials=credentials)
             from google.oauth2.service_account import Credentials
-            
+            key_file = json.loads(st.secrets["gcp_service_account"])
             scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
-            #creds_E = ServiceAccountCredentials.from_json_keyfile_dict(key_file, scope_E) # Authorize the credentials
-            creds_E = Credentials.from_service_account_file("gcp_service_account", scopes=scope_E)
+            creds_E = Credentials.from_service_account_file(key_file, scopes=scope_E)
             client_E = gspread.authorize(creds_E)
             sheet_E = client_E.open('Survey').worksheet('survey')  
             sheet_E.append_row(userdata_E)
