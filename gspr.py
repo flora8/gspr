@@ -293,8 +293,8 @@ def Survey(): # Collecting user inputs for later analysis
                 return df
             url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4"
             sheet_name="survey"
-            st.dataframe(df)
-            # sheet = client.open('Survey').worksheet('survey')  
+
+            # sheet = client.open_by_url('Survey').worksheet('survey')  
             # sheet.append_row(userdata_E) # Append data to the sheet
             # save_gsheets(userdata_E)
 
