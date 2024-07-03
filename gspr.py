@@ -215,9 +215,9 @@ def Survey(): # Collecting user inputs for later analysis
                 """)
     
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
-    # excel = conn.read(worksheet="survey", usecols=list(range(19))) # Fetch existing survey data
-    # excel = excel.dropna(how="all") 
-    # st.dataframe(excel)
+    excel = conn.read(worksheet="survey", usecols=list(range(19))) # Fetch existing survey data
+    excel = excel.dropna(how="all") 
+    st.dataframe(excel)
 
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
  
