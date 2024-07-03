@@ -160,7 +160,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
 
     with Example:
         st.subheader("Example Template")
-        st.makedown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
+        st.markdown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
 
 
 def GSPR_C(type_C):  # Create the GSPR page in Mandarin
