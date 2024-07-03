@@ -281,14 +281,14 @@ def Survey(): # Collecting user inputs for later analysis
             #     }])
             # conn.create(worksheet="Survey", data=userdata_E)
 
-            # creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
+            creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
             # client = gspread.authorize(creds)
             # sheet = client.open('Survey').worksheet('survey')  
             # sheet.append_row(userdata_E) # Append data to the sheet
             # save_gsheets(userdata_E)
 
-            scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-            creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets["gcp_service_account"], scope)
+            #scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+            #creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets["gcp_service_account"], scope)
             client = gspread.authorize(creds)
             sh = client.open('Survey').worksheet('survey')  
             row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]
