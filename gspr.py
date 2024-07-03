@@ -215,8 +215,10 @@ def Survey(): # Collecting user inputs for later analysis
                 """)
     url = "https://docs.google.com/spreadsheets/d/197jQ6FAOapTyQO7a7pzLz2LImWDRe6OMMxAgOAXfRhw/edit?usp=sharing"
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
-    data = conn.read(spreadsheet=url, usecols=list(range(16)))
-    st.dataframe(data)
+    data = conn.read(spreadsheet=url, usecols=list(range(16))) # Fetch existing vendors data
+    data = data.dropna(how="all")
+    
+    # st.dataframe(data)
     # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
     # st.dataframe(excel)
@@ -269,17 +271,21 @@ def Survey(): # Collecting user inputs for later analysis
             # cursor.execute(query)
             
             
-            # userdata_E = pd.DataFrame([{
-            #     "Date": day,
-            #     "Background": background,
-            #     "Role": role,
-            #     "EMDN Category": EMDN_category,
-            #     "EMDN Type": EMDN_type,
-            #     "Device Information": information,
-            #     "Overall Experience": experience,
-            #     "What other information would you like to see on this page?": others,
-            #     "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-            #     }])
+            userdata_E = pd.DataFrame([{
+                "Date": day,
+                "Background": background,
+                "Role": role,
+                "EMDN Category": EMDN_category,
+                "EMDN Type": EMDN_type,
+                "Device Information": information,
+                "Overall Experience": experience,
+                "What other information would you like to see on this page?": others,
+                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
+                }])
+            updated_E = pd.concat([data, userdata_E], ignore_index=True) # Add the new user input data to the existing data
+            conn.update(worksheet="survey", data=updated_E)
+
+            
             # conn.create(worksheet="Survey", data=userdata_E)
 
             #creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
@@ -288,12 +294,12 @@ def Survey(): # Collecting user inputs for later analysis
             # sheet.append_row(userdata_E) # Append data to the sheet
             # save_gsheets(userdata_E)
 
-            scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-            creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets["gcp_service_account"], scope)
-            client = gspread.authorize(creds)
-            sh = client.open('Survey').worksheet('survey')  
-            row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]
-            sh.append_row(row)
+            # scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+            # creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets["gcp_service_account"], scope)
+            # client = gspread.authorize(creds)
+            # sh = client.open('Survey').worksheet('survey')  
+            # row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]
+            # sh.append_row(row)
 
             
         
