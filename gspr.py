@@ -215,9 +215,9 @@ def Survey(): # Collecting user inputs for later analysis
                 """)
     
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
-    excel = conn.read(worksheet="survey", usecols=list(range(19))) # Fetch existing survey data
-    excel = excel.dropna(how="all") 
-    st.dataframe(excel)
+    # excel = conn.read(worksheet="survey", usecols=list(range(19))) # Fetch existing survey data
+    # excel = excel.dropna(how="all") 
+    # st.dataframe(excel)
 
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
  
@@ -285,16 +285,18 @@ def Survey(): # Collecting user inputs for later analysis
             # conn.create(worksheet="Survey", data=userdata_E)
             url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4"
             creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
-            client = gspread.authorize(creds)
-            sheet = client.open(url).worksheet('survey')  
-            sheet.append_row(userdata_E) # Append data to the sheet
+                    
+            # client = gspread.authorize(creds)
+            # sheet = client.open(url).worksheet('survey')  
+            # sheet.append_row(userdata_E) # Append data to the sheet
             # save_gsheets(userdata_E)
 
             # scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
             # creds = ServiceAccountCredentials.from_json_keyfile_name(st.secrets["gcp_service_account"], scope)
             # client = gspread.authorize(creds)
             # sh = client.open('Survey').worksheet('survey')  
-            # row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]
+            row = [day,background,role,EMDN_category,EMDN_type,information,experience,others,feedback]
+            conn.write(url, 'survey', row)            
             # sh.append_row(row)
 
             
