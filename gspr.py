@@ -10,6 +10,8 @@ import numpy as np
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
 from oauth2client.service_account import ServiceAccountCredentials
+from googleapiclient.discovery import build
+from googleapiclient.http import HttpRequest
 import gspread
 import json
 
@@ -213,6 +215,36 @@ def Survey(): # Collecting user inputs for later analysis
                 
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
+    SCOPE = "https://www.googleapis.com/auth/spreadsheets"
+    SPREADSHEET_ID = "1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4"
+    SHEET_NAME = "survey"
+    GSHEET_URL = f"https://docs.google.com/spreadsheets/d/{SPREADSHEET_ID}"
+
+
+    @st.experimental_singleton()
+    def connect_to_gsheet(): # Create a connection object
+        credentials = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=[SCOPE])
+
+    # Create a new Http() object for every request
+    def build_request(http, *args, **kwargs):
+        new_http = google_auth_httplib2.AuthorizedHttp(credentials, http=httplib2.Http())
+        return HttpRequest(new_http, *args, **kwargs)
+
+    authorized_http = google_auth_httplib2.AuthorizedHttp(credentials, http=httplib2.Http())
+    service = build("sheets","v4",requestBuilder=build_request,http=authorized_http)
+    gsheet_connector = service.spreadsheets()
+    return gsheet_connector
+
+
+    def get_data(gsheet_connector) -> pd.DataFrame:
+        values = (gsheet_connector.values().get(spreadsheetId=SPREADSHEET_ID,range=f"{SHEET_NAME}!A:E",).execute())
+        df = pd.DataFrame(values["values"])
+        df.columns = df.iloc[0]
+        df = df[1:]
+        return df
+
+    def add_row_to_gsheet(gsheet_connector, row) -> None:
+        gsheet_connector.values().append(spreadsheetId=SPREADSHEET_ID,range=f"{SHEET_NAME}!A:E",body=dict(values=row),valueInputOption="USER_ENTERED",).execute()
     
     # Function to save data to Google Sheets
     def save_gsheets(data): # Authentication
@@ -223,6 +255,7 @@ def Survey(): # Collecting user inputs for later analysis
         worksheet.append_row(data) # Append data to the sheet
     
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
+    gsheet_connector = connect_to_gsheet()
     # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
     # st.dataframe(excel)
@@ -247,6 +280,8 @@ def Survey(): # Collecting user inputs for later analysis
         
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ") 
+            add_row_to_gsheet(gsheet_connector,[[day, background, role, EMDN_category, EMDN_type, information, experience, others]])
+            st.balloons()
             # data = [day, background, role, EMDN_category, EMDN_type, information, experience, others, feedback]
             # save_gsheets(data)
 
@@ -274,18 +309,18 @@ def Survey(): # Collecting user inputs for later analysis
             # cursor.execute(query)
             
             
-            userdata_E = pd.DataFrame([{
-                "Date": day,
-                "Background": background,
-                "Role": role,
-                "EMDN Category": EMDN_category,
-                "EMDN Type": EMDN_type,
-                "Device Information": information,
-                "Overall Experience": experience,
-                "What other information would you like to see on this page?": others,
-                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-                }])
-            conn.create(worksheet="Survey", data=userdata_E)
+            # userdata_E = pd.DataFrame([{
+            #     "Date": day,
+            #     "Background": background,
+            #     "Role": role,
+            #     "EMDN Category": EMDN_category,
+            #     "EMDN Type": EMDN_type,
+            #     "Device Information": information,
+            #     "Overall Experience": experience,
+            #     "What other information would you like to see on this page?": others,
+            #     "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
+            #     }])
+            # conn.create(worksheet="Survey", data=userdata_E)
 
             # creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
             # client = gspread.authorize(creds)
