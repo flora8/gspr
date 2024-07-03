@@ -165,7 +165,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
             #with open(file,"rb") as f:
             bytes_data = file.getvalue() # Read file as bytes:
             base64_pdf = base64.b64encode(bytes_data).decode('utf-8') # Convert to utf-8
-            display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width={str(ui_width)} height={str(ui_width*4/3)} type="application/pdf"></iframe>'# Embed PDF in HTML
+            display = f'<iframe src="data:application/pdf;base64,{base64_pdf}#page={page_nr}" width="700" height="1000" type="application/pdf"></iframe>'
             st.markdown(display, unsafe_allow_html=True) # Display file
         display('mdcg2021-8_annex6.pdf')
 
