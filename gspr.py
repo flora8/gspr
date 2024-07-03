@@ -279,8 +279,10 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
     creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) # Set up Google API credentials
     client = gspread.authorize(creds)
+    
     sheet_E = client.open_by_url(url).worksheet("survey")
     data_E = sheet_E.get_all_values()
+    data_E = pd.DataFrame(data_E[1:], columns=data_E[0])
     
     # data_E = conn.read(spreadsheet=url, usecols=list(range(8)), worksheet="survey")
     # data_C = conn.read(spreadsheet=url, usecols=list(range(8)), worksheet="調查")
