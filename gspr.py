@@ -291,7 +291,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
-        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.list(range(8)))
+        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
         count_E = data_E[xvalue_E].value_counts()
         st.bar_chart(count_E)
         expander_E = st.expander("Count Results")
