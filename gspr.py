@@ -219,9 +219,9 @@ def Survey(): # Collecting user inputs for later analysis
     def save_gsheets(data): # Authentication
         creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
         client = gspread.authorize(creds)
-        sheet = client.open('Survey').worksheet('survey')  
-        #worksheet = sheet.get_worksheet(0)
-        sheet.append_row(data) # Append data to the sheet
+        sheet = client.open_by_url(st.secrets["spreadsheet"])
+        worksheet = sheet.get_worksheet(0)
+        worksheet.append_row(data) # Append data to the sheet
     
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
     # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
@@ -248,6 +248,10 @@ def Survey(): # Collecting user inputs for later analysis
         
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ") 
+            data = [day, background, role, EMDN_category, EMDN_type, information, experience, others, feedback]
+            save_gsheets(data)
+
+    
             # credentials = Credentials.from_service_account_info(st.secrets["gcp_service_account"], scopes=["https://www.googleapis.com/auth/spreadsheets",],)
             # connection = connect(":memory:", adapter_kwargs={
             #     "gsheetsapi" : { 
@@ -271,22 +275,24 @@ def Survey(): # Collecting user inputs for later analysis
             # cursor.execute(query)
             
             
-            userdata_E = pd.DataFrame([{
-                "Date": day,
-                "Background": background,
-                "Role": role,
-                "EMDN Category": EMDN_category,
-                "EMDN Type": EMDN_type,
-                "Device Information": information,
-                "Overall Experience": experience,
-                "What other information would you like to see on this page?": others,
-                "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
-                }])
-            creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
-            client = gspread.authorize(creds)
-            sheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4').worksheet('survey')  
-            sheet.append_row(userdata_E) # Append data to the sheet
+            # userdata_E = pd.DataFrame([{
+            #     "Date": day,
+            #     "Background": background,
+            #     "Role": role,
+            #     "EMDN Category": EMDN_category,
+            #     "EMDN Type": EMDN_type,
+            #     "Device Information": information,
+            #     "Overall Experience": experience,
+            #     "What other information would you like to see on this page?": others,
+            #     "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
+            #     }])
+
+            # creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
+            # client = gspread.authorize(creds)
+            # sheet = client.open_by_url('https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4').worksheet('survey')  
+            # sheet.append_row(userdata_E) # Append data to the sheet
             #save_gsheets(userdata_E)
+
             
         
 
