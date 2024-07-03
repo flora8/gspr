@@ -159,7 +159,6 @@ def GSPR_E(type_E):  # Create the GSPR page in English
     with Example:
         st.subheader("Example template")
         st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
-        #image = Image.open('mdcg2021-8_annex6.jpg')
         st.image('mdcg_imageA.jpg', caption='A. Standards, common specifications, scientific advice')
         st.image('mdcg_imageB.jpg', caption='B. Matrix of General safety and performance requirements')
 
@@ -168,7 +167,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
     st.write("顯示的資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯")
 
     #Set up different tabs
-    第一章, 第二章, 第三章, 標準清單 = st.tabs(["第一章", "第二章", "第三章", "標準清單"])
+    第一章, 第二章, 第三章, 標準清單, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準清單", "參考範例"])
 
     with 第一章: # Get Chapter I General requirements details in Mandarin
         st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -197,6 +196,12 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_C = standards_C.iloc[:30]
         st.dataframe(standards_C)
+
+    with 參考範例:
+        st.subheader("參考範例")
+        st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
+        st.image('mdcg_imageA.jpg', caption='A. 標準、一般規範、科學建議')
+        st.image('mdcg_imageB.jpg', caption='B. 一般安全與性能要求模型')
 
 
 
