@@ -283,12 +283,18 @@ def Survey(): # Collecting user inputs for later analysis
 
             
             # conn.create(worksheet="Survey", data=userdata_E)
-            conn = GSheetsConnection(client_secret=st.secrets["gcp_service_account"], scopes=['https://www.googleapis.com/auth/spreadsheets'])
+           
+            
+            creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
+            client = gspread.authorize(creds)
+            def load_data(url, sheet_name):
+                sh = client.open_by_url(url)
+                df = pd.DataFrame(sh.worksheet(sheet_name).get_all_records())
+                return df
             url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4"
-            #creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
-                    
-            # client = gspread.authorize(creds)
-            # sheet = client.open(url).worksheet('survey')  
+            sheet_name="survey"
+            st.dataframe(df)
+            # sheet = client.open('Survey').worksheet('survey')  
             # sheet.append_row(userdata_E) # Append data to the sheet
             # save_gsheets(userdata_E)
 
