@@ -9,6 +9,7 @@ import numpy as np
 
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
+from shillelagh.backends.apsw.db import connect
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import json
@@ -264,7 +265,7 @@ def Survey(): # Collecting user inputs for later analysis
                 },
             })
             cursor = connection.cursor()
-            sheet_url = st.secrets["url"]
+            sheet_url = st.secrets["spreadsheet"]
             query = f'INSERT INTO "{sheet_url}" VALUES ("{day}", "{background}", "{role}", "{EMDN_category}", "{EMDN_type}", "{information}", "{experience}", "{others}", "{feedback}")'
             cursor.execute(query)
             st.success("Successfully submitted. !! Thank you so much for your support !! ") 
