@@ -5,7 +5,8 @@ import datetime
 import matplotlib.pyplot as plt
 import openpyxl
 import pip
-import numpy as np
+import numpy as 
+import base64
 
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
