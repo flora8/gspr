@@ -2,14 +2,15 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import datetime
-#import seaborn as sns
 import matplotlib.pyplot as plt
 import openpyxl
 import pip
 import numpy as np
 
 from streamlit_gsheets import GSheetsConnection
+from oauth2client.service_account import ServiceAccountCredentials
 import gspread
+import json
 
 
 # from sklearn.model_selection import train_test_split
@@ -211,6 +212,20 @@ def Survey(): # Collecting user inputs for later analysis
                 
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
+    
+    def connect_gsheets(): # Function to connect to Google Sheets
+        scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
+        creds = ServiceAccountCredentials.from_json_keyfile_dict('eugspr-gsheets-8a87340cbb99.json', scope) # Authorize the credentials
+        client = gspread.authorize(creds)
+        return client
+    
+    def insert_gsheet(sheet, data): # Function to insert data into Google Sheets
+    sheet.append_row(data)
+
+    client = connect_gsheets()
+    sheet_E = client.open('Survey').worksheet('survey') 
+    sheet_C = client.open('Survey').worksheet('調查') 
+    
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
     # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
@@ -219,7 +234,7 @@ def Survey(): # Collecting user inputs for later analysis
     col1, col2 = st.tabs(["User Experience Survey", "使用者體驗調查"])
  
     with col1:
-        st.subheader("User Experience Survey")
+        st.subheader("User Experience Survey")   
         day = st.text_input("Date ", (datetime.date.today()), disabled=True)
         background = st.selectbox("Please select the business type of your background?", ("", "Academics", "Manufacturer", "Importer", "Distributor", "Wholesaler","Retailer", "Others",))
         role = st.selectbox("Please select your current role?", ("", "Professionals", "Professor", "Student", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
@@ -248,6 +263,8 @@ def Survey(): # Collecting user inputs for later analysis
                 "What other information would you like to see on this page?": others,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])
+            insert_gsheet(sheet_E, userdata_E)
+            
             #update_E = pd.concat([survey_data, userdata_E], ignore_idex=True) # add the user input data to the survey excel
             #  = conn.create(worksheet="Survey", data=userdata_E) # update google sheets with the user input data
             # st.cache_data.clear()
@@ -259,14 +276,12 @@ def Survey(): # Collecting user inputs for later analysis
         # excel = conn.read(worksheet="Survey", usecols=list(range(19))) # Fetch existing survey data
     # excel = excel.dropna(how="all") 
     # st.dataframe(excel)
-            # from google.oauth2.service_account import Credentials
-            # from googleapiclient.discovery import build
-            from oauth2client.service_account import ServiceAccountCredentials
-            scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-            creds_E = ServiceAccountCredentials.from_json_keyfile_dict('eugspr-gsheets-8a87340cbb99.json', scopes=scope_E)
-            client_E = gspread.authorize(creds_E)
-            sh_E = client_E.open('Survey').worksheet('survey')  
-            sh_E.append_row(userdata_E)
+
+            # scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
+            # creds_E = ServiceAccountCredentials.from_json_keyfile_dict('eugspr-gsheets-8a87340cbb99.json', scope_E) # Authorize the credentials
+            # client_E = gspread.authorize(creds_E)
+            # sh_E = client_E.open('Survey').worksheet('survey')  
+            # sh_E.append_row(userdata_E)
 
 
         # if st.button(label="Submit"): # if the submit button is pressed
