@@ -161,10 +161,9 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.subheader("Example template")
         st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
         pdf = 'mdcg2021-8_annex6.pdf'
-        with open(pdf, "rb") as f:
-            base64_pdf = base64.b64encode(f.read()).decode('utf-8')
-        display = F'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">'
-        st.markdown(display, unsafe_allow_html=True)
+        base64_pdf = base64.b64encode(pdf.read()).decode('utf-8')
+        pdf_display = f'<embed src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf">' 
+        st.markdown(pdf_display, unsafe_allow_html=True)
         # def display(file):
         #     #with open(file,"rb") as f:
         #     bytes_data = file.getvalue() # Read file as bytes:
