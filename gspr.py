@@ -269,7 +269,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     
     url = "https://docs.google.com/spreadsheets/d/1S3lA6Hk_N4bldzq4jKRTIS_R-7F7AL_zz9ZE76JDzV4" # The Google sheet url
     conn = st.experimental_connection("gsheets", type=GSheetsConnection)
-    data_E = conn.read(url, worksheet="survey")
+    data = conn.read(url)
     data_C = conn.read(url, worksheet="調查")
     
     # data_E = conn.read(spreadsheet=url, usecols=list(range(8)), worksheet="survey")
@@ -279,8 +279,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
-        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
-        count_E = data_E[xvalue_E].value_counts()
+        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data.columns[1:7])
+        count_E = data[xvalue_E].value_counts()
         st.bar_chart(count_E)
         expander_E = st.expander("Count Results")
         expander_E.write(count_E)
