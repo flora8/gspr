@@ -219,8 +219,8 @@ def Survey(): # Collecting user inputs for later analysis
     def save_gsheets(data): # Authentication
         creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
         client = gspread.authorize(creds)
-        sheet = client.open_by_url(st.secrets["spreadsheet"])
-        worksheet = sheet.get_worksheet(0)
+        sheet = client.open('Survey').worksheet('survey')  
+        #worksheet = sheet.get_worksheet(0)
         sheet.append_row(data) # Append data to the sheet
     
     conn = st.experimental_connection("gsheets", type=GSheetsConnection) # Establishing a google sheets connection
@@ -282,13 +282,11 @@ def Survey(): # Collecting user inputs for later analysis
                 "What other information would you like to see on this page?": others,
                 "Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve?": feedback
                 }])
-            # key_file = json.loads(st.secrets["gcp_service_account"])
-            # scope_E = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive'] # Define the scope
-            # creds_E = Credentials.from_service_account_file(key_file, scopes=scope_E)
-            # client_E = gspread.authorize(creds_E)
-            # sheet_E = client_E.open('Survey').worksheet('survey')  
-            # sheet_E.append_row(userdata_E)
-            save_gsheets(userdata_E)
+            creds = Credentials.from_service_account_info(st.secrets["gcp_service_account"],scopes=["https://www.googleapis.com/auth/spreadsheets"]) 
+            client = gspread.authorize(creds)
+            sheet = client.open('Survey').worksheet('survey')  
+            sheet.append_row(userdata_E) # Append data to the sheet
+            #save_gsheets(userdata_E)
             
         
 
