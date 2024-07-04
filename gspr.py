@@ -295,8 +295,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         st.plotly_chart(fig2_E)
         
         expander_E = st.expander("Count Results")
-        data1_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts()
-        data2_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts().sum()
+        data1_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts().sum()
+        data2_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts()
         expander_E.write(data1_E)
         expander_E.write(data2_E)
 
@@ -313,7 +313,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         st.plotly_chart(plot2_E)
 
         expander2_E = st.expander("Analysis Results")
-        data2_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
+        data2_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].value_counts().sum()
         expander2_E.write(data2_E)
 
     with 數量: # User select the x-axis to plot the counts  
@@ -325,8 +325,10 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         st.plotly_chart(fig2_C)
         
         expander_C = st.expander("計算結果")
-        data1_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts()
+        data1_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts().sum()
+        data2_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts()
         expander_C.write(data1_C)
+        expander_C.write(data2_C)
 
     with 分析: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_C = st.selectbox("請選擇X軸值", options=data_C.columns[0:7])
