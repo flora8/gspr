@@ -319,7 +319,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         expander2_E.write(data4_E)
 
     with Matrix:
-        corr = data_E.iloc[:, :7].corr() # calculate a correlation martix
+        corr = data_E.iloc[:, :].corr() # calculate a correlation martix
         heatmap_E = go.Figure(data=go.Heatmap(z=corr, x=corr.columns, y=corr.columns))
         #heatmap_E = update_layout(title="Heatmap of user experience survey data correlation")
         st.plotly_chart(heatmap_E)
