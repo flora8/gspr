@@ -320,7 +320,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         fig_C = px.histogram(data_C, x=xvalue_C, title="{} 直方圖分佈".format(xvalue_C)) # Show the distribution of sepal lengths across all species
         st.plotly_chart(fig_C)
         fig2_C = px.pie(count_C, values=xvalue_C, names="index", title="{} 圓餅圖分佈".format(xvalue_C)) # Display the distribution of species in the data
-        st.plotly_chart(fig22_C)
+        st.plotly_chart(fig2_C)
         
         expander_C = st.expander("計算結果")
         data1_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts()
