@@ -301,7 +301,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:7])
         yaxis_E = st.selectbox("Please select Y-Axis value", options=data_E.columns[1:7])
-        plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, hover_data=['petal_width'], labels={xaxis_E:yaxis_E}, title="The searched {} by {} results".format(xaxis_E,yaxis_E))
+        plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, labels={xaxis_E:yaxis_E}, title="The searched {} by {} results".format(xaxis_E,yaxis_E))
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen
         st.plotly_chart(plot_E, use_container_width=True) # Display the data
@@ -315,12 +315,13 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         count_C = data_C[xvalue_C].value_counts()
         st.bar_chart(count_C)
         expander_C = st.expander("計算結果")
-        expander_C.write(count_C)
+        count2_C = data_E[[xvalue_C]].groupby(by=xvalue_C).value_counts()
+        expander_C.write(count2_C)
 
     with 分析: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_C = st.selectbox("請選擇X軸值", options=data_C.columns[0:7])
         yaxis_C = st.selectbox("請選擇Y軸值", options=data_C.columns[1:7])        
-        plot_C = px.scatter(data_C, x=xaxis_C, y=yaxis_C, hover_data=['petal_width'], labels={xaxis_C:yaxis_C}, title="依照 {} 搜尋 {} 的結果".format(xaxis_C,yaxis_C))
+        plot_C = px.scatter(data_C, x=xaxis_C, y=yaxis_C, labels={xaxis_C:yaxis_C}, title="依照 {} 搜尋 {} 的結果".format(xaxis_C,yaxis_C))
         st.plotly_chart(plot_C, use_container_width=True) # Display the data
         expander2_C = st.expander("分析結果")
         data2_C = data_C[[xaxis_C, yaxis_C]].groupby(by=xaxis_C)[yaxis_C].sum()
