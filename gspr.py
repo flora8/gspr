@@ -8,7 +8,8 @@ import pip
 import numpy as np
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
-import gspread
+import spread
+import plotly.graph_objects as go
 
 
 # from sklearn.model_selection import train_test_split
@@ -284,7 +285,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     data_C = sheet_C.get_all_values()
     data_C = pd.DataFrame(data_C[1:], columns=data_C[0])
 
-    Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
+    Counts, Analysis, Marrix, 數量, 分析 = st.tabs(["Counts", "Analysis", "Matrix", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
@@ -303,7 +304,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:7])
         yaxis_E = st.selectbox("Please select Y-Axis value", options=data_E.columns[1:7])
-        plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, title="The searched {} by {} scatter plot".format(yaxis_E,xaxis_E))
+        plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, title="The searched {} by {} scatter plot".format(yaxis_E,xaxis_E)) # visualize the relationship between x-axis and y-axis 
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen 
         st.plotly_chart(plot_E) # Display the data
@@ -317,6 +318,13 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         expander2_E.write(data3_E)
         expander2_E.write(data4_E)
 
+    with Matrix:
+        corr = data_E.iloc[:, :7].corr() # calculate a correlation martix
+        heatmap_E = go.Figure(data=go.Heatmap(z=corr, x=corr.columns, y=corr.columns))
+        heatmap_E = update_layout(title="Heatmap of user experience survey data correlation")
+        st.plotly_chart(heatmap_E)
+
+    
     with 數量: # User select the x-axis to plot the counts  
         xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[1:7])
         count_C = data_C[xvalue_C].value_counts().reset_index()
