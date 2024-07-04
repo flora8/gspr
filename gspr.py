@@ -295,7 +295,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         count_E = data_E[xvalue_E].value_counts()
         st.bar_chart(count_E)
         expander_E = st.expander("Count Results")
-        count2_E = data_E[[xvalue_E]].groupby(by=xvalue_E)sum()
+        count2_E = data_E[[xvalue_E]].groupby(by=xvalue_E).sum()
         expander_E.write(count2_E)
 
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
