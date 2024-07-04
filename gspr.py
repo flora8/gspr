@@ -287,12 +287,32 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
-        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
-        count_E = data_E[xvalue_E].value_counts().reset_index()
-        fig_E = px.pie(count_E, values=xvalue_E, names="index", title="{} species distribution".format(xvalue_E)) # Display the distribution of species in the data
-        st.plotly_chart(fig_E)
-        fig2_E = px.histogram(data_E, x=xvalue_E, title="{} distribution".format(xvalue_E)) # Show the distribution of sepal lengths across all species
-        st.plotly_chart(fig2_E)
+        col1, col2 = st.columns(2)
+        with col1:
+            xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
+            count_E = data_E[xvalue_E].value_counts().reset_index()
+            chart_type = st.radio("Select chart type:", ("Line Chart","Pie Chart","Histogram"))
+        with col2:
+            if chart_type == "Line Chart":
+                sorted_E = data_E.sort_values(by=xvalue_E).reset_index()
+                fig_E = px.line(sorted_E, x=sorted_E.index, y=xvalue_E, title="{} line chart".format(xvalue_E))
+                st.plotly_chart(fig_E)
+            elif chart_type == "Pie Chart":
+                fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="{} species distribution".format(xvalue_E)) # Display the distribution of species in the data
+                st.plotly_chart(fig2_E)
+            elif chart_type == "Histogram":
+                fig3_E = px.histogram(data_E, x=xvalue_E, title="{} distribution".format(xvalue_E)) # Show the distribution of sepal lengths across all species
+                st.plotly_chart(fig3_E)
+            
+        #xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
+        #count_E = data_E[xvalue_E].value_counts().reset_index()
+        # fig_E = px.pie(count_E, values=xvalue_E, names="index", title="{} species distribution".format(xvalue_E)) # Display the distribution of species in the data
+        # st.plotly_chart(fig_E)
+        # fig2_E = px.histogram(data_E, x=xvalue_E, title="{} distribution".format(xvalue_E)) # Show the distribution of sepal lengths across all species
+        # st.plotly_chart(fig2_E)
+        # sorted_E = data_E.sort_values(by=xvalue_E).reset_index()
+        # fig3_E = px.line(sorted_E, x=sorted_E.index, y=xvalue_E, title="{} line chart".format(xvalue_E))
+        # st.plotly_chart(fig3_E)
         
         expander_E = st.expander("Count Results")
         data1_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts()
@@ -310,9 +330,6 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         plot2_E.update_traces(marker=dict(color=color_E))
         st.plotly_chart(plot2_E)
 
-        sorted_E = data_E.sort_values(by=xaxis_E).reset_index()
-        plot3_E = px.line(sorted_E, x=sorted_E.index, y=yaxis_E, title="The searched {} line chart".format(yaxis_E))
-        st.plotly_chart(plot3_E)
         expander2_E = st.expander("Analysis Results")
         data2_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
         expander2_E.write(data2_E)
