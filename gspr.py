@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 import openpyxl
 import pip
 import numpy as np
-
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
 import gspread
@@ -17,9 +16,6 @@ import gspread
 # from sklearn.metrics import mean_squared_error, r2_score
 # import base64
 # import io
-
-
-
 
 
 #---------------------------------#
@@ -293,10 +289,14 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
         count_E = data_E[xvalue_E].value_counts()
+        count2_E = data_E[xvalue_E].value_counts().reset_index()
+        fig_E = px.pie(count2_E, values=xvalue_E, names="index", title="{} species distribution".format(xvalue_E))
         st.bar_chart(count_E)
+        st.plotly_chart(fig_E)
+        
         expander_E = st.expander("Count Results")
-        count2_E = data_E[[xvalue_E]].groupby(by=xvalue_E).value_counts()
-        expander_E.write(count2_E)
+        data1_E = data_E[[xvalue_E]].groupby(by=xvalue_E).value_counts()
+        expander_E.write(data1_E)
 
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:7])
@@ -315,8 +315,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         count_C = data_C[xvalue_C].value_counts()
         st.bar_chart(count_C)
         expander_C = st.expander("計算結果")
-        count2_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts()
-        expander_C.write(count2_C)
+        data1_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts()
+        expander_C.write(data1_C)
 
     with 分析: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_C = st.selectbox("請選擇X軸值", options=data_C.columns[0:7])
