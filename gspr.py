@@ -296,7 +296,9 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         
         expander_E = st.expander("Count Results")
         data1_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts()
+        data2_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts().sum()
         expander_E.write(data1_E)
+        expander_E.write(data2_E)
 
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:7])
@@ -312,9 +314,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
         expander2_E = st.expander("Analysis Results")
         data2_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
-        data3_E = data_C[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].value_counts()
         expander2_E.write(data2_E)
-        expander2_E.write(data3_E)
 
     with 數量: # User select the x-axis to plot the counts  
         xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[1:7])
