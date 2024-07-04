@@ -307,8 +307,9 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         st.plotly_chart(plot_E, use_container_width=True) # Display the data
         
         expander2_E = st.expander("Analysis Results")
-        data2_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum().value_counts()
-        expander2_E.write(data2_E)
+        data2_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
+        data3_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].value_counts()
+        expander2_E.write(data2_E, data3_E)
 
     with 數量: # User select the x-axis to plot the counts  
         xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[1:7])
