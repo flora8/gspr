@@ -8,7 +8,7 @@ import pip
 import numpy as np
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
-import spread
+import gspread
 import plotly.graph_objects as go
 
 
