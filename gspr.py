@@ -295,19 +295,21 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         st.plotly_chart(fig2_E)
         
         expander_E = st.expander("Count Results")
-        data1_E = data_E[[xvalue_E]].groupby(by=xvalue_E).value_counts()
+        data1_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts()
         expander_E.write(data1_E)
 
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:7])
         yaxis_E = st.selectbox("Please select Y-Axis value", options=data_E.columns[1:7])
-        plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, labels={xaxis_E:yaxis_E}, title="The searched {} by {} scatter plot results".format(xaxis_E,yaxis_E))
+        plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, title="The searched {} by {} scatter plot results".format(xaxis_E,yaxis_E))
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
-        plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen
-        plot2_E = px.box(data_E, x=xaxis_E, y=yaxis_E, title="The searched {} by {} results".format(yaxis_E,xaxis_E))
+        plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen 
+
+        avg_E = data_E.groupby(xaxis_E)[yaxis_E].mean().reset_index()
+        plot2_E = px.box(avg_E, x=xaxis_E, y=yaxis_E, title="Average {} of {} results".format(yaxis_E,xaxis_E))
         plot2_E.update_traces(marker=dict(color=color_E))
-        st.plotly_chart(plot_E, use_container_width=True) # Display the data
-        st.plotly_chart(plot2_E, use_container_width=True)
+        st.plotly_chart(plot_E) # Display the data
+        st.plotly_chart(plot2_E)
         
         expander2_E = st.expander("Analysis Results")
         data2_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
@@ -316,7 +318,11 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with 數量: # User select the x-axis to plot the counts  
         xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[1:7])
         count_C = data_C[xvalue_C].value_counts()
-        st.bar_chart(count_C)
+        fig_C = px.pie(count_C, values=xvalue_C, names="index", title="{} species distribution".format(xvalue_C)) # Display the distribution of species in the data
+        fig2_C = px.histogram(data_C, x=xvalue_C, title="{} distribution".format(xvalue_C)) # Show the distribution of sepal lengths across all species
+        st.plotly_chart(fig_C)
+        st.plotly_chart(fig2_C)
+        
         expander_C = st.expander("計算結果")
         data1_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts()
         expander_C.write(data1_C)
