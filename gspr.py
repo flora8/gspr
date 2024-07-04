@@ -332,8 +332,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         plot_C = px.scatter(data_C, x=xaxis_C, y=yaxis_C, title="依照 {} 搜尋 {} 的散佈圖".format(yaxis_C,xaxis_C))
         st.plotly_chart(plot_C) # Display the data
         
-        plot2_E = px.box(data_E, x=xaxis_E, y=yaxis_E, title="依照 {} 搜尋 {} 的箱形圖".format(yaxis_C,xaxis_C)) # visualize the distribution of y-axis for each x-axis using a box plot
-        st.plotly_chart(plot2_E)
+        plot2_C = px.box(data_C, x=xaxis_C, y=yaxis_C, title="依照 {} 搜尋 {} 的箱形圖".format(yaxis_C,xaxis_C)) # visualize the distribution of y-axis for each x-axis using a box plot
+        st.plotly_chart(plot2_C)
         
         expander2_C = st.expander("分析結果")
         data2_C = data_C[[xaxis_C, yaxis_C]].groupby(by=xaxis_C)[yaxis_C].sum()
