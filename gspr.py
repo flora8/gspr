@@ -289,7 +289,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
         count_E = data_E[xvalue_E].value_counts().reset_index()
-        fig_E = px.bar(xvalue_E, x=count_E, title="{} bar chart distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
+        fig_E = px.bar(data_E, x=xvalue_E, title="{} bar chart distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
         st.plotly_chart(fig_E)
         fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="{} pie chart distribution".format(xvalue_E)) # Display the distribution of species in the data
         st.plotly_chart(fig2_E)
@@ -317,7 +317,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with 數量: # User select the x-axis to plot the counts  
         xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[1:7])
         count_C = data_C[xvalue_C].value_counts().reset_index()
-        fig_C = px.histogram(data_C, x=xvalue_C, title="{} 直方圖分佈".format(xvalue_C)) # Show the distribution of sepal lengths across all species
+        fig_C = px.bar(data_C, x=xvalue_C, title="{} 長條圖分佈".format(xvalue_C)) # Show the distribution of x-axis across all species
         st.plotly_chart(fig_C)
         fig2_C = px.pie(count_C, values=xvalue_C, names="index", title="{} 圓餅圖分佈".format(xvalue_C)) # Display the distribution of species in the data
         st.plotly_chart(fig2_C)
