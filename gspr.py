@@ -288,14 +288,16 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
-        count_E = data_E[xvalue_E].value_counts()
-        count2_E = data_E[xvalue_E].value_counts().reset_index()
-        fig_E = px.pie(count2_E, values=xvalue_E, names="index", title="{} species distribution".format(xvalue_E))
+        #count_E = data_E[xvalue_E].value_counts()
+        count_E = data_E[xvalue_E].value_counts().reset_index()
+        fig_E = px.pie(count_E, values=xvalue_E, names="index", title="{} species distribution".format(xvalue_E)) # Display the distribution of species in the data
+        fig2_E = px.histogram(data_E, x=xvalue_E, title="{} distribution".format(xvalue_E))
         st.bar_chart(count_E)
         st.plotly_chart(fig_E)
+        st.plotly_chart(fig2_E)
         
         expander_E = st.expander("Count Results")
-        data1_E = data_E[[xvalue_E]].groupby(by=xvalue_E).value_counts()
+        data1_E = data_E[[xvalue_E]].groupby(by=xvalue_E).value_counts().sum()
         expander_E.write(data1_E)
 
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
