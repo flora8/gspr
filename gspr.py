@@ -290,8 +290,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
         count_E = data_E[xvalue_E].value_counts().reset_index()
         fig_E = px.pie(count_E, values=xvalue_E, names="index", title="{} species distribution".format(xvalue_E)) # Display the distribution of species in the data
-        fig2_E = px.histogram(data_E, x=xvalue_E, title="{} distribution".format(xvalue_E)) # Show the distribution of sepal lengths across all species
         st.plotly_chart(fig_E)
+        fig2_E = px.histogram(data_E, x=xvalue_E, title="{} distribution".format(xvalue_E)) # Show the distribution of sepal lengths across all species
         st.plotly_chart(fig2_E)
         
         expander_E = st.expander("Count Results")
@@ -301,16 +301,18 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:7])
         yaxis_E = st.selectbox("Please select Y-Axis value", options=data_E.columns[1:7])
-        plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, title="The searched {} by {} scatter plot results".format(xaxis_E,yaxis_E))
+        plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, title="The searched {} by {} scatter plot".format(xaxis_E,yaxis_E))
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen 
-
-        avg_E = data_E.groupby(xaxis_E)[yaxis_E].mean().reset_index()
-        plot2_E = px.box(avg_E, x=xaxis_E, y=yaxis_E, title="Average {} of {} results".format(yaxis_E,xaxis_E))
-        plot2_E.update_traces(marker=dict(color=color_E))
         st.plotly_chart(plot_E) # Display the data
-        st.plotly_chart(plot2_E)
         
+        plot2_E = px.box(data_E, x=xaxis_E, y=yaxis_E, title="The searched {} by {} results".format(yaxis_E,xaxis_E))
+        plot2_E.update_traces(marker=dict(color=color_E))
+        st.plotly_chart(plot2_E)
+
+        sorted_E = data_E.sort_values(by=xaxis_E).reset_index()
+        plot3_E = px.line(sorted_E, x=sorted_E.index, y=yaxis_E, title="The searched {} line chart".format(yaxis_E))
+        st.plotly_chart(plot3_E)
         expander2_E = st.expander("Analysis Results")
         data2_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
         expander2_E.write(data2_E)
