@@ -156,8 +156,8 @@ def GSPR_E(type_E):  # Create the GSPR page in English
 
     with Classification:
         st.subheader("Risk classification")
-        st.markdown("""**MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)""")
-        st.markdown("""**MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)""")
+        st.markdown("""**MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
+                    **MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)""")
         standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_E = standards_E.iloc[:30]
@@ -206,8 +206,8 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
 
     with 風險等級:
         st.subheader("Risk classification")
-        st.markdown("""**MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)""")
-        st.markdown("""**MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)""")
+        st.markdown("""**MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
+                    **MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)""")
         standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_C = standards_C.iloc[:30]
