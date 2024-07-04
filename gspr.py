@@ -71,6 +71,7 @@ def Home():
 
 
 
+
 #---------------------------------#
 # Load excel data
 excel_E = pd.ExcelFile('GSPRen.xlsx') # Load the excel data in English
@@ -123,7 +124,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
     
     
     # Set up different tabs
-    ChapterI, ChapterII, ChapterIII, Standards, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards", "Example"])
+    ChapterI, ChapterII, ChapterIII, Standards, Classification, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards", "Classification", "Example"])
 
     with ChapterI: # Get Chapter I General requirements details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -153,6 +154,13 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         standards_E = standards_E.iloc[:30]
         st.dataframe(standards_E)
 
+    with Classification:
+        st.subheader("Risk classification")
+        standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
+        standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
+        standards_E = standards_E.iloc[:30]
+        st.dataframe(standards_E)
+
     with Example:
         st.subheader("Example template")
         st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
@@ -164,7 +172,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
     st.write("顯示的資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯")
 
     #Set up different tabs
-    第一章, 第二章, 第三章, 標準清單, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準清單", "參考範例"])
+    第一章, 第二章, 第三章, 標準清單, 風險等級, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準清單", "風險等級", "參考範例"])
 
     with 第一章: # Get Chapter I General requirements details in Mandarin
         st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -194,11 +202,19 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         standards_C = standards_C.iloc[:30]
         st.dataframe(standards_C)
 
+    with 風險等級:
+        st.subheader("Risk classification")
+        standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
+        standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
+        standards_C = standards_C.iloc[:30]
+        st.dataframe(standards_C)
+        
     with 參考範例:
         st.subheader("參考範例")
         st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
         st.image('mdcg_imageA.jpg', caption='A. 標準、一般規範、科學建議')
         st.image('mdcg_imageB.jpg', caption='B. 一般安全與性能要求模型')
+
 
 
 
@@ -264,6 +280,7 @@ def Survey(): # Collecting user inputs for later analysis
             
      
 
+    
 #---------------------------------#
 def Analysis(): # Plotting and data visualisation to analyse user experience survey result
     st.header(" :bar_chart: Data Analysis 數據分析")
@@ -348,6 +365,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
 
 
+    
 #---------------------------------#
 # Create the sidebar for choosing the specific page
 options = st.sidebar.radio("Pages", options=[":stethoscope: Home", " :star2: GSPR", " :memo: Survey", " :bar_chart: Analysis"])
