@@ -285,7 +285,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     data_C = sheet_C.get_all_values()
     data_C = pd.DataFrame(data_C[1:], columns=data_C[0])
 
-    Counts, Analysis, Marrix, 數量, 分析 = st.tabs(["Counts", "Analysis", "Matrix", "數量", "分析"])
+    Counts, Analysis, Matrix, 數量, 分析 = st.tabs(["Counts", "Analysis", "Matrix", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
