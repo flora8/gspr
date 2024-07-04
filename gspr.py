@@ -150,11 +150,11 @@ def GSPR_E(type_E):  # Create the GSPR page in English
     with Standards: # Get Standard details in English
         st.subheader("Standards list")
         st.markdown("""
-                    **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
+                    * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
                     
-                    **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
+                    * **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
 
-                    **CEN and CENELEC:** [European Committee for Standardization](https://www.cencenelec.eu/)
+                    * **CEN and CENELEC:** [European Committee for Standardization](https://www.cencenelec.eu/)
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
@@ -164,9 +164,9 @@ def GSPR_E(type_E):  # Create the GSPR page in English
     with Classification:
         st.subheader("Risk classification")
         st.markdown("""
-                    **MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
+                    * **MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
                     
-                    **MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)
+                    * **MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
@@ -175,7 +175,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
 
     with Example:
         st.subheader("Example template")
-        st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
+        st.markdown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
         st.image('mdcg_imageA.jpg', caption='A. Standards, common specifications, scientific advice')
         st.image('mdcg_imageB.jpg', caption='B. Matrix of General safety and performance requirements')
 
@@ -210,11 +210,11 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
     with 標準清單: # Get Standard details in Mandarin
         st.subheader("標準清單")
         st.markdown("""
-                    **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
+                    * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
                     
-                    **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
+                    * **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
 
-                    **CEN and CENELEC:** [European Committee for Standardization](https://www.cencenelec.eu/)
+                    * **CEN and CENELEC:** [European Committee for Standardization](https://www.cencenelec.eu/)
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
@@ -224,9 +224,9 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
     with 風險等級:
         st.subheader("Risk classification")
         st.markdown("""
-                    **MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
+                    * **MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
                     
-                    **MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)
+                    * **MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
@@ -235,7 +235,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         
     with 參考範例:
         st.subheader("參考範例")
-        st.markdown("""**MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
+        st.markdown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
         st.image('mdcg_imageA.jpg', caption='A. 標準、一般規範、科學建議')
         st.image('mdcg_imageB.jpg', caption='B. 一般安全與性能要求模型')
 
