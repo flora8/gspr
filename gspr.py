@@ -370,7 +370,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         st.plotly_chart(plot2_E)
 
         expander2_E = st.expander("Analysis Results")
-        data3_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].value_counts()
+        data3_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum().value_counts()
         data4_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].sum()
         expander2_E.write(data3_E)
         expander2_E.write(data4_E)
