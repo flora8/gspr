@@ -35,12 +35,16 @@ st.markdown(hide, unsafe_allow_html=True)
 
 #---------------------------------#
 # Count page views
-s = st.GlobalState(key="user metadata")
-if not s:
-    # Initialize it here!
-    s.counter = 0
-s.counter += 1
-st.sidebar.markdown(f'Page viewed = {s.counter}')
+def Pageviews():
+    return []
+
+pageviews=Pageviews()
+pageviews.append('dummy')
+
+try:
+    st.markdown('Page viewed = {} times.'.format(len(pageviews)))
+except ValueError:
+    st.markdown('Page viewed = {} times.'.format(1))
 
 
 
