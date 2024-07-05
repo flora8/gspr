@@ -32,6 +32,19 @@ st.markdown(hide, unsafe_allow_html=True)
 
 
 
+
+#---------------------------------#
+# Count page views
+import st_state_patch
+s = st.GlobalState(key="user metadata")
+if not s:
+    # Initialize it here!
+    s.counter = 0
+s.counter += 1
+st.sidebar.markdown(f'Page viewed = {s.counter}')
+
+
+
 #---------------------------------#
 # Create the Home page
 def Home():
@@ -260,8 +273,8 @@ def Survey(): # Collecting user inputs for later analysis
     with col1:
         st.subheader("User Experience Survey")   
         day = st.text_input("Date ", (datetime.date.today()), disabled=True)
-        background = st.selectbox("Please select the business type of your background?", ("", "Academics", "Manufacturer", "Importer", "Distributor", "Wholesaler","Retailer", "Others",))
-        role = st.selectbox("Please select your current role?", ("", "Professionals", "Professor", "Student", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
+        background = st.selectbox("Please select the business type of your background?", ("", "Academics", "Notified Body", "Manufacturer", "Importer", "Distributor", "Wholesaler","Retailer", "Others",))
+        role = st.selectbox("Please select your current role?", ("", "Professionals", "Professor", "Student", "Reviewer", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
 
         EMDN_category = st.selectbox("Which EMDN category of medical device are you particularly interested in searching for?", list(emdn_E)) # set index to none means there is no default options
         group_E = emdn_E.groupby(by=[EMDN_category], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
@@ -283,8 +296,8 @@ def Survey(): # Collecting user inputs for later analysis
     with col2:
         st.subheader("使用者體驗調查")
         day_C = st.text_input("日期", (datetime.date.today()), disabled=True)
-        background_C = st.selectbox("請問您的背景", ("", "學術", "製造商", "進口商", "經銷商", "批發商", "其他",))
-        role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
+        background_C = st.selectbox("請問您的背景", ("", "學術機構", "驗證機構", "製造商", "進口商", "經銷商", "批發商", "其他",))
+        role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "審查員", "教授", "學生", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
     
         EMDN_category_C = st.selectbox("請問您對哪種 EMDN 分類的醫療器材特別感興趣搜尋?", list(emdn_C)) # set index to none means there is no default options
         group_C = emdn_C.groupby(by=[EMDN_category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
