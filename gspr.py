@@ -41,9 +41,9 @@ pageviews=Pageviews()
 pageviews.append('dummy')
 
 try:
-    st.sidebar.markdown('Page viewed = {} times'.format(len(pageviews)))
+    st.sidebar.markdown('Page viewed: {} times'.format(len(pageviews)))
 except ValueError:
-    st.sidebar.markdown('Page viewed = {} times'.format(1))
+    st.sidebar.markdown('Page viewed: {} times'.format(1))
 
 
 
