@@ -35,7 +35,6 @@ st.markdown(hide, unsafe_allow_html=True)
 
 #---------------------------------#
 # Count page views
-import st_state_patch
 s = st.GlobalState(key="user metadata")
 if not s:
     # Initialize it here!
