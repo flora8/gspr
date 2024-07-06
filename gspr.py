@@ -35,20 +35,20 @@ st.markdown(hide, unsafe_allow_html=True)
 
 #---------------------------------#
 # Count page views
-# def Pageviews():
-#     return []
 def Pageviews():
     sum = 0
     for i in range(0,sum+1):
         sum = sum+i
     return [sum]
-pageviews=Pageviews()
+pageviews = Pageviews()
 pageviews.append('dummy')
 
 try:
     st.sidebar.markdown('Page viewed: {} times'.format(len(pageviews)))
 except ValueError:
     st.sidebar.markdown('Page viewed: {} times'.format(1))
+
+
 
 
 #---------------------------------#
