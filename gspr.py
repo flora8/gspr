@@ -39,7 +39,7 @@ def Pageviews():
     sum = 0
     for i in range(0,sum+1):
         sum = sum+i
-    return [sum]
+    return [sum] # convert the integers to list type
 pageviews = Pageviews()
 pageviews.append('dummy')
 
