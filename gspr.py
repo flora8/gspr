@@ -39,7 +39,7 @@ st.markdown(hide, unsafe_allow_html=True)
 #     return []
 def Pageviews(num):
     sum = 0
-    for i in range(0,num+1)
+    for i in range(0,num+1):
         sum = sum+i
     return sum
 pageviews=Pageviews(sum)
