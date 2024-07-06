@@ -177,7 +177,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
-        standards_E = standards_E.iloc[:30]
+        standards_E = standards_E.iloc[:]
         st.dataframe(standards_E)
 
     with Classification:
