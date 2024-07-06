@@ -37,12 +37,12 @@ st.markdown(hide, unsafe_allow_html=True)
 # Count page views
 # def Pageviews():
 #     return []
-def Pageviews(sum):
+def Pageviews():
     sum = 0
     for i in range(0,sum+1):
         sum = sum+i
     return sum
-pageviews=Pageviews(sum)
+pageviews=Pageviews()
 pageviews.append('dummy')
 
 try:
