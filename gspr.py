@@ -114,13 +114,12 @@ def EMDN(): # Create the EMDN page
     #---------------------------------#
     # Setup the flowchart
     
-    st.session_state['timeline_items'] = [
-        {"id": 1, "content": "static 1", "start": "2022-10-20"},
-        {"id": 2, "content": "Editable 1", "start": "2022-10-09", "editable": True},
-        {"id": 3, "content": "Editable 2", "start": "2022-10-18", "editable": True},]
+    filtered_data.insert(0,'New_ID', range(880, 880 + len(filtered_data)))
+    items3= filtered_data[['New_ID','start_date','end_date']]
+    items3 = filtered_data.to_json()                    
+    items = [{'id':items3['New_ID'],'content':items3['end_date'],'start':items3["start_date"]}]
 
-    timeline = st_timeline(st.session_state['timeline_items'], groups=[], options={}, height="300px")
-
+    timeline = st_timeline(items, groups=[], options={}, height="300px")
     st.subheader("Selected item")
     st.write(timeline)
 
