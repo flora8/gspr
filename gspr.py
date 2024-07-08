@@ -111,7 +111,7 @@ def EMDN(): # Create the EMDN page
 
     #---------------------------------#
     # Setup the flowchart
-    from streamlit_flow import streamlit_flow
+    import streamlit_flow
     from streamlit_flow.elements import StreamlitFlowNode, StreamlitFlowEdge
 
     nodes = [StreamlitFlowNode(id='1', pos=(100, 100), data={'content': 'Node 1'}, node_type='input', source_position='right', draggable=False),
