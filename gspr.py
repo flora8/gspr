@@ -114,27 +114,12 @@ def EMDN(): # Create the EMDN page
     #---------------------------------#
     # Setup the flowchart
     
-    items = [
-        {"id": 1, "content": "Early shift", "start": "2022-10-17"},
-        {"id": 2, "content": "Early shift", "start": "2022-10-17"},
-        {"id": 3, "content": "Early shift", "start": "2022-10-17"}
-        ]
+    st.session_state['timeline_items'] = [
+        {"id": 1, "content": "static 1", "start": "2022-10-20"},
+        {"id": 2, "content": "Editable 1", "start": "2022-10-09", "editable": True},
+        {"id": 3, "content": "Editable 2", "start": "2022-10-18", "editable": True},]
 
-    groups = [
-        {"id": 1, "content": "Worker 1", "style": "color: black; background-color: #a9a9a98F;"},
-        {"id": 2, "content": "Worker 2", "style": "color: black; background-color: #a9a9a98F;"},
-        {"id": 3, "content": "Worker 3", "style": "color: black; background-color: #a9a9a98F;"}
-        ]
-
-    timeline = st_timeline(items, groups=groups, options={"selectable": True, 
-                                                      "multiselect": True, 
-                                                      "zoomable": True, 
-                                                      "verticalScroll": True, 
-                                                      "stack": False,
-                                                      "height": 200, 
-                                                      "margin": {"axis": 5}, 
-                                                      "groupHeightMode": "auto", 
-                                                      "orientation": {"axis": "top", "item": "top"}})
+    timeline = st_timeline(st.session_state['timeline_items'], groups=[], options={}, height="300px")
 
     st.subheader("Selected item")
     st.write(timeline)
