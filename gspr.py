@@ -115,16 +115,16 @@ def EMDN(): # Create the EMDN page
     # Setup the flowchart
     
     items = [
-        {"id": 1, "content": "Early shift", "start": "2022-10-17T08:00:00", "end": "2022-10-17T16:00:00", "group": "1"},
-        {"id": 2, "content": "Early shift", "start": "2022-10-17T11:00:00", "end": "2022-10-17T15:00:00", "group": "2"},
-        {"id": 3, "content": "Early shift", "start": "2022-10-17T10:00:00", "end": "2022-10-17T18:00:00", "group": "3"}
-    ]
+        {"id": 1, "content": "Early shift", "start": "2022-10-17"},
+        {"id": 2, "content": "Early shift", "start": "2022-10-17"},
+        {"id": 3, "content": "Early shift", "start": "2022-10-17"}
+        ]
 
     groups = [
         {"id": 1, "content": "Worker 1", "style": "color: black; background-color: #a9a9a98F;"},
         {"id": 2, "content": "Worker 2", "style": "color: black; background-color: #a9a9a98F;"},
         {"id": 3, "content": "Worker 3", "style": "color: black; background-color: #a9a9a98F;"}
-    ]
+        ]
 
     timeline = st_timeline(items, groups=groups, options={"selectable": True, 
                                                       "multiselect": True, 
