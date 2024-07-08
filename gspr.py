@@ -124,12 +124,7 @@ def EMDN(): # Create the EMDN page
         StreamlitFlowEdge('2-4', '2', '4', animated=True),
         StreamlitFlowEdge('3-4', '3', '4', animated=True)]
 
-    selected_id = streamlit_flow('ret_val_flow',
-                nodes,
-                edges,
-                fit_view=True,
-                get_node_on_click=True,
-                get_edge_on_click=True)
+    selected_id = streamlit_flow(nodes, edges, fit_view=True, get_node_on_click=True, get_edge_on_click=True)
 
     st.write(f"Clicked on: {selected_id}")
 
