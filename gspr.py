@@ -108,7 +108,7 @@ def EMDN(): # Create the EMDN page
                 非常感謝您測試本系統的功能。下表顯示了每個 EMDN 代碼類別和類型對應特定的醫療器材資料。請選擇英文或中文給予預計搜尋之 EMDN 代碼；然後，系統會立即載入相關資訊供您參考。
                 """)
 
-    # Setup the flowchart
+    # Setup the flowchart introduces how to operate this website
     
     col1, col2 = st.tabs(["EMDN code","EMDN 代碼"])
 
@@ -146,7 +146,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
     
     
     # Set up different tabs
-    ChapterI, ChapterII, ChapterIII, Standards, Classification, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards", "Classification", "Example"])
+    ChapterI, ChapterII, ChapterIII, Standards, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards", "Example"])
 
     with ChapterI: # Get Chapter I General requirements details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -183,18 +183,6 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         standards_E = standards_E.iloc[:30]
         st.dataframe(standards_E)
 
-    with Classification:
-        st.subheader("Risk classification")
-        st.markdown("""
-                    * **MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
-                    
-                    * **MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)
-                    """)
-        standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
-        standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
-        standards_E = standards_E.iloc[:30]
-        st.dataframe(standards_E)
-
     with Example:
         st.subheader("Example template")
         st.markdown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
@@ -206,7 +194,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
     st.write("顯示的資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯")
 
     #Set up different tabs
-    第一章, 第二章, 第三章, 標準清單, 風險等級, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準清單", "風險等級", "參考範例"])
+    第一章, 第二章, 第三章, 標準清單, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準清單", "參考範例"])
 
     with 第一章: # Get Chapter I General requirements details in Mandarin
         st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -239,18 +227,6 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
                     * **CEN and CENELEC:** [European Committee for Standardization](https://www.cencenelec.eu/)
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
-        standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
-        standards_C = standards_C.iloc[:30]
-        st.dataframe(standards_C)
-
-    with 風險等級:
-        st.subheader("Risk classification")
-        st.markdown("""
-                    * **MDCG 2021-24:** [Guidance on classification of medical devices](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
-                    
-                    * **MDCG 2020-16 rev.2:** [Guidance on Classification Rules for in vitro Diagnostic Medical Devices under Regulation (EU) 2017/746](https://health.ec.europa.eu/document/download/12f9756a-1e0d-4aed-9783-d948553f1705_en)
-                    """)
-        standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_C = standards_C.iloc[:30]
         st.dataframe(standards_C)
