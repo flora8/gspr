@@ -115,15 +115,27 @@ def EMDN(): # Create the EMDN page
     # Setup the flowchart
     
     items = [
-        {"id": 1, "content": "2022-10-20", "start": "2022-10-20"},
-        {"id": 2, "content": "2022-10-09", "start": "2022-10-09"},
-        {"id": 3, "content": "2022-10-18", "start": "2022-10-18"},
-        {"id": 4, "content": "2022-10-16", "start": "2022-10-16"},
-        {"id": 5, "content": "2022-10-25", "start": "2022-10-25"},
-        {"id": 6, "content": "2022-10-27", "start": "2022-10-27"},
+        {"id": 1, "content": "Early shift", "start": "2022-10-17T08:00:00", "end": "2022-10-17T16:00:00", "group": "1"},
+        {"id": 2, "content": "Early shift", "start": "2022-10-17T11:00:00", "end": "2022-10-17T15:00:00", "group": "2"},
+        {"id": 3, "content": "Early shift", "start": "2022-10-17T10:00:00", "end": "2022-10-17T18:00:00", "group": "3"}
     ]
 
-    timeline = st_timeline(items, groups=[], options={}, height="300px")
+    groups = [
+        {"id": 1, "content": "Worker 1", "style": "color: black; background-color: #a9a9a98F;"},
+        {"id": 2, "content": "Worker 2", "style": "color: black; background-color: #a9a9a98F;"},
+        {"id": 3, "content": "Worker 3", "style": "color: black; background-color: #a9a9a98F;"}
+    ]
+
+    timeline = st_timeline(items, groups=groups, options={"selectable": True, 
+                                                      "multiselect": True, 
+                                                      "zoomable": True, 
+                                                      "verticalScroll": True, 
+                                                      "stack": False,
+                                                      "height": 200, 
+                                                      "margin": {"axis": 5}, 
+                                                      "groupHeightMode": "auto", 
+                                                      "orientation": {"axis": "top", "item": "top"}})
+
     st.subheader("Selected item")
     st.write(timeline)
 
