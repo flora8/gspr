@@ -9,7 +9,12 @@ import numpy as np
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
 import gspread
-import plotly.graph_objects as go
+
+
+from streamlit_flow import streamlit_flow
+from streamlit_flow.elements import StreamlitFlowNode, StreamlitFlowEdge 
+from streamlit_flow.layouts import TreeLayout
+
 
 
 # from sklearn.model_selection import train_test_split
@@ -33,20 +38,20 @@ st.markdown(hide, unsafe_allow_html=True)
 
 
 
-#---------------------------------#
-# Count page views
-def Pageviews():
-    sum = 0
-    for i in range(0,sum+1):
-        sum = sum+i
-    return [sum] # convert the integers to list type
-pageviews = Pageviews()
-pageviews.append('dummy')
+# #---------------------------------#
+# # Count page views
+# def Pageviews():
+#     sum = 0
+#     for i in range(0,sum+1):
+#         sum = sum+i
+#     return [sum] # convert the integers to list type
+# pageviews = Pageviews()
+# pageviews.append('dummy')
 
-try:
-    st.sidebar.markdown('Page viewed: {} times'.format(len(pageviews)))
-except ValueError:
-    st.sidebar.markdown('Page viewed: {} times'.format(1))
+# try:
+#     st.sidebar.markdown('Page viewed: {} times'.format(len(pageviews)))
+# except ValueError:
+#     st.sidebar.markdown('Page viewed: {} times'.format(1))
 
 
 
@@ -106,6 +111,36 @@ def EMDN(): # Create the EMDN page
                 
                 非常感謝您測試本系統的功能。下表顯示了每個 EMDN 代碼類別和類型對應特定的醫療器材資料。請選擇英文或中文給予預計搜尋之 EMDN 代碼；然後，系統會立即載入相關資訊供您參考。
                 """)
+
+
+    #---------------------------------#
+    # Setup the flowchart
+    
+    nodes = [StreamlitFlowNode(id='1', pos=(0, 0), data={'content': 'Node 1'}, node_type='input', source_position='right'),
+        StreamlitFlowNode('2', (0, 0), {'content': 'Node 2'}, 'default', 'right', 'left'),
+        StreamlitFlowNode('3', (0, 0), {'content': 'Node 3'}, 'default', 'right', 'left'),
+        StreamlitFlowNode('4', (0, 0), {'content': 'Node 4'}, 'output', target_position='left'),
+        StreamlitFlowNode('5', (0, 0), {'content': 'Node 5'}, 'output', target_position='left'),
+        StreamlitFlowNode('6', (0, 0), {'content': 'Node 6'}, 'output', target_position='left'),
+        StreamlitFlowNode('7', (0, 0), {'content': 'Node 7'}, 'output', target_position='left'),]
+
+    edges = [StreamlitFlowEdge('1-2', '1', '2', animated=True),
+        StreamlitFlowEdge('1-3', '1', '3', animated=True),
+        StreamlitFlowEdge('2-4', '2', '4', animated=True),
+        StreamlitFlowEdge('2-5', '2', '5', animated=True),
+        StreamlitFlowEdge('3-6', '3', '6', animated=True),
+        StreamlitFlowEdge('3-7', '3', '7', animated=True),
+            ]
+
+    streamlit_flow('tree_layout', nodes, edges, layout=TreeLayout(direction='right'), fit_view=True)
+
+
+
+
+
+
+
+
     
     col1, col2 = st.tabs(["EMDN code","EMDN 代碼"])
 
@@ -349,12 +384,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
-        #count_E = data_E[xvalue_E].value_counts().reset_index()
-        
-        count_E = data_E[xvalue_E].value_counts()
-        fig_E = px.bar(count_E, x=count_E.index, y=xvalue_E, label={'x':xvalue_E, 'y':'count'}, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
-
-        #fig_E = px.bar(data_E, x=xvalue_E, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
+        count_E = data_E[xvalue_E].value_counts().reset_index()
+        fig_E = px.bar(data_E, x=xvalue_E, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
         st.plotly_chart(fig_E)
         fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
         st.plotly_chart(fig2_E)
