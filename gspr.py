@@ -352,7 +352,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         #count_E = data_E[xvalue_E].value_counts().reset_index()
         
         count_E = data_E[xvalue_E].value_counts()
-        fig_E = px.bar(count_E, x=count_E.index y=xvalue_E, label={'x':xvalue_E, 'y':'count'} title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
+        fig_E = px.bar(count_E, x=count_E.index, y=xvalue_E, label={'x':xvalue_E, 'y':'count'}, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
 
         #fig_E = px.bar(data_E, x=xvalue_E, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
         st.plotly_chart(fig_E)
