@@ -113,7 +113,7 @@ def EMDN(): # Create the EMDN page
 
     #---------------------------------#
     # Setup the flowchart
-
+    st.set_page_config(layout="wide")
     items = [
         {"id": 1, "content": "2022-10-20", "start": "2022-10-20"},
         {"id": 2, "content": "2022-10-09", "start": "2022-10-09"},
