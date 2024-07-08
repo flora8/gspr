@@ -11,8 +11,6 @@ from google.oauth2.service_account import Credentials
 import gspread
 
 
-from streamlit_timeline import st_timeline
-
 
 
 # from sklearn.model_selection import train_test_split
@@ -113,18 +111,27 @@ def EMDN(): # Create the EMDN page
 
     #---------------------------------#
     # Setup the flowchart
-    st.set_page_config(layout="wide")
-    items = [
-        {"id": 1, "content": "2022-10-20", "start": "2022-10-20"},
-        {"id": 2, "content": "2022-10-09", "start": "2022-10-09"},
-        {"id": 3, "content": "2022-10-18", "start": "2022-10-18"},
-        {"id": 4, "content": "2022-10-16", "start": "2022-10-16"},
-        {"id": 5, "content": "2022-10-25", "start": "2022-10-25"},
-        {"id": 6, "content": "2022-10-27", "start": "2022-10-27"},
-    ]
-    timeline = st_timeline(items, groups=[], options={}, height="300px")
-    st.subheader("Selected item")
-    st.write(timeline)
+    from streamlit_flow import streamlit_flow
+    from streamlit_flow.elements import StreamlitFlowNode, StreamlitFlowEdge
+
+    nodes = [StreamlitFlowNode(id='1', pos=(100, 100), data={'content': 'Node 1'}, node_type='input', source_position='right', draggable=False),
+        StreamlitFlowNode('2', (350, 50), {'content': 'Node 2'}, 'default', 'right', 'left', draggable=False),
+        StreamlitFlowNode('3', (350, 150), {'content': 'Node 3'}, 'default', 'right', 'left', draggable=False),
+        StreamlitFlowNode('4', (600, 100), {'content': 'Node 4'}, 'output', target_position='left', draggable=False)]
+
+    edges = [StreamlitFlowEdge('1-2', '1', '2', animated=True),
+        StreamlitFlowEdge('1-3', '1', '3', animated=True),
+        StreamlitFlowEdge('2-4', '2', '4', animated=True),
+        StreamlitFlowEdge('3-4', '3', '4', animated=True)]
+
+    streamlit_flow('static_flow',
+                nodes,
+                edges,
+                fit_view=True,
+                show_minimap=False,
+                show_controls=False,
+                pan_on_drag=False,
+                allow_zoom=False)
 
 
 
