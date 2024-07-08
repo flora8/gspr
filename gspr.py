@@ -108,29 +108,7 @@ def EMDN(): # Create the EMDN page
                 非常感謝您測試本系統的功能。下表顯示了每個 EMDN 代碼類別和類型對應特定的醫療器材資料。請選擇英文或中文給予預計搜尋之 EMDN 代碼；然後，系統會立即載入相關資訊供您參考。
                 """)
 
-
-    #---------------------------------#
     # Setup the flowchart
-    import streamlit_flow
-    from streamlit_flow.elements import StreamlitFlowNode, StreamlitFlowEdge
-
-    nodes = [StreamlitFlowNode(id='1', pos=(100, 100), data={'content': 'Node 1'}, node_type='input', source_position='right', draggable=False),
-        StreamlitFlowNode('2', (275, 50), {'content': 'Node 2'}, 'default', 'right', 'left', draggable=False),
-        StreamlitFlowNode('3', (275, 150), {'content': 'Node 3'}, 'default', 'right', 'left', draggable=False),
-        StreamlitFlowNode('4', (450, 100), {'content': 'Node 4'}, 'output', target_position='left', draggable=False)]
-
-    edges = [StreamlitFlowEdge('1-2', '1', '2', animated=True),
-        StreamlitFlowEdge('1-3', '1', '3', animated=True),
-        StreamlitFlowEdge('2-4', '2', '4', animated=True),
-        StreamlitFlowEdge('3-4', '3', '4', animated=True)]
-
-    selected_id = streamlit_flow(nodes, edges, fit_view=True, get_node_on_click=True, get_edge_on_click=True)
-
-    st.write(f"Clicked on: {selected_id}")
-
-
-
-
     
     col1, col2 = st.tabs(["EMDN code","EMDN 代碼"])
 
