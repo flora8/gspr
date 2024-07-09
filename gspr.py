@@ -108,7 +108,7 @@ def EMDN(): # Create the EMDN page
                 非常感謝您測試本系統的功能。下表顯示了每個 EMDN 代碼類別和類型對應特定的醫療器材資料。請選擇英文或中文給予預計搜尋之 EMDN 代碼；然後，系統會立即載入相關資訊供您參考。
                 """)
 
-    st.image('flowchart_image.png') # Setup the flowchart introduces how to operate this website
+    st.image('image_flowchart.png') # The flowchart introduces how to operate this website
     
     col1, col2 = st.tabs(["EMDN code","EMDN 代碼"])
 
@@ -186,8 +186,9 @@ def GSPR_E(type_E):  # Create the GSPR page in English
     with Example:
         st.subheader("Example template")
         st.markdown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
-        st.image('mdcg_imageA.jpg', caption='A. Standards, common specifications, scientific advice')
-        st.image('mdcg_imageB.jpg', caption='B. Matrix of General safety and performance requirements')
+        st.image('imageA.jpg', caption='A. Standards, common specifications, scientific advice')
+        st.image('imageB_example.png', caption='Example: B. Matrix of General safety and performance requirements')
+        st.image('imageB_description.png', caption='Description: B. Matrix of General safety and performance requirements')
 
 
 def GSPR_C(type_C):  # Create the GSPR page in Mandarin
