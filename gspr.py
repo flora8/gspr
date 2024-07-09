@@ -108,7 +108,7 @@ def EMDN(): # Create the EMDN page
                 非常感謝您測試本系統的功能。下表顯示了每個 EMDN 代碼類別和類型對應特定的醫療器材資料。請選擇英文或中文給予預計搜尋之 EMDN 代碼；然後，系統會立即載入相關資訊供您參考。
                 """)
 
-    st.image('flowchart_image.png', caption='User Flow Diagram') # Setup the flowchart introduces how to operate this website
+    st.image('flowchart_image.png') # Setup the flowchart introduces how to operate this website
     
     col1, col2 = st.tabs(["EMDN code","EMDN 代碼"])
 
