@@ -187,8 +187,8 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.subheader("Example template")
         st.markdown("""
                     * **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
-                    1. Please click the link to download the template
-                    2. Please confirm the medical device(s) comply with EU MDR or IVDR
+                    1. Please click the link to download the template.
+                    2. Please confirm the intended applied medical device(s) comply with EU MDR or IVDR.
                     3. Please change the GSPR information if the device(s) follow IVDR. 
                     4. Please review the device(s) information in the chapter I, II, and III tabs to support you complete the form appropriately. 
                     """)
