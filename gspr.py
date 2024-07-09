@@ -185,7 +185,13 @@ def GSPR_E(type_E):  # Create the GSPR page in English
 
     with Example:
         st.subheader("Example template")
-        st.markdown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
+        st.markdown("""
+                    * **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
+                    1. Please click the link to download the template
+                    2. Please confirm the medical device(s) comply with EU MDR or IVDR
+                    3. Please change the GSPR information if the device(s) follow IVDR. 
+                    4. Please review the device(s) information in the chapter I, II, and III tabs to support you complete the form appropriately. 
+                    """)
         st.image('imageA.jpg', caption='A. Standards, common specifications, scientific advice')
         st.image('imageB_example.png', caption='Example: B. Matrix of General safety and performance requirements')
         st.image('imageB_description.png', caption='Description: B. Matrix of General safety and performance requirements')
@@ -234,7 +240,13 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         
     with 參考範例:
         st.subheader("參考範例")
-        st.markdown("""* **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)""")
+        st.markdown("""
+                    * **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
+                    1. Please click the link to download the template.
+                    2. Please confirm the medical device(s) comply with EU MDR or IVDR.
+                    3. Please change the GSPR information if the device(s) follow IVDR. 
+                    4. Please review the device(s) information in the chapter I, II, and III tabs to support you complete the form appropriately.
+                    """)
         st.image('mdcg_imageA.jpg', caption='A. 標準、一般規範、科學建議')
         st.image('mdcg_imageB.jpg', caption='B. 一般安全與性能要求模型')
 
