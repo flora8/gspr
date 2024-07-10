@@ -12,8 +12,6 @@ gspread
 oauth2client
 git+https://github.com/streamlit/gsheets-connection
 
-streamlit_flow
-
 #pandas==2.2.2
 #seaborn==0.13.2
 #streamlit_gsheets
