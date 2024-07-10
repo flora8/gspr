@@ -2,17 +2,16 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 import datetime
-import matplotlib.pyplot as plt
 import openpyxl
 import pip
-import numpy as np
 from streamlit_gsheets import GSheetsConnection
 from google.oauth2.service_account import Credentials
 import gspread
 
 
 
-
+#import numpy as np
+#import matplotlib.pyplot as plt
 # from sklearn.model_selection import train_test_split
 # from sklearn.linear_model import LinearRegression
 # from sklearn.metrics import mean_squared_error, r2_score
