@@ -177,7 +177,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
                     
                     * **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
 
-                    * **CEN and CENELEC:** [European Committee for Standardization](https://www.cencenelec.eu/)
+                    * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
@@ -234,7 +234,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
                     
                     * **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
 
-                    * **CEN and CENELEC:** [European Committee for Standardization](https://www.cencenelec.eu/)
+                    * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
