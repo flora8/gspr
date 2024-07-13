@@ -172,6 +172,8 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.subheader("Standards list")
         st.markdown("""
                     * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
+
+                    * **IEC:** [International Electrotechnical Commission](https://www.iec.ch/homepage)
                     
                     * **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
 
@@ -227,6 +229,8 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         st.subheader("標準清單")
         st.markdown("""
                     * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
+
+                    * **IEC:** [International Electrotechnical Commission](https://www.iec.ch/homepage)
                     
                     * **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
 
