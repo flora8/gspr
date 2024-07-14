@@ -122,7 +122,7 @@ def EMDN(): # Create the EMDN page
         
         if st.button("Search"): # Set up the button
             st.success("Please wait a few minutes; the page turns on medical device: {} information".format(type_E))
-            st.write("The {} information shown can be searched, fullscreen, and downloaded as an Excel file for personal records and edits".format(type_E))
+            st.write("The {} information shown can be searched, fullscreen, and downloaded as an Microsoft Excel file for personal records and edits".format(type_E))
             type_E = type_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
             GSPR_E(type_E) # The EMDN type will retun to the GSPR_E function
 
@@ -138,7 +138,7 @@ def EMDN(): # Create the EMDN page
         
         if st.button("搜尋"): # Set up the button
             st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(type_C))
-            st.write("顯示的 {} 資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯.format(type_C)")
+            st.write("顯示的 {} 資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯".format(type_C))
             type_C = type_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
             GSPR_C(type_C)
 
