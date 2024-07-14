@@ -95,13 +95,13 @@ def Home():
 # Load excel data
 excel_E = pd.ExcelFile('GSPRen.xlsx') # Load the excel data in English
 emdn_E = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
-emdn_E_all = emdn_E.iloc[:26] # Selecting all row from header 2 to row 30
-emdn_E_part = emdn_E.iloc[32:] # Selecting all row from 34 to all row
+emdn_E_all = emdn_E.iloc[:27] # Selecting all row from header 2 to row 27
+emdn_E_part = emdn_E.iloc[32:] # Selecting all row from 32 to all row
 
 excel_C = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data in Mandarin
 emdn_C = pd.read_excel(excel_C, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
-emdn_C_all = emdn_C.iloc[:30] # Selecting all row from header 2 to row 30
-emdn_C_part = emdn_C.iloc[32:] # Selecting all row from 34 to all row
+emdn_C_all = emdn_C.iloc[:27] # Selecting all row from header 2 to row 27
+emdn_C_part = emdn_C.iloc[32:] # Selecting all row from 32 to all row
 
 
 def EMDN(): # Create the EMDN page
@@ -119,10 +119,10 @@ def EMDN(): # Create the EMDN page
     with col1:  # Create the EMDN page in English
         st.header("EMDN code")
         st.write("""Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels""")
-        st.dataframe(emdn_E_all) # Display the EMDN code strature
+        st.dataframe(emdn_E_all) # Display the all EMDN code strature
 
         st.write("""Due to project time limitations, only a few medical devices of the EMDN code are available to search on the application""")
-        category_E = st.selectbox("Please select the EMDN code category", list(emdn_E_part)) # List the EMDN code category
+        category_E = st.selectbox("Please select the EMDN code category", list(emdn_E_part)) # List the EMDN code category, and user can only search a few medical device
         group_E = emdn_E_part.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_E = st.selectbox("Please select the EMDN code type", list(group_E.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
         
