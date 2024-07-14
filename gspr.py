@@ -95,8 +95,13 @@ def Home():
 # Load excel data
 excel_E = pd.ExcelFile('GSPRen.xlsx') # Load the excel data in English
 emdn_E = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
+emdn_E_all = emdn_E.iloc[:30] # Selecting all row from header 2 to row 30
+emdn_E_part = emdn_E.iloc[34:] # Selecting all row from 34 to all row
+
 excel_C = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data in Mandarin
 emdn_C = pd.read_excel(excel_C, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
+emdn_C_all = emdn_C.iloc[:30] # Selecting all row from header 2 to row 30
+emdn_C_part = emdn_C.iloc[34:] # Selecting all row from 34 to all row
 
 
 def EMDN(): # Create the EMDN page
@@ -114,10 +119,11 @@ def EMDN(): # Create the EMDN page
     with col1:  # Create the EMDN page in English
         st.header("EMDN code")
         st.write("""Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels""")
-        st.dataframe(emdn_E) # Display the EMDN code data
+        st.dataframe(emdn_E_all) # Display the EMDN code strature
 
-        category_E = st.selectbox("Please select the EMDN code category", list(emdn_E)) # List the EMDN code category
-        group_E = emdn_E.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
+        st.write("""Due to project time limitations, only a few medical devices of the EMDN code are available to search on the application""")
+        category_E = st.selectbox("Please select the EMDN code category", list(emdn_E_part)) # List the EMDN code category
+        group_E = emdn_E_part.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_E = st.selectbox("Please select the EMDN code type", list(group_E.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
         
         if st.button("Search"): # Set up the button
@@ -130,10 +136,11 @@ def EMDN(): # Create the EMDN page
     with col2:  # Create the EMDN page in Mandarin
         st.header("EMDN 代碼")
         st.write("""表格所示為歐洲醫療器材命名法(EMDN)結構，該結構將醫療器材劃分為不同種類""")
-        st.dataframe(emdn_C) # Display the EMDN code data in Mandarin
+        st.dataframe(emdn_C_all) # Display the EMDN code data in Mandarin
 
-        category_C = st.selectbox("請選擇 EMDN 代碼類別", list(emdn_C)) # List the EMDN code category
-        group_C = emdn_C.groupby(by=[category_C], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
+        st.write("""由於專案時間限制，目前該應用程式只能搜尋少數 EMDN 代碼的醫療器材資訊""")
+        category_C = st.selectbox("請選擇 EMDN 代碼類別", list(emdn_C_part)) # List the EMDN code category
+        group_C = emdn_C_part.groupby(by=[category_C], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_C = st.selectbox("請選擇 EMDN 代碼類型", list(group_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
         
         if st.button("搜尋"): # Set up the button
