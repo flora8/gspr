@@ -122,8 +122,8 @@ def EMDN(): # Create the EMDN page
         
         if st.button("Search"): # Set up the button
             st.success("Please wait a few minutes; the page turns on medical device: {} information".format(type_E))
-            #type_E = type_E.split('-', 1)[0]
-            type_E = type_E.split()[0]
+            st.write("The {} information shown can be searched, fullscreen, and downloaded as an Excel file for personal records and edits".format(type_E))
+            type_E = type_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
             GSPR_E(type_E) # The EMDN type will retun to the GSPR_E function
 
 
@@ -138,14 +138,13 @@ def EMDN(): # Create the EMDN page
         
         if st.button("搜尋"): # Set up the button
             st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(type_C))
+            st.write("顯示的 {} 資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯.format(type_C)")
+            type_C = type_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
             GSPR_C(type_C)
 
 
 
 def GSPR_E(type_E):  # Create the GSPR page in English
-    st.write("The {} information shown can be searched, fullscreen, and downloaded as an Excel file for personal records and edits".format(type_E))
-    
-    
     # Set up different tabs
     ChapterI, ChapterII, ChapterIII, Standards, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standards", "Example"])
 
@@ -201,8 +200,6 @@ def GSPR_E(type_E):  # Create the GSPR page in English
 
 
 def GSPR_C(type_C):  # Create the GSPR page in Mandarin
-    st.write("顯示的資訊結果可以搜尋、全螢幕顯示，也可以下載為Excel檔案，以供個人記錄和編輯")
-
     #Set up different tabs
     第一章, 第二章, 第三章, 標準清單, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準清單", "參考範例"])
 
