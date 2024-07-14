@@ -119,11 +119,10 @@ def EMDN(): # Create the EMDN page
         category_E = st.selectbox("Please select the EMDN code category", list(emdn_E)) # List the EMDN code category
         group_E = emdn_E.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_E = st.selectbox("Please select the EMDN code type", list(group_E.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
-
-        type_E = type_E.split().str[0]
         
         if st.button("Search"): # Set up the button
             st.success("Please wait a few minutes; the page turns on medical device: {} information".format(type_E))
+            type_E = type_E.partition('_')[0]
             GSPR_E(type_E) # The EMDN type will retun to the GSPR_E function
 
 
