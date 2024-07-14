@@ -122,7 +122,8 @@ def EMDN(): # Create the EMDN page
         
         if st.button("Search"): # Set up the button
             st.success("Please wait a few minutes; the page turns on medical device: {} information".format(type_E))
-            type_E = type_E.split('-', 1)[0]
+            #type_E = type_E.split('-', 1)[0]
+            type_E = type_E.split()[0]
             GSPR_E(type_E) # The EMDN type will retun to the GSPR_E function
 
 
