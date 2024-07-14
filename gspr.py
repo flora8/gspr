@@ -120,6 +120,8 @@ def EMDN(): # Create the EMDN page
         group_E = emdn_E.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_E = st.selectbox("Please select the EMDN code type", list(group_E.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
 
+        type_E = txt.split().str[0]
+        
         if st.button("Search"): # Set up the button
             st.success("Please wait a few minutes; the page turns on medical device: {} information".format(type_E))
             GSPR_E(type_E) # The EMDN type will retun to the GSPR_E function
@@ -133,7 +135,7 @@ def EMDN(): # Create the EMDN page
         category_C = st.selectbox("請選擇 EMDN 代碼類別", list(emdn_C)) # List the EMDN code category
         group_C = emdn_C.groupby(by=[category_C], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_C = st.selectbox("請選擇 EMDN 代碼類型", list(group_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
-
+        
         if st.button("搜尋"): # Set up the button
             st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(type_C))
             GSPR_C(type_C)
