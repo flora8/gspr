@@ -96,12 +96,12 @@ def Home():
 excel_E = pd.ExcelFile('GSPRen.xlsx') # Load the excel data in English
 emdn_E = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 emdn_E_all = emdn_E.iloc[:30] # Selecting all row from header 2 to row 30
-emdn_E_part = emdn_E.iloc[34:] # Selecting all row from 34 to all row
+emdn_E_part = emdn_E.iloc[35:] # Selecting all row from 34 to all row
 
 excel_C = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data in Mandarin
 emdn_C = pd.read_excel(excel_C, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 emdn_C_all = emdn_C.iloc[:30] # Selecting all row from header 2 to row 30
-emdn_C_part = emdn_C.iloc[34:] # Selecting all row from 34 to all row
+emdn_C_part = emdn_C.iloc[35:] # Selecting all row from 34 to all row
 
 
 def EMDN(): # Create the EMDN page
