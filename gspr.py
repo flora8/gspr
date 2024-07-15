@@ -292,7 +292,7 @@ def Survey(): # Collecting user inputs for later analysis
         type_E_all = st.selectbox("Which EMDN code type of medical device are you particularly interested in searching for in the future?", list(group_E_all.iloc[:,0]))
         
         information = st.selectbox("How would you rate the provided device information on this website application overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear", "5: Absolutely inappropriate and unclear"))
-        experience = st.selectbox("How would you rate the benefits of having the regulation decision website application?", ("","1: Extremely useful and meaningful", "2: Useful and meaningful", "3: Neutral", "4: Useless and meaningless", "5: Extremely useless and meaningless"))
+        experience = st.selectbox("How would you rate the benefits of having the regulation decision website application?", ("","1: Extremely useful", "2: Useful", "3: Neutral", "4: Useless", "5: Extremely useless"))
         others = st.text_area("What other information would you like to see on this page? (Optional)")
         feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve? (Optional)")
         submit = st.button(label="Submit")
