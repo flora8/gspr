@@ -284,15 +284,15 @@ def Survey(): # Collecting user inputs for later analysis
         background = st.selectbox("Please select the business type of your background?", ("", "Academics", "Notified Body (NB)", "Contract Research Organization (CRO)", "Manufacturer", "Importer", "Distributor", "Wholesaler", "Others",))
         role = st.selectbox("Please select your current role?", ("", "Professionals", "Professor", "Student", "Reviewer", "Clinical Research Associate (CRA)", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
 
-        category_E = st.selectbox("Please select which EMDN code category of medical device information you are interested in reviewing on this website.", list(emdn_E_part)) # set index to none means there is no default options
+        category_E = st.selectbox("For the available searched information on the website, which EMDN code category of the medical device were you particularly interested in reviewing?", list(emdn_E_part)) # set index to none means there is no default options
         group_E = emdn_E_part.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        type_E = st.selectbox("Please select which EMDN code type of medical device information you are interested in reviewing on this website.", list(group_E.iloc[:,0]))
+        type_E = st.selectbox("For the available searched information on the website, which EMDN code type of the medical device were you particularly interested in reviewing?", list(group_E.iloc[:,0]))
         category_E_all = st.selectbox("Which EMDN code category of medical device are you particularly interested in searching for in the future?", list(emdn_E_all)) # set index to none means there is no default options
         group_E_all = emdn_E_all.groupby(by=[category_E_all], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_E_all = st.selectbox("Which EMDN code type of medical device are you particularly interested in searching for in the future?", list(group_E_all.iloc[:,0]))
         
-        information = st.selectbox("How would you rate the provided device information on this website application overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear", "5: Absolutely inappropriate and unclear"))
-        experience = st.selectbox("How would you rate the benefits of having the regulation decision website application?", ("","1: Extremely useful", "2: Useful", "3: Neutral", "4: Useless", "5: Extremely useless"))
+        information = st.selectbox("How would you rate the provided device information on this website application overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear"))
+        experience = st.selectbox("How would you rate the benefits of having the regulation decision website application?", ("","1: Extremely useful", "2: Useful", "3: Neutral", "4: Useless"))
         others = st.text_area("What other information would you like to see on this page? (Optional)")
         feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve? (Optional)")
         submit = st.button(label="Submit")
@@ -310,15 +310,15 @@ def Survey(): # Collecting user inputs for later analysis
         background_C = st.selectbox("請問您的背景", ("", "學術單位", "驗證機構(NB)", "受託研究機構(CRO)", "製造商", "進口商", "經銷商", "其他",))
         role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "審查員", "臨床試驗人員", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
     
-        category_C = st.selectbox("請選擇您有興趣在此網站上查看的醫療器材資訊的 EMDN 代碼類別", list(emdn_C_part)) # set index to none means there is no default options
+        category_C = st.selectbox("對於網站上可用的搜尋信息，請問您特別感興趣查看哪個醫療器材的EMDN代碼類別？", list(emdn_C_part)) # set index to none means there is no default options
         group_C = emdn_C_part.groupby(by=[category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
-        type_C = st.selectbox("請選擇您有興趣在此網站上查看的醫療器材資訊的 EMDN 代碼類型", list(group_C.iloc[:,0]))
-        category_C_all = st.selectbox("Which EMDN code category of medical device are you interested in searching for in the future?", list(emdn_C_all)) # set index to none means there is no default options
+        type_C = st.selectbox("對於網站上可用的搜尋信息，請問您特別感興趣查看哪個醫療器材的EMDN代碼類型？", list(group_C.iloc[:,0]))
+        category_C_all = st.selectbox("請問您未來特別有興趣搜尋哪種EMDN代碼類別的醫療器材？", list(emdn_C_all)) # set index to none means there is no default options
         group_C_all = emdn_C_all.groupby(by=[category_C_all], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        type_C_all = st.selectbox("Which EMDN code type of medical device are you interested in searching for in the future?", list(group_C_all.iloc[:,0]))
+        type_C_all = st.selectbox("請問您未來特別有興趣搜尋哪種EMDN代碼類型的醫療器材？", list(group_C_all.iloc[:,0]))
 
-        information_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確", "5: 非常不適當和不明確"))
-        experience_C = st.selectbox("請問您對使用監管決策網站的優勢有何評價？", ("","1: 非常有幫助和有意義", "2: 有幫助和有意義", "3: 普通", "4: 無幫助和無意義", "5: 非常無幫助和無意義"))
+        information_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確"))
+        experience_C = st.selectbox("請問您對使用監管決策網站的優勢有何評價？", ("","1: 非常有幫助", "2: 有幫助", "3: 普通", "4: 無幫助"))
         others_C = st.text_area("請問您希望在此頁面上看到哪些其他資訊？")
         feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
         submit_C = st.button(label="提交")
@@ -358,8 +358,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:5])
         count_E = data_E[xvalue_E].value_counts().reset_index()
-        fig_E = px.bar(data_E, x=xvalue_E, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
-        st.plotly_chart(fig_E)
+        # fig_E = px.bar(data_E, x=xvalue_E, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
+        # st.plotly_chart(fig_E)
         fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
         st.plotly_chart(fig2_E)
         
@@ -376,9 +376,9 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen 
         st.plotly_chart(plot_E) # Display the data
-        plot2_E = px.box(data_E, x=xaxis_E, y=yaxis_E, title="Box plot: The searched {} by {}".format(yaxis_E,xaxis_E)) # visualize the distribution of y-axis for each x-axis using a box plot
-        plot2_E.update_traces(marker=dict(color=color_E))
-        st.plotly_chart(plot2_E)
+        # plot2_E = px.box(data_E, x=xaxis_E, y=yaxis_E, title="Box plot: The searched {} by {}".format(yaxis_E,xaxis_E)) # visualize the distribution of y-axis for each x-axis using a box plot
+        # plot2_E.update_traces(marker=dict(color=color_E))
+        # st.plotly_chart(plot2_E)
 
         expander2_E = st.expander("Analysis Results")
         data3_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].value_counts().sum()
@@ -389,8 +389,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with 數量: # User select the x-axis to plot the counts  
         xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[1:7])
         count_C = data_C[xvalue_C].value_counts().reset_index()
-        fig_C = px.bar(data_C, x=xvalue_C, title="長條圖: {}分佈".format(xvalue_C)) # Show the distribution of x-axis across all species
-        st.plotly_chart(fig_C)
+        # fig_C = px.bar(data_C, x=xvalue_C, title="長條圖: {}分佈".format(xvalue_C)) # Show the distribution of x-axis across all species
+        # st.plotly_chart(fig_C)
         fig2_C = px.pie(count_C, values=xvalue_C, names="index", title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
         st.plotly_chart(fig2_C)
         
@@ -405,8 +405,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         yaxis_C = st.selectbox("請選擇Y軸值", options=data_C.columns[1:7])        
         plot_C = px.scatter(data_C, x=xaxis_C, y=yaxis_C, title="散佈圖: 依照{}搜尋{}".format(yaxis_C,xaxis_C))
         st.plotly_chart(plot_C) # Display the data
-        plot2_C = px.box(data_C, x=xaxis_C, y=yaxis_C, title="箱形圖: 依照{}搜尋{}".format(yaxis_C,xaxis_C)) # visualize the distribution of y-axis for each x-axis using a box plot
-        st.plotly_chart(plot2_C)
+        # plot2_C = px.box(data_C, x=xaxis_C, y=yaxis_C, title="箱形圖: 依照{}搜尋{}".format(yaxis_C,xaxis_C)) # visualize the distribution of y-axis for each x-axis using a box plot
+        # st.plotly_chart(plot2_C)
         
         expander2_C = st.expander("分析結果")
         data3_C = data_C[[xaxis_C, yaxis_C]].groupby(by=xaxis_C)[yaxis_C].value_counts().sum()
