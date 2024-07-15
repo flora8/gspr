@@ -131,8 +131,8 @@ def EMDN(): # Create the EMDN page
             st.write("The {} information shown can be searched, fullscreen, and downloaded as an Microsoft Excel file for personal records and edits".format(type_E))
             type_E = type_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
             GSPR_E(type_E) # The EMDN type will retun to the GSPR_E function
-        elif st.button("Search") == False:
-            st.error('The medical device information is unavailable for search; please select another EMDN code type', icon="🚨")
+            else:
+                st.error('The medical device information is unavailable for search; please select another EMDN code type', icon="🚨")
             
 
     with col2:  # Create the EMDN page in Mandarin
