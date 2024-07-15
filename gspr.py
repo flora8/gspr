@@ -147,12 +147,13 @@ def EMDN(): # Create the EMDN page
         type_C = st.selectbox("請選擇 EMDN 代碼類型", list(group_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
         
         if st.button("搜尋"): # Set up the button
-            st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(type_C))
-            st.write("顯示的 {} 資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯".format(type_C))
-            type_C = type_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
-            GSPR_C(type_C)
-        elif st.button("Search") == False:
-            st.error('該醫療器材資訊目前無法檢索；請選擇其他 EMDN 代碼類型', icon="🚨")
+            try:
+                st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(type_C))
+                st.write("顯示的 {} 資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯".format(type_C))
+                type_C = type_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
+                GSPR_C(type_C)
+            except:
+                st.error('該醫療器材資訊目前無法檢索；請選擇其他 EMDN 代碼類型', icon="🚨")
 
 
 
