@@ -360,7 +360,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
-        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:5])
+        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
         count_E = data_E[xvalue_E].value_counts().reset_index()
         # fig_E = px.bar(data_E, x=xvalue_E, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
         # st.plotly_chart(fig_E)
@@ -391,7 +391,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         expander2_E.write(data4_E)
     
     with 數量: # User select the x-axis to plot the counts  
-        xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[1:7])
+        xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[0:5])
         count_C = data_C[xvalue_C].value_counts().reset_index()
         # fig_C = px.bar(data_C, x=xvalue_C, title="長條圖: {}分佈".format(xvalue_C)) # Show the distribution of x-axis across all species
         # st.plotly_chart(fig_C)
@@ -405,8 +405,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         expander_C.write(data2_C)
 
     with 分析: # User select the x-axis and y-axis value to plot the analysis data
-        xaxis_C = st.selectbox("請選擇X軸值", options=data_C.columns[0:7])
-        yaxis_C = st.selectbox("請選擇Y軸值", options=data_C.columns[1:7])        
+        xaxis_C = st.selectbox("請選擇X軸值", options=data_C.columns[0:5])
+        yaxis_C = st.selectbox("請選擇Y軸值", options=data_C.columns[1:5])        
         plot_C = px.scatter(data_C, x=xaxis_C, y=yaxis_C, title="散佈圖: 依照{}搜尋{}".format(yaxis_C,xaxis_C))
         st.plotly_chart(plot_C) # Display the data
         # plot2_C = px.box(data_C, x=xaxis_C, y=yaxis_C, title="箱形圖: 依照{}搜尋{}".format(yaxis_C,xaxis_C)) # visualize the distribution of y-axis for each x-axis using a box plot
