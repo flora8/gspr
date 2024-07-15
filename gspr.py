@@ -356,7 +356,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
-        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:7])
+        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1:5])
         count_E = data_E[xvalue_E].value_counts().reset_index()
         fig_E = px.bar(data_E, x=xvalue_E, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
         st.plotly_chart(fig_E)
@@ -370,8 +370,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         expander_E.write(data2_E)
 
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
-        xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:7])
-        yaxis_E = st.selectbox("Please select Y-Axis value", options=data_E.columns[1:7])
+        xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:5])
+        yaxis_E = st.selectbox("Please select Y-Axis value", options=data_E.columns[1:5])
         plot_E = px.scatter(data_E, x=xaxis_E, y=yaxis_E, title="Scatter plot: the searched {} by {}".format(yaxis_E,xaxis_E)) # visualize the relationship between x-axis and y-axis 
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen 
