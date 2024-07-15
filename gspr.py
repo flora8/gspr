@@ -284,12 +284,12 @@ def Survey(): # Collecting user inputs for later analysis
         background = st.selectbox("Please select the business type of your background?", ("", "Academics", "Notified Body (NB)", "Contract Research Organization (CRO)", "Manufacturer", "Importer", "Distributor", "Wholesaler", "Others",))
         role = st.selectbox("Please select your current role?", ("", "Professionals", "Professor", "Student", "Reviewer", "Clinical Research Associate (CRA)", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
 
-        category_E = st.selectbox("Which EMDN code category of medical device are you particularly interested in searching for on this application?", list(emdn_E_part)) # set index to none means there is no default options
+        category_E = st.selectbox("Please select which EMDN code category of medical device information you are interested in reviewing on this website.", list(emdn_E_part)) # set index to none means there is no default options
         group_E = emdn_E_part.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        type_E = st.selectbox("Which EMDN code type of medical device are you particularly interested in searching for on this application?", list(group_E.iloc[:,0]))
-        category_E_all = st.selectbox("Which EMDN code category of medical device are you interested in searching for in the future?", list(emdn_E_all)) # set index to none means there is no default options
+        type_E = st.selectbox("Please select which EMDN code type of medical device information you are interested in reviewing on this website.", list(group_E.iloc[:,0]))
+        category_E_all = st.selectbox("Which EMDN code category of medical device are you particularly interested in searching for in the future?", list(emdn_E_all)) # set index to none means there is no default options
         group_E_all = emdn_E_all.groupby(by=[category_E_all], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        type_E_all = st.selectbox("Which EMDN code type of medical device are you interested in searching for in the future?", list(group_E_all.iloc[:,0]))
+        type_E_all = st.selectbox("Which EMDN code type of medical device are you particularly interested in searching for in the future?", list(group_E_all.iloc[:,0]))
         
         information = st.selectbox("How would you rate the provided device information on this website application overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear", "5: Absolutely inappropriate and unclear"))
         experience = st.selectbox("How would you rate the benefits of having the regulation decision website application?", ("","1: Extremely useful and meaningful", "2: Useful and meaningful", "3: Neutral", "4: Useless and meaningless", "5: Extremely useless and meaningless"))
@@ -310,9 +310,9 @@ def Survey(): # Collecting user inputs for later analysis
         background_C = st.selectbox("請問您的背景", ("", "學術單位", "驗證機構(NB)", "受託研究機構(CRO)", "製造商", "進口商", "經銷商", "其他",))
         role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "審查員", "臨床試驗人員", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
     
-        category_C = st.selectbox("應用程式顯示的資訊，請問您對哪種 EMDN 分類的醫療器材特別感興趣搜尋?", list(emdn_C_part)) # set index to none means there is no default options
+        category_C = st.selectbox("請選擇您有興趣在此網站上查看的醫療器材資訊的 EMDN 代碼類別", list(emdn_C_part)) # set index to none means there is no default options
         group_C = emdn_C_part.groupby(by=[category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
-        type_C = st.selectbox("請問您對哪種 EMDN 類型的醫療器材特別感興趣搜尋?", list(group_C.iloc[:,0]))
+        type_C = st.selectbox("請選擇您有興趣在此網站上查看的醫療器材資訊的 EMDN 代碼類型", list(group_C.iloc[:,0]))
         category_C_all = st.selectbox("Which EMDN code category of medical device are you interested in searching for in the future?", list(emdn_C_all)) # set index to none means there is no default options
         group_C_all = emdn_C_all.groupby(by=[category_C_all], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_C_all = st.selectbox("Which EMDN code type of medical device are you interested in searching for in the future?", list(group_C_all.iloc[:,0]))
