@@ -310,12 +310,12 @@ def Survey(): # Collecting user inputs for later analysis
         background_C = st.selectbox("請問您目前的背景", ("", "學術單位", "驗證機構(NB)", "受託研究機構(CRO)", "製造商", "進口商", "經銷商", "其他",))
         role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "審查員", "臨床試驗人員", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
     
-        category_C = st.selectbox("對於網站上可用的搜尋信息，請問您特別感興趣查看哪個醫療器材的EMDN代碼類別？", list(emdn_C_part)) # set index to none means there is no default options
+        category_C = st.selectbox("對於網站上可用的搜尋信息，請問您有興趣查看哪個醫療器材的EMDN代碼類別？", list(emdn_C_part)) # set index to none means there is no default options
         group_C = emdn_C_part.groupby(by=[category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
-        type_C = st.selectbox("對於網站上可用的搜尋信息，請問您特別感興趣查看哪個醫療器材的EMDN代碼類型？", list(group_C.iloc[:,0]))
-        category_C_all = st.selectbox("請問您未來特別有興趣搜尋哪種EMDN代碼類別的醫療器材？", list(emdn_C_all)) # set index to none means there is no default options
+        type_C = st.selectbox("對於網站上可用的搜尋信息，請問您有興趣查看哪個醫療器材的EMDN代碼類型？", list(group_C.iloc[:,0]))
+        category_C_all = st.selectbox("請問您未來特別感興趣搜尋哪種EMDN代碼類別的醫療器材？", list(emdn_C_all)) # set index to none means there is no default options
         group_C_all = emdn_C_all.groupby(by=[category_C_all], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        type_C_all = st.selectbox("請問您未來特別有興趣搜尋哪種EMDN代碼類型的醫療器材？", list(group_C_all.iloc[:,0]))
+        type_C_all = st.selectbox("請問您未來特別感興趣搜尋哪種EMDN代碼類型的醫療器材？", list(group_C_all.iloc[:,0]))
 
         information_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確"))
         experience_C = st.selectbox("請問您對使用監管決策網站的優勢有何評價？", ("","1: 非常有幫助", "2: 有幫助", "3: 普通", "4: 無幫助"))
