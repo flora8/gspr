@@ -286,14 +286,16 @@ def Survey(): # Collecting user inputs for later analysis
 
         category_E = st.selectbox("For the available searched information on the website, which EMDN code category of the medical device were you interested in reviewing?", list(emdn_E_part)) # set index to none means there is no default options
         group_E = emdn_E_part.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        type_E = st.selectbox("For the available searched information on the website, which EMDN code type of the medical device were you interested in reviewing?", list(group_E.iloc[:,0]))
+        type_E = st.selectbox("For the available searched information on the website, which EMDN code type of the medical device were you interested in reviewing?", list(group_E.iloc[:,0])) 
+        expectation = st.selectbox("Does the output medical device information on this tool system as you expect?", ("", "Yes", "No"))
+        information = st.selectbox("How would you rate the provided device information on this tool application overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear"))
+        experience = st.selectbox("How would you rate the benefits of having this regulation tool application?", ("","1: Extremely useful", "2: Useful", "3: Neutral", "4: Useless"))
+
         category_E_all = st.selectbox("Which EMDN code category of medical device are you particularly interested in searching for in the future?", list(emdn_E_all)) # set index to none means there is no default options
         group_E_all = emdn_E_all.groupby(by=[category_E_all], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        type_E_all = st.selectbox("Which EMDN code type of medical device are you particularly interested in searching for in the future?", list(group_E_all.iloc[:,0]))
+        type_E_all = st.selectbox("Which EMDN code type of medical device are you particularly interested in searching for in the future?", list(group_E_all.iloc[:,0]))        
         
-        information = st.selectbox("How would you rate the provided device information on this website application overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear"))
-        experience = st.selectbox("How would you rate the benefits of having the regulation decision website application?", ("","1: Extremely useful", "2: Useful", "3: Neutral", "4: Useless"))
-        others = st.text_area("What other information would you like to see on this page? (Optional)")
+        others = st.text_area("What other information would you like to see on this tool application? (Optional)")
         feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve? (Optional)")
         submit = st.button(label="Submit")
         
@@ -313,13 +315,15 @@ def Survey(): # Collecting user inputs for later analysis
         category_C = st.selectbox("對於網站上可用的搜尋信息，請問您有興趣查看哪個醫療器材的EMDN代碼類別？", list(emdn_C_part)) # set index to none means there is no default options
         group_C = emdn_C_part.groupby(by=[category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
         type_C = st.selectbox("對於網站上可用的搜尋信息，請問您有興趣查看哪個醫療器材的EMDN代碼類型？", list(group_C.iloc[:,0]))
+        expectation = st.selectbox("請問本網站系統輸出的醫療器材資訊內容是否符合您的預期？", ("", "是", "否"))
+        information_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確"))
+        experience_C = st.selectbox("請問您對使用監管應用網站的優勢有何評價？", ("","1: 非常有幫助", "2: 有幫助", "3: 普通", "4: 無幫助"))
+
         category_C_all = st.selectbox("請問您未來特別感興趣搜尋哪種EMDN代碼類別的醫療器材？", list(emdn_C_all)) # set index to none means there is no default options
         group_C_all = emdn_C_all.groupby(by=[category_C_all], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_C_all = st.selectbox("請問您未來特別感興趣搜尋哪種EMDN代碼類型的醫療器材？", list(group_C_all.iloc[:,0]))
-
-        information_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確"))
-        experience_C = st.selectbox("請問您對使用監管決策網站的優勢有何評價？", ("","1: 非常有幫助", "2: 有幫助", "3: 普通", "4: 無幫助"))
-        others_C = st.text_area("請問您希望在此頁面上看到哪些其他資訊？")
+        
+        others_C = st.text_area("請問您希望在此網站上看到哪些其他資訊？")
         feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
         submit_C = st.button(label="提交")
         
