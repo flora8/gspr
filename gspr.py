@@ -148,7 +148,6 @@ def EMDN(): # Create the EMDN page
         if st.button("搜尋"): # Set up the button
             try:
                 st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(type_C))
-                st.write("顯示的 {} 資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯".format(type_C))
                 type_C = type_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
                 GSPR_C(type_C)
             except:
@@ -214,6 +213,8 @@ def GSPR_E(type_E):  # Create the GSPR page in English
 
 
 def GSPR_C(type_C):  # Create the GSPR page in Mandarin
+    st.write("顯示的 {} 資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯".format(type_C))
+    
     #Set up different tabs
     第一章, 第二章, 第三章, 標準清單, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準清單", "參考範例"])
 
