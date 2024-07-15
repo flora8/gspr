@@ -10,14 +10,6 @@ import gspread
 
 
 
-#import numpy as np
-#import matplotlib.pyplot as plt
-# from sklearn.model_selection import train_test_split
-# from sklearn.linear_model import LinearRegression
-# from sklearn.metrics import mean_squared_error, r2_score
-# import base64
-# import io
-
 
 #---------------------------------#
 # Hide menu in Streamlit apps
@@ -35,18 +27,18 @@ st.markdown(hide, unsafe_allow_html=True)
 
 # #---------------------------------#
 # Count page views
-def Pageviews():
-    sum = 0
-    for i in range(10000):
-        sum = sum+i
-    return [sum] # convert the integers to list type
-pageviews = Pageviews()
-pageviews.append('dummy')
+# def Pageviews():
+#     sum = 0
+#     for i in range(10000):
+#         sum = sum+i
+#     return [sum] # convert the integers to list type
+# pageviews = Pageviews()
+# pageviews.append('dummy')
 
-try:
-    st.sidebar.markdown('Page viewed: {} times'.format(len(pageviews)))
-except ValueError:
-    st.sidebar.markdown('Page viewed: {} times'.format(1))
+# try:
+#     st.sidebar.markdown('Page viewed: {} times'.format(len(pageviews)))
+# except ValueError:
+#     st.sidebar.markdown('Page viewed: {} times'.format(1))
 
 
 
