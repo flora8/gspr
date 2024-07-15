@@ -281,12 +281,12 @@ def Survey(): # Collecting user inputs for later analysis
     with col1:
         st.subheader("User Experience Survey")   
         day = st.text_input("Date ", (datetime.date.today()), disabled=True)
-        background = st.selectbox("Please select the business type of your background?", ("", "Academics", "Notified Body (NB)", "Contract Research Organization (CRO)", "Manufacturer", "Importer", "Distributor", "Wholesaler", "Others",))
+        background = st.selectbox("Please select your current background?", ("", "Academics", "Notified Body (NB)", "Contract Research Organization (CRO)", "Manufacturer", "Importer", "Distributor", "Wholesaler", "Others",))
         role = st.selectbox("Please select your current role?", ("", "Professionals", "Professor", "Student", "Reviewer", "Clinical Research Associate (CRA)", "Manager", "Engineer", "Officer", "Sales Representative", "Assistant", "Others", "Prefer not to say"))
 
-        category_E = st.selectbox("For the available searched information on the website, which EMDN code category of the medical device were you particularly interested in reviewing?", list(emdn_E_part)) # set index to none means there is no default options
+        category_E = st.selectbox("For the available searched information on the website, which EMDN code category of the medical device were you interested in reviewing?", list(emdn_E_part)) # set index to none means there is no default options
         group_E = emdn_E_part.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        type_E = st.selectbox("For the available searched information on the website, which EMDN code type of the medical device were you particularly interested in reviewing?", list(group_E.iloc[:,0]))
+        type_E = st.selectbox("For the available searched information on the website, which EMDN code type of the medical device were you interested in reviewing?", list(group_E.iloc[:,0]))
         category_E_all = st.selectbox("Which EMDN code category of medical device are you particularly interested in searching for in the future?", list(emdn_E_all)) # set index to none means there is no default options
         group_E_all = emdn_E_all.groupby(by=[category_E_all], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_E_all = st.selectbox("Which EMDN code type of medical device are you particularly interested in searching for in the future?", list(group_E_all.iloc[:,0]))
@@ -307,7 +307,7 @@ def Survey(): # Collecting user inputs for later analysis
     with col2:
         st.subheader("使用者體驗調查")
         day_C = st.text_input("日期", (datetime.date.today()), disabled=True)
-        background_C = st.selectbox("請問您的背景", ("", "學術單位", "驗證機構(NB)", "受託研究機構(CRO)", "製造商", "進口商", "經銷商", "其他",))
+        background_C = st.selectbox("請問您目前的背景", ("", "學術單位", "驗證機構(NB)", "受託研究機構(CRO)", "製造商", "進口商", "經銷商", "其他",))
         role_C = st.selectbox("請問您目前的職位", ("", "專業人士", "教授", "學生", "審查員", "臨床試驗人員", "經理", "工程師", "專員", "業務", "助理", "其他", "不方便提供"))               
     
         category_C = st.selectbox("對於網站上可用的搜尋信息，請問您特別感興趣查看哪個醫療器材的EMDN代碼類別？", list(emdn_C_part)) # set index to none means there is no default options
