@@ -88,7 +88,7 @@ def Home():
 excel_E = pd.ExcelFile('GSPRen.xlsx') # Load the excel data in English
 emdn_E = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
 emdn_E_all = emdn_E.iloc[:27] # Selecting all row from header 2 to row 27
-emdn_E_part = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=31) # Load excel worksheet of EMDN
+emdn_E_part = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=29) # Load excel worksheet of EMDN
 emdn_E_part = emdn_E_part.iloc[32:] # Selecting all row from 32 to all row
 
 excel_C = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data in Mandarin
