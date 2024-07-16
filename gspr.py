@@ -197,7 +197,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.markdown("""
                     * **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
                     1. Please click the link to download the template.
-                    2. Please confirm the applied medical device(s) comply with :rainbow[EU MDR] or :rainbow[EU IVDR].
+                    2. Please confirm the applied medical device(s) comply with :blue-background[EU MDR] or :blue-background[EU IVDR].
                     3. Please change the general safety and performance requirements (GSPR) information if the device(s) follow IVDR since the template uses MDR content. 
                     4. Please review the device(s) information in the chapter I, II, and III tabs to support you complete the form appropriately. 
                     """)
@@ -254,7 +254,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         st.markdown("""
                     * **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
                     1. 請點選連結下載模板
-                    2. 請確認申請之醫療器材符合:rainbow[歐盟醫療器材法規] 或 :rainbow[歐盟體外診斷醫療器材法規]的要求
+                    2. 請確認申請之醫療器材符合:blue-background[歐盟醫療器材法規] 或 :blue-background[歐盟體外診斷醫療器材法規]的要求
                     3. 如果遵循體外診斷醫療器材法規條文，請變更一般安全與性能要求內容，因為模板為醫療器材法規條文
                     4. 請查看第一章、第二章和第三章中的醫療器材資訊，以幫助您適當填寫表格
                     """)
