@@ -362,7 +362,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
-        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[1,2,3,4,5,8,9])
+        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
         count_E = data_E[xvalue_E].value_counts().reset_index()
         # fig_E = px.bar(data_E, x=xvalue_E, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
         # st.plotly_chart(fig_E)
