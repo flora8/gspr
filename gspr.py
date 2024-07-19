@@ -150,7 +150,7 @@ def EMDN(): # Create the EMDN page
 
 
 def GSPR_E(type_E):  # Create the GSPR page in English
-    st.write("The {} information shown can be searched, fullscreen, and downloaded as an Microsoft Excel file for personal records and edits".format(type_E))
+    st.write("The output medical device information can be searched, fullscreen, and downloaded as a Microsoft Excel file for personal records and edits")
     
     # Set up different tabs
     ChapterI, ChapterII, ChapterIII, List, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standard(s) & Device(s)", "Example"])
@@ -192,6 +192,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.dataframe(standards_E)
 
         st.subheader("Medical device(s) list")
+        st.markdown("""The relevant medical devices under the {} in the EMDN structure """.format(group_C))
         devices_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="I", header=2) # replace NaN as blank
         devices_E = devices_E.iloc[:30]
         st.dataframe(devices_E)
@@ -211,7 +212,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
 
 
 def GSPR_C(type_C):  # Create the GSPR page in Mandarin
-    st.write("顯示的 {} 資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯".format(type_C))
+    st.write("所顯示的醫療器材資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯")
     
     #Set up different tabs
     第一章, 第二章, 第三章, 清單, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準和醫材清單", "參考範例"])
@@ -253,6 +254,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         st.dataframe(standards_C)
 
         st.subheader("醫療器材清單")
+        st.markdown(""" """)
         devices_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="I", header=2) # replace NaN as blank
         devices_C = devices_C.iloc[:30]
         st.dataframe(devices_C)
