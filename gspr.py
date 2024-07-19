@@ -87,13 +87,13 @@ def Home():
 # Load excel data
 excel_E = pd.ExcelFile('GSPRen.xlsx') # Load the excel data in English
 emdn_E = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
-emdn_E_all = emdn_E.iloc[:30] # Selecting all row from header 2 to row 27
+emdn_E_all = emdn_E.iloc[:29] # Selecting all row from header 2 to row 27
 emdn_E_part = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, usecols="A:D", header=34) # Load excel worksheet of EMDN
 emdn_E_part = emdn_E_part.iloc[:37] # Selecting all row from 32 to all row
 
 excel_C = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data in Mandarin
 emdn_C = pd.read_excel(excel_C, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
-emdn_C_all = emdn_C.iloc[:30] # Selecting all row from header 2 to row 27
+emdn_C_all = emdn_C.iloc[:29] # Selecting all row from header 2 to row 27
 emdn_C_part = pd.read_excel(excel_C, sheet_name='EMDN', na_filter=False, usecols="A:D", header=34) # Load excel worksheet of EMDN
 emdn_C_part = emdn_C_part.iloc[:37] # Selecting all row from 32 to all row
 
