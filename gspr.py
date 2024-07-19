@@ -153,7 +153,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
     st.write("The {} information shown can be searched, fullscreen, and downloaded as an Microsoft Excel file for personal records and edits".format(type_E))
     
     # Set up different tabs
-    ChapterI, ChapterII, ChapterIII, Standards, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standard(s) & Device(s)", "Example"])
+    ChapterI, ChapterII, ChapterIII, List, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standard(s) & Device(s)", "Example"])
 
     with ChapterI: # Get Chapter I General requirements details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=type_E, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -176,8 +176,8 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         chapterIII_E = chapterIII_E.iloc[:265]
         st.dataframe(chapterIII_E)
 
-    with Standards: # Get Standard details in English
-        st.subheader("Standard(s) & Device(s) list")
+    with List: # Get Standard details in English
+        st.subheader("Standard(s) list")
         st.markdown("""
                     * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
 
@@ -191,7 +191,8 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         standards_E = standards_E.iloc[:30]
         st.dataframe(standards_E)
 
-        devices_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
+        st.subheader("Medical device(s) list")
+        devices_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="I", header=2) # replace NaN as blank
         devices_E = devices_E.iloc[:30]
         st.dataframe(devices_E)
 
@@ -213,7 +214,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
     st.write("顯示的 {} 資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯".format(type_C))
     
     #Set up different tabs
-    第一章, 第二章, 第三章, 標準清單, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準和醫材清單", "參考範例"])
+    第一章, 第二章, 第三章, 清單, 參考範例 = st.tabs(["第一章", "第二章", "第三章", "標準和醫材清單", "參考範例"])
 
     with 第一章: # Get Chapter I General requirements details in Mandarin
         st.subheader("{}".format(pd.read_excel(excel_C, sheet_name=type_C, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -236,8 +237,8 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         chapterIII_C = chapterIII_C.iloc[:265]
         st.dataframe(chapterIII_C)
 
-    with 標準清單: # Get Standard details in Mandarin
-        st.subheader("標準和醫材清單")
+    with 清單: # Get Standard details in Mandarin
+        st.subheader("標準清單")
         st.markdown("""
                     * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
 
@@ -250,8 +251,9 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_C = standards_C.iloc[:30]
         st.dataframe(standards_C)
-        
-        devices_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
+
+        st.subheader("醫療器材清單")
+        devices_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="I", header=2) # replace NaN as blank
         devices_C = devices_C.iloc[:30]
         st.dataframe(devices_C)
     
