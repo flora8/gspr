@@ -192,7 +192,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.dataframe(standards_E)
 
         st.subheader("Medical device(s) list")
-        st.markdown("""The relevant medical devices under the {} in the EMDN structure """.format(group_C))
+        st.markdown("""The relevant medical devices under the EMDN structure""")
         devices_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="I", header=2) # replace NaN as blank
         devices_E = devices_E.iloc[:30]
         st.dataframe(devices_E)
@@ -254,7 +254,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         st.dataframe(standards_C)
 
         st.subheader("醫療器材清單")
-        st.markdown(""" """)
+        st.markdown("""在EMDN架構下的相關醫療器械""")
         devices_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="I", header=2) # replace NaN as blank
         devices_C = devices_C.iloc[:30]
         st.dataframe(devices_C)
