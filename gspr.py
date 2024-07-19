@@ -46,7 +46,7 @@ st.markdown(hide, unsafe_allow_html=True)
 #---------------------------------#
 # Create the Home page
 def Home():
-    st.title(" :stethoscope: Medical Device Regulation Tool Application")
+    st.title(" :stethoscope: Medical Device Regulatory Tool Application")
 
     st.markdown("""
                 
