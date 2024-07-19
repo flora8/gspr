@@ -87,13 +87,13 @@ def Home():
 # Load excel data
 excel_E = pd.ExcelFile('GSPRen.xlsx') # Load the excel data in English
 emdn_E = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
-emdn_E_all = emdn_E.iloc[:27] # Selecting all row from header 2 to row 27
+emdn_E_all = emdn_E.iloc[:30] # Selecting all row from header 2 to row 27
 emdn_E_part = pd.read_excel(excel_E, sheet_name='EMDN', na_filter=False, usecols="A:D", header=34) # Load excel worksheet of EMDN
 emdn_E_part = emdn_E_part.iloc[:37] # Selecting all row from 32 to all row
 
 excel_C = pd.ExcelFile('GSPRcn.xlsx') # Load the excel data in Mandarin
 emdn_C = pd.read_excel(excel_C, sheet_name='EMDN', na_filter=False, header=2) # Load excel worksheet of EMDN
-emdn_C_all = emdn_C.iloc[:27] # Selecting all row from header 2 to row 27
+emdn_C_all = emdn_C.iloc[:30] # Selecting all row from header 2 to row 27
 emdn_C_part = pd.read_excel(excel_C, sheet_name='EMDN', na_filter=False, usecols="A:D", header=34) # Load excel worksheet of EMDN
 emdn_C_part = emdn_C_part.iloc[:37] # Selecting all row from 32 to all row
 
@@ -189,7 +189,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
-        standards_E = standards_E.iloc[:30]
+        standards_E = standards_E.iloc[:33]
         st.dataframe(standards_E)
 
     with Example:
@@ -246,7 +246,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
-        standards_C = standards_C.iloc[:30]
+        standards_C = standards_C.iloc[:33]
         st.dataframe(standards_C)
         
     with 參考範例:
@@ -304,7 +304,7 @@ def Survey(): # Collecting user inputs for later analysis
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ")       
             sheet = client.open_by_url(url).worksheet('survey')  # Access the Google Sheet
-            data = [day,background,role,category_E,type_E,category_E_all,type_E_all,information,experience,others,feedback] # Read data from the user input
+            data = [day,background,role,category_E,type_E,expectation,information,experience,category_E_all,type_E_all,others,feedback] # Read data from the user input
             sheet.append_row(data) # Append data to the Google sheet
 
 
@@ -317,7 +317,7 @@ def Survey(): # Collecting user inputs for later analysis
         category_C = st.selectbox("對於網站上可用的搜尋信息，請問您有興趣查看哪個醫療器材的EMDN代碼類別？", list(emdn_C_part)) # set index to none means there is no default options
         group_C = emdn_C_part.groupby(by=[category_C], as_index=False).sum() # Group the EMDN code type based on the specific category chosen
         type_C = st.selectbox("對於網站上可用的搜尋信息，請問您有興趣查看哪個醫療器材的EMDN代碼類型？", list(group_C.iloc[:,0]))
-        expectation = st.selectbox("請問本網站系統輸出的醫療器材資訊內容是否符合您的預期？", ("", "是", "否"))
+        expectation_C = st.selectbox("請問本網站系統輸出的醫療器材資訊內容是否符合您的預期？", ("", "是", "否"))
         information_C = st.selectbox("請問您對本網站所提供的整體醫材資訊評價如何？", ("","1: 非常適當和明確", "2: 適當和明確", "3: 普通", "4: 不適當和不明確"))
         experience_C = st.selectbox("請問您對使用監管應用網站的優勢有何評價？", ("","1: 非常有幫助", "2: 有幫助", "3: 普通", "4: 無幫助"))
 
@@ -332,7 +332,7 @@ def Survey(): # Collecting user inputs for later analysis
         if submit_C == True: # if the submit button is pressed
             st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")      
             sheet_C = client.open_by_url(url).worksheet('調查')  # Access the Google Sheet
-            data_C = [day_C,background_C,role_C,category_C,type_C,category_C_all,type_C_all,information_C,experience_C,others_C,feedback_C] # Read data from the user input
+            data_C = [day_C,background_C,role_C,category_C,type_C,expectation_C,information_C,experience_C,category_C_all,type_C_all,others_C,feedback_C] # Read data from the user input
             sheet_C.append_row(data_C) # Append data to the Google sheet    
             
      
