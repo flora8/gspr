@@ -46,13 +46,13 @@ st.markdown(hide, unsafe_allow_html=True)
 #---------------------------------#
 # Create the Home page
 def Home():
-    st.title("Medical Device Regulation Decision Tool :stethoscope: ")
+    st.title(" :stethoscope: Medical Device Regulation Tool Application")
 
     st.markdown("""
                 
-                Research Title: Design of a Medical Device Regulation Decision Tool
+                Research Title: Design of a Medical Device Regulatory Tool Application
 
-                Thank you so much for taking the time to participate in this research for a postgraduate student dissertation. This study aims to design a decision tool to correctly filter and select the appropriate regulatory requirements that need to be met by medical devices. After testing this tool, collect user experience to efficiently analyse search results and improve the system application for encouraging widespread use in the future.
+                Thank you so much for taking the time to participate in this research for a postgraduate student dissertation. This study aims to design a regulatory tool to correctly filter and select the appropriate regulatory requirements that need to be met by medical devices. After testing this tool, collect user experience to efficiently analyse search results and improve the system application for encouraging widespread use in the future.
 
                 In more detail, this system briefly analyses the European Union (EU) regulation requirements with relative standards for medical devices from the European Medical Device Nomenclature (EMDN), which according to Annex I: general safety and performance requirements (GSPR) as listed in the Medical Device Regulation (MDR) (2017/745) as well as the In Vitro Diagnostic Medical Devices Regulation (IVDR) (2017/746).
                 * **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
@@ -66,9 +66,9 @@ def Home():
     
     st.markdown("""
                             
-                研究主題：醫療器材監管決策工具的設計
+                研究主題：醫療器材監管工具應用的設計
 
-                非常感謝您抽出寶貴時間參與這項碩士生論文研究。本研究旨在設計一種決策工具，以正確過濾和選擇醫療器材所需滿足的適當監管要求。經過測試後收集使用者體驗，以有效分析搜尋結果並改善應用系統進一步促進未來廣泛的使用。
+                非常感謝您抽出寶貴時間參與這項碩士生論文研究。本研究旨在設計一種監管工具，以正確過濾和選擇醫療器材所需滿足的適當監管要求。經過測試後收集使用者體驗，以有效分析搜尋結果並改善應用系統進一步促進未來廣泛的使用。
 
                 該系統根據歐洲醫療器材命名法(EMDN)所提及的醫療器材，簡要分析了歐盟(EU)法規要求的相關標準。而歐盟法規來源於參考醫療器材法規(MDR)(2017/745)、以及體外診斷醫療器材法規(IVDR)(2017/746)中，其中附件一的一般安全和性能要求(GSPR)所列出內容。
                 * **醫療器材法規:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
