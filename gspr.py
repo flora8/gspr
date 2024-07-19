@@ -290,8 +290,8 @@ def Survey(): # Collecting user inputs for later analysis
         group_E = emdn_E_part.groupby(by=[category_E], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         type_E = st.selectbox("For the available searched information on the website, which EMDN code type of the medical device were you interested in reviewing?", list(group_E.iloc[:,0])) 
         expectation = st.selectbox("Does the output medical device information on this tool system as you expect?", ("", "Yes", "No"))
-        information = st.selectbox("How would you rate the provided device information on this tool application overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear"))
-        experience = st.selectbox("How would you rate the benefits of having this regulation tool application?", ("","1: Extremely useful", "2: Useful", "3: Neutral", "4: Useless"))
+        information = st.selectbox("How would you rate the provided device information on this tool application overall?", ("","1: Absolutely appropriate and clear", "2: Appropriate and clear", "3: Neutral", "4: Inappropriate and unclear", "5: Absolutely inappropriate and unclear"))
+        experience = st.selectbox("How would you rate the benefits of having this regulation tool application?", ("","1: Extremely useful", "2: Useful", "3: Neutral", "4: Useless", "5: Extremely useless"))
 
         category_E_all = st.selectbox("Which EMDN code category of medical device are you particularly interested in searching for in the future?", list(emdn_E_all)) # set index to none means there is no default options
         group_E_all = emdn_E_all.groupby(by=[category_E_all], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
