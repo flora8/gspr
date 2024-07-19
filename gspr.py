@@ -177,7 +177,7 @@ def GSPR_E(type_E):  # Create the GSPR page in English
         st.dataframe(chapterIII_E)
 
     with Standards: # Get Standard details in English
-        st.subheader("Standards list")
+        st.subheader("Standard(s) and Device(s) list")
         st.markdown("""
                     * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
 
@@ -188,9 +188,12 @@ def GSPR_E(type_E):  # Create the GSPR page in English
                     * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
-        standards_E = standards_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_E = standards_E.iloc[:30]
         st.dataframe(standards_E)
+
+        devices_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
+        devices_E = devices_E.iloc[:30]
+        st.dataframe(devices_E)
 
     with Example:
         st.subheader("Example template")
@@ -234,7 +237,7 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
         st.dataframe(chapterIII_C)
 
     with 標準清單: # Get Standard details in Mandarin
-        st.subheader("標準清單")
+        st.subheader("標準 和 醫材 清單")
         st.markdown("""
                     * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
 
@@ -245,9 +248,13 @@ def GSPR_C(type_C):  # Create the GSPR page in Mandarin
                     * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
-        standards_C = standards_C.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         standards_C = standards_C.iloc[:30]
         st.dataframe(standards_C)
+        
+        devices_C = pd.read_excel(excel_C, sheet_name=type_C, na_filter = False, usecols="I:J", header=2) # replace NaN as blank
+        devices_C = devices_C.iloc[:30]
+        st.dataframe(devices_C)
+    
         
     with 參考範例:
         st.subheader("參考範例")
