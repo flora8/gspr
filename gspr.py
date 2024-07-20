@@ -126,7 +126,7 @@ def EMDN(): # Create the EMDN page
                 group_E = group_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
                 GSPR_E(group_E) # The EMDN type will retun to the GSPR_E function
             except:
-                st.error('The medical device information is unavailable for search; please select another EMDN code type', icon="🚨")
+                st.error('The medical device information is unavailable for search; please select another EMDN code group', icon="🚨")
             
 
     with col2:  # Create the EMDN page in Mandarin
@@ -145,7 +145,7 @@ def EMDN(): # Create the EMDN page
                 group_C = group_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
                 GSPR_C(group_C)
             except:
-                st.error('該醫療器材資訊目前無法檢索；請選擇其他 EMDN 代碼類型', icon="🚨")
+                st.error('該醫療器材資訊目前無法檢索；請選擇其他 EMDN 代碼類群', icon="🚨")
 
 
 
@@ -164,14 +164,14 @@ def GSPR_E(group_E):  # Create the GSPR page in English
 
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterII_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:D", header=26)
+        chapterII_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="A:D", header=26)
         chapterII_E = chapterII_E.replace("\n", ", ", regex=True) 
         chapterII_E = chapterII_E.iloc[:141] # Selecting all row from header 26 to row 141
         st.dataframe(chapterII_E)
 
     with ChapterIII: # Get Chapter III Requirements regarding the information supplied with the device details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=168).iloc[0,0])) # use iloc to read the value of one cell as a header
-        chapterIII_E = pd.read_excel(excel_E, sheet_name=type_E, na_filter=False, usecols="A:D", header=169)
+        chapterIII_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="A:D", header=169)
         chapterIII_E = chapterIII_E.replace("\n", ", ", regex=True) 
         chapterIII_E = chapterIII_E.iloc[:265]
         st.dataframe(chapterIII_E)
