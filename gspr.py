@@ -188,13 +188,13 @@ def GSPR_E(group_E):  # Create the GSPR page in English
                     * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
-        standards_E = standards_E.iloc[:30]
+        standards_E = standards_E.iloc[::]
         st.dataframe(standards_E)
 
         st.subheader("Medical device(s) list")
         st.markdown("""The relevant medical devices under the EMDN structure""")
         devices_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="I", header=2) # replace NaN as blank
-        devices_E = devices_E.iloc[:30]
+        devices_E = devices_E.iloc[::]
         st.dataframe(devices_E)
 
     with Example:
@@ -250,13 +250,13 @@ def GSPR_C(group_C):  # Create the GSPR page in Mandarin
                     * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=group_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
-        standards_C = standards_C.iloc[:30]
+        standards_C = standards_C.iloc[::]
         st.dataframe(standards_C)
 
         st.subheader("醫療器材清單")
         st.markdown("""在EMDN架構下的相關醫療器械""")
         devices_C = pd.read_excel(excel_C, sheet_name=group_C, na_filter = False, usecols="I", header=2) # replace NaN as blank
-        devices_C = devices_C.iloc[:30]
+        devices_C = devices_C.iloc[::]
         st.dataframe(devices_C)
     
         
