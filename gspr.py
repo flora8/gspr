@@ -59,7 +59,7 @@ def Home():
                 * **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
                 * **EMDN:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
 
-                User participation in this research study is entirely voluntary and will take around 5 minutes to complete. The survey is anonymous, and the users' answers will only be utilized for the purpose of writing a research report. Any report or publication resulting from this study cannot and will not personally identify the user.
+                User participation in this research study is entirely voluntary and will take around 3~5 minutes to complete. The survey is anonymous, and the users' answers will only be utilized for the purpose of writing a research report. Any report or publication resulting from this study cannot and will not personally identify the user.
                 
                 Please be aware that all information this system provides is for reference only, as regulations are updated frequently and the database may delay follow-up. If you have any questions or require more information about this research, please use the following contact email: k23018577@kcl.ac.uk
                 """)
