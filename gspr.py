@@ -161,10 +161,10 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         chapterI_E = chapterI_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
 
-        edited_df = st.data_editor(chapterI_E)
-        favorite_command = edited_df.loc[edited_df["Relevant Standard(s)"].idxmax()]["Apply\nY/N"]
-        st.dataframe(favorite_command)
-        #st.dataframe(chapterI_E)
+        # edited_df = st.data_editor(chapterI_E)
+        # favorite_command = edited_df.loc[edited_df["Relevant Standard(s)"].idxmax()]["Apply\nY/N"]
+        # st.dataframe(favorite_command)
+        # #st.dataframe(chapterI_E)
     
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
