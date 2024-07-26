@@ -160,6 +160,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         chapterI_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="A:D", header=2) # replace NaN as blank, read the columns from A to C to get English details, and the header is 2nd row of excel
         chapterI_E = chapterI_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
+        chapterI_E = chapterI_E.sum().transpose()
         st.dataframe(chapterI_E)
     
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
