@@ -121,15 +121,12 @@ def EMDN(): # Create the EMDN page
         group_E = st.selectbox("Please select the EMDN code group", list(groupby_E.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
         
         if st.button("Search"): # Set up the button
-            st.success("Please wait a few minutes; the page turns on medical device: {} information".format(group_E))
-            group_E = group_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
-            GSPR_E(group_E) # The EMDN type will retun to the GSPR_E function
-            # try:
-            #     st.success("Please wait a few minutes; the page turns on medical device: {} information".format(group_E))
-            #     group_E = group_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
-            #     GSPR_E(group_E) # The EMDN type will retun to the GSPR_E function
-            # except:
-            #     st.error('The medical device information is unavailable for search; please select another EMDN code group', icon="🚨")
+            try:
+                st.success("Please wait a few minutes; the page turns on medical device: {} information".format(group_E))
+                group_E = group_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
+                GSPR_E(group_E) # The EMDN type will retun to the GSPR_E function
+            except:
+                st.error('The medical device information is unavailable for search; please select another EMDN code group', icon="🚨")
             
 
     with col2:  # Create the EMDN page in Mandarin
@@ -163,30 +160,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         chapterI_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="A:D", header=2) # replace NaN as blank, read the columns from A to C to get English details, and the header is 2nd row of excel
         chapterI_E = chapterI_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
-
-
-        standards_filter_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="F", header=2) # replace NaN as blank
-        standards_filter_E = standards_filter_E.iloc[:40]
-        
-        query = st.selectbox("請選擇", list(standards_filter_E.iloc[:,0])) # List the EMDN code category
-        #standards_groupby = standards_filter_E.groupby(by=[standards_select], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
-        #group_C = st.selectbox("請選擇 EMDN 代碼類群", list(groupby_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
-
-        from streamlit_dynamic_filters import DynamicFilters
-        dynamic_filters = DynamicFilters(standards_filter_E, filters=[query])
-        dynamic_filters.display_filters(location='sidebar')
-        new_df = dynamic_filters.filter_df()
-        st.data_editor(new_df)
-        
-        # if query:
-        #     mask = chapterI_E.applymap(lambda x: query in str(x).lower()).any(axis=1)
-        #     chapterI_E = chapterI_E[mask]
-    
-        # edited_df = st.data_editor(chapterI_E)
-        # favorite_command = edited_df.loc[edited_df["Relevant Standard(s)"].idxmax()]["Apply\nY/N"]
-        # st.dataframe(favorite_command)
-        
-        # st.dataframe(chapterI_E)
+        st.dataframe(chapterI_E)
     
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -222,15 +196,6 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         devices_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="I", header=2) # replace NaN as blank
         devices_E = devices_E.iloc[:50]
         st.dataframe(devices_E)
-
-        
-        # from streamlit_dynamic_filters import DynamicFilters
-        # left, right = st.columns(2)
-        # with left:
-            
-        # dynamic_filters = DynamicFilters(df, filters=['col1', 'col2', 'col3'], filters_name='my_filters')
-        # dynamic_filters.display_filters(location='sidebar')
-        # dynamic_filters.display_df()
 
     with Example:
         st.subheader("Example template")
