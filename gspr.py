@@ -173,7 +173,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         #group_C = st.selectbox("請選擇 EMDN 代碼類群", list(groupby_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
 
         from streamlit_dynamic_filters import DynamicFilters
-        dynamic_filters = DynamicFilters(chapterI_E, filters=query)
+        dynamic_filters = DynamicFilters(chapterI_E, filters=[query])
         with st.sidebar:
             dynamic_filters.display_filters()
             dynamic_filters.display_df()
