@@ -188,7 +188,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
                     * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
-        standards_E = standards_E.iloc[:35]
+        standards_E = standards_E.iloc[:40]
         st.dataframe(standards_E)
 
         st.subheader("Medical device(s) list")
@@ -250,7 +250,7 @@ def GSPR_C(group_C):  # Create the GSPR page in Mandarin
                     * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=group_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
-        standards_C = standards_C.iloc[:35]
+        standards_C = standards_C.iloc[:40]
         st.dataframe(standards_C)
 
         st.subheader("醫療器材清單")
