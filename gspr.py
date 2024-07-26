@@ -166,9 +166,9 @@ def GSPR_E(group_E):  # Create the GSPR page in English
 
 
         standards_filter_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="F", header=2) # replace NaN as blank
-        standards_filter_E = standards_E.iloc[:40]
+        standards_filter_E = standards_filter_E.iloc[:40]
         
-        query = st.selectbox("請選擇", list(standards_filter_E.iloc[:,0])) # List the EMDN code category
+        query = st.selectbox("請選擇", list(standards_filter_E)) # List the EMDN code category
         #standards_groupby = standards_filter_E.groupby(by=[standards_select], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         #group_C = st.selectbox("請選擇 EMDN 代碼類群", list(groupby_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
 
