@@ -154,22 +154,17 @@ def GSPR_E(group_E):  # Create the GSPR page in English
     
     # Set up different tabs
     ChapterI, ChapterII, ChapterIII, List, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standard(s) & Device(s)", "Example"])
-
-    chapter = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="A:I", header=2)  
-    
     
     with ChapterI: # Get Chapter I General requirements details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
         chapterI_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="A:D", header=2) # replace NaN as blank, read the columns from A to C to get English details, and the header is 2nd row of excel
         chapterI_E = chapterI_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
-        st.dataframe(chapterI_E)
 
-        
-        filter = st.multiselect("Select the standards: ", options=chapter["Standard(s)"].unique(), default=chapter["Standard(s)"].unique())
-        selection_E = chapter.query("Relevant Standard(s) == @filter")
-        st.dataframe(selection_E) 
-
+        edited_df = st.data_editor(chapterI_E)
+        favorite_command = edited_df.loc[edited_df["Relevant Standard(s)"].idxmax()]["Apply\nY/N"]
+        st.dataframe(favorite_command)
+        #st.dataframe(chapterI_E)
     
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -205,6 +200,15 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         devices_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="I", header=2) # replace NaN as blank
         devices_E = devices_E.iloc[:50]
         st.dataframe(devices_E)
+
+        
+        # from streamlit_dynamic_filters import DynamicFilters
+        # left, right = st.columns(2)
+        # with left:
+            
+        # dynamic_filters = DynamicFilters(df, filters=['col1', 'col2', 'col3'], filters_name='my_filters')
+        # dynamic_filters.display_filters(location='sidebar')
+        # dynamic_filters.display_df()
 
     with Example:
         st.subheader("Example template")
