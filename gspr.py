@@ -168,7 +168,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         
         filter = st.multiselect("Select the standards: ", options=chapter["Standard(s)"].unique(), default=chapter["Standard(s)"].unique())
         selection_E = chapter.query("Relevant Standard(s) == @filter")
-        st.dataframe(selection_E)
+        st.dataframe(selection_E) 
 
     
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
