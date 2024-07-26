@@ -172,15 +172,21 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         #standards_groupby = standards_filter_E.groupby(by=[standards_select], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
         #group_C = st.selectbox("請選擇 EMDN 代碼類群", list(groupby_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
 
-        if query:
-            mask = chapterI_E.applymap(lambda x: query in str(x).lower()).any(axis=1)
-            chapterI_E = chapterI_E[mask]
+        from streamlit_dynamic_filters import DynamicFilters
+        dynamic_filters = DynamicFilters(chapterI_E, filters=query)
+        with st.sidebar:
+            dynamic_filters.display_filters()
+            dynamic_filters.display_df()
+        
+        # if query:
+        #     mask = chapterI_E.applymap(lambda x: query in str(x).lower()).any(axis=1)
+        #     chapterI_E = chapterI_E[mask]
     
         # edited_df = st.data_editor(chapterI_E)
         # favorite_command = edited_df.loc[edited_df["Relevant Standard(s)"].idxmax()]["Apply\nY/N"]
         # st.dataframe(favorite_command)
         
-            st.dataframe(chapterI_E)
+        # st.dataframe(chapterI_E)
     
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
