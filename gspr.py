@@ -155,6 +155,9 @@ def GSPR_E(group_E):  # Create the GSPR page in English
     # Set up different tabs
     ChapterI, ChapterII, ChapterIII, List, Example = st.tabs(["Chapter I", "Chapter II", "Chapter III", "Standard(s) & Device(s)", "Example"])
 
+    chapter = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="A:I", header=2)  
+    
+    
     with ChapterI: # Get Chapter I General requirements details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=1).iloc[0,0])) # use iloc to read the value of one cell as a header
         chapterI_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="A:D", header=2) # replace NaN as blank, read the columns from A to C to get English details, and the header is 2nd row of excel
@@ -162,6 +165,12 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
         st.dataframe(chapterI_E)
 
+        
+        filter = st.multiselect("Select the standards: ", options=chapter["Standard(s)"].unique(), default=chapter["Standard(s)"].unique())
+        selection_E = chapter.query("Relevant Standard(s) == @filter")
+        st.dataframe(selection_E)
+
+    
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
         chapterII_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="A:D", header=26)
