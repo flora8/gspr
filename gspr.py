@@ -121,12 +121,15 @@ def EMDN(): # Create the EMDN page
         group_E = st.selectbox("Please select the EMDN code group", list(groupby_E.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
         
         if st.button("Search"): # Set up the button
-            try:
-                st.success("Please wait a few minutes; the page turns on medical device: {} information".format(group_E))
-                group_E = group_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
-                GSPR_E(group_E) # The EMDN type will retun to the GSPR_E function
-            except:
-                st.error('The medical device information is unavailable for search; please select another EMDN code group', icon="🚨")
+            st.success("Please wait a few minutes; the page turns on medical device: {} information".format(group_E))
+            group_E = group_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
+            GSPR_E(group_E) # The EMDN type will retun to the GSPR_E function
+            # try:
+            #     st.success("Please wait a few minutes; the page turns on medical device: {} information".format(group_E))
+            #     group_E = group_E.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
+            #     GSPR_E(group_E) # The EMDN type will retun to the GSPR_E function
+            # except:
+            #     st.error('The medical device information is unavailable for search; please select another EMDN code group', icon="🚨")
             
 
     with col2:  # Create the EMDN page in Mandarin
@@ -140,15 +143,12 @@ def EMDN(): # Create the EMDN page
         group_C = st.selectbox("請選擇 EMDN 代碼類群", list(groupby_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
         
         if st.button("搜尋"): # Set up the button
-            st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(group_C))
-            group_C = group_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
-            GSPR_C(group_C)
-            # try:
-            #     st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(group_C))
-            #     group_C = group_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
-            #     GSPR_C(group_C)
-            # except:
-            #     st.error('該醫療器材資訊目前無法檢索；請選擇其他 EMDN 代碼類群', icon="🚨")
+            try:
+                st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(group_C))
+                group_C = group_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
+                GSPR_C(group_C)
+            except:
+                st.error('該醫療器材資訊目前無法檢索；請選擇其他 EMDN 代碼類群', icon="🚨")
 
 
 
