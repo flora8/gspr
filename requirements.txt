@@ -11,6 +11,7 @@ matplotlib==3.9.0
 gspread
 oauth2client
 git+https://github.com/streamlit/gsheets-connection
+streamlit_dynamic_filters
 
 #pandas==2.2.2
 #seaborn==0.13.2
