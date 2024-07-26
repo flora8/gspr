@@ -176,7 +176,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         dynamic_filters = DynamicFilters(chapterI_E, filters=[query])
         dynamic_filters.display_filters(location='sidebar')
         new_df = dynamic_filters.filter_df()
-        st.dataframe(new_df)
+        st.data_editor(new_df)
         
         # if query:
         #     mask = chapterI_E.applymap(lambda x: query in str(x).lower()).any(axis=1)
