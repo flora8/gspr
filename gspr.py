@@ -144,8 +144,8 @@ def EMDN(): # Create the EMDN page
                 st.success("請稍等幾分鐘；頁面將開啟: {}的醫療器材資訊".format(group_C))
                 group_C = group_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
                 GSPR_C(group_C)
-            # except:
-            #     st.error('該醫療器材資訊目前無法檢索；請選擇其他 EMDN 代碼類群', icon="🚨")
+            except:
+                st.error('該醫療器材資訊目前無法檢索；請選擇其他 EMDN 代碼類群', icon="🚨")
 
 
 
