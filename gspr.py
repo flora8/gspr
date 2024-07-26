@@ -161,6 +161,18 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         chapterI_E = chapterI_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
 
+
+        standards_filter_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="F", header=2) # replace NaN as blank
+        standards_filter_E = standards_E.iloc[:40]
+        
+        query = st.selectbox("請選擇", list(standards_filter_E)) # List the EMDN code category
+        #standards_groupby = standards_filter_E.groupby(by=[standards_select], as_index=False)[[]].sum() # Group the EMDN code type based on the specific category chosen
+        #group_C = st.selectbox("請選擇 EMDN 代碼類群", list(groupby_C.iloc[:,0])) # List each EMDN code type so the user can select which medical device to search for 
+
+        if query:
+            mask = chapterI_E.applymap(lambda x: query in str(x).lower()).any(axis=1)
+            chapterI_E = chapterI_E[mask]
+    
         # edited_df = st.data_editor(chapterI_E)
         # favorite_command = edited_df.loc[edited_df["Relevant Standard(s)"].idxmax()]["Apply\nY/N"]
         # st.dataframe(favorite_command)
