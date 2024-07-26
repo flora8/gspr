@@ -174,9 +174,9 @@ def GSPR_E(group_E):  # Create the GSPR page in English
 
         from streamlit_dynamic_filters import DynamicFilters
         dynamic_filters = DynamicFilters(chapterI_E, filters=[query])
-        with st.sidebar:
-            dynamic_filters.display_filters()
-            dynamic_filters.display_df()
+        dynamic_filters.display_filters(location='sidebar')
+        new_df = dynamic_filters.filter_df()
+        st.dataframe(new_df)
         
         # if query:
         #     mask = chapterI_E.applymap(lambda x: query in str(x).lower()).any(axis=1)
