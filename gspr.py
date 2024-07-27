@@ -164,21 +164,6 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         chapterI_E = chapterI_E.replace("\n", ", ", regex=True) # without wrap text function by replacing \n as comma 
         chapterI_E = chapterI_E.iloc[:22] # Selecting all row from header 2 to row 22
         st.dataframe(chapterI_E)
-
-        edit_E = st.expander("Edited ChapterI")
-        if 'chapterI_edit_E' not in st.session_state:
-            chapterI_edit_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="L:N", header=2)
-            standards_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="F", header=2) # replace NaN as blank
-            standards_E = standards_E.iloc[:40]
-            chapterI_edit_E["Relevant Standard(s)"] = list(standards_E).iloc[:,0]
-            # chapterI_edit_E["Relevant standard(s)"] = chapterI_edit_E["Relevant standard(s)"].astype(pd.CategoricalDtype(['Y','N']))
-            st.session_state.df = chapterI_edit_E
-        chapterI_edit_E = st.session_state.chapterI_edit_E
-        chapterI_edit_E = st.experimental_data_editor(chapterI_edit_E, num_rows='dynamic')
-
-        # chapterI_edit_E = st.data_editor(chapterI_edit_E)
-        # favorite_command = edited_df.loc[edited_df["rating"].idxmax()]["command"]
-        edit_E.write(chapterI_edit_E)
     
     with ChapterII: # Get Chapter II Requirements regarding design and manufacture details in English
         st.subheader("{}".format(pd.read_excel(excel_E, sheet_name=group_E, usecols="A", header=25).iloc[0,0])) # use iloc to read the value of one cell as a header
@@ -227,6 +212,13 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         st.image('imageA.jpg', caption='A. Standards, common specifications, scientific advice')
         st.image('imageB_example.png', caption='Example: B. Matrix of General safety and performance requirements')
         st.image('imageB_description.png', caption='Description: B. Matrix of General safety and performance requirements')
+        
+        edit_E = st.expander("Edited GSPR Chapters")
+        chapter_edit_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="L:N", header=2)
+        chapter_edit_E = chapter_edit_E.iloc[:265]
+        chapter_edit_E = st.experimental_data_editor(chapter_edit_E)
+        edit_command_E = chapter_edit_E.loc[chapter_edit_E["Relevant Standard(s)"].idxmax()]["Apply\nY/N"]
+        edit_E.write(edit_command_E)
 
 
 def GSPR_C(group_C):  # Create the GSPR page in Mandarin
