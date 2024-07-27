@@ -170,7 +170,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
             chapterI_edit_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="L:N", header=2)
             standards_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="F", header=2) # replace NaN as blank
             standards_E = standards_E.iloc[:40]
-            chapterI_edit_E["Relevant Standard(s)"] = chapterI_edit_E["Relevant Standard(s)"].astype(list(standards_E).iloc[:,0])
+            chapterI_edit_E["Relevant Standard(s)"] = list(standards_E).iloc[:,0]
             # chapterI_edit_E["Relevant standard(s)"] = chapterI_edit_E["Relevant standard(s)"].astype(pd.CategoricalDtype(['Y','N']))
             st.session_state.df = chapterI_edit_E
         chapterI_edit_E = st.session_state.chapterI_edit_E
