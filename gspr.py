@@ -212,13 +212,6 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         st.image('imageA.jpg', caption='A. Standards, common specifications, scientific advice')
         st.image('imageB_example.png', caption='Example: B. Matrix of General safety and performance requirements')
         st.image('imageB_description.png', caption='Description: B. Matrix of General safety and performance requirements')
-        
-        edit_E = st.expander("Edited GSPR Chapters")
-        chapter_edit_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter=False, usecols="L:N", header=2)
-        chapter_edit_E = chapter_edit_E.iloc[:265]
-        chapter_edit_E = st.experimental_data_editor(chapter_edit_E)
-        edit_command_E = chapter_edit_E.loc[chapter_edit_E["Relevant Standard(s)"].idxmax()]["Apply\nY/N"]
-        edit_E.write(edit_command_E)
 
 
 def GSPR_C(group_C):  # Create the GSPR page in Mandarin
@@ -443,10 +436,35 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
 
 
+def Chat(): 
+    st.title("Chat")
+    
+    # Initialize chat history
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+    
+    # Display chat messages from history on app rerun
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+    
+    # React to user input
+    if prompt := st.chat_input("What is up?"):
+        # Display user message in chat message container
+        st.chat_message("user").markdown(prompt)
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+    
+        response = f"Echo: {prompt}"
+        # Display assistant response in chat message container
+        with st.chat_message("assistant"):
+            st.markdown(response)
+        # Add assistant response to chat history
+        st.session_state.messages.append({"role": "assistant", "content": response})
     
 #---------------------------------#
 # Create the sidebar for choosing the specific page
-options = st.sidebar.radio("Pages", options=[":stethoscope: Home", " :star2: GSPR", " :memo: Survey", " :bar_chart: Analysis"])
+options = st.sidebar.radio("Pages", options=[":stethoscope: Home", " :star2: GSPR", " :memo: Survey", " :bar_chart: Analysis", "Chat"])
 
 if options == ":stethoscope: Home":
     Home()
@@ -456,7 +474,8 @@ elif options == " :memo: Survey":
     Survey()
 elif options == " :bar_chart: Analysis":
     Analysis()
-
+elif options == " Chat":
+    Chat()
 
 
 
