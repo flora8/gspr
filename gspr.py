@@ -73,11 +73,11 @@ def Home():
 
                 **What will happen to the results of the study?**  The results of the study will be summarised in the dissertation of MSc Healthcare Technologies as part of postgraduate research. All the research data will be anonymous data, and it will not be shared with any third parties or made publicially available.
 
-                **Who should I contact for further information?**  If you have any questions or require more information about this research, please use the following contact details: Yen-Hua Ho k23018577@kcl.ac.uk
-                
-                User participation in this research study is entirely voluntary and will take around 3~5 minutes to complete. The survey is anonymous, and the users' answers will only be utilized for the purpose of writing a research report. Any report or publication resulting from this study cannot and will not personally identify the user.
-                
-                Please be aware that all information this system provides is for reference only, as regulations are updated frequently and the database may delay follow-up. If you have any questions or require more information about this research, please use the following contact email: k23018577@kcl.ac.uk
+                **Who should I contact for further information?**  If you have any questions or require more information about this research, please use the following contact details: Yen-Hua Ho (yen-hua.ho@kcl.ac.uk)
+
+                **What if I have further questions, or if something goes wrong?**  If this study has harmed you in any way or if you wish to make a complaint about the conduct of the study you can contact King's College London using the details below for further advice and information: Yen-Hua Ho (yen-hua.ho@kcl.ac.uk), Dr. Clare Heaysman (clare.heaysman@kcl.ac.uk) 
+
+                Please be aware that all information this system provides is for reference only, as regulations are updated frequently and the database may delay follow-up. Thank you for reading this information sheet and for considering taking part in this research. "🔎"
                 """)
     
     st.markdown("""
@@ -102,9 +102,11 @@ def Home():
                 
                 **研究結果會如何處理？**  研究結果僅會發表在醫療保健技術碩士學位論文中進行總結，所有研究資料皆為匿名數據，不會與任何第三方分享或公開提供。
                 
-                **應該聯繫誰以獲得更多資訊？**  如果您對於本研究有任何疑問或需要更多信息，請透過以下聯繫方式：Yen-Hua Ho k23018577@kcl.ac.uk
+                **應該聯繫誰以獲得更多資訊？**  如果您對於本研究有任何疑問或需要更多信息，請透過以下聯繫方式：Yen-Hua Ho (yen-hua.ho@kcl.ac.uk)
+
+                **如果我有進一步的問題，或者出了問題怎麼辦？**  如果這項研究以任何方式對您造成了傷害，或者如果您希望對研究提出投訴，您可以使用以下詳細資訊聯繫倫敦國王學院以獲取進一步的建議和訊息：Yen-Hua Ho (yen-hua.ho@kcl.ac.uk), Dr. Clare Heaysman (clare.heaysman@kcl.ac.uk)
                 
-                請注意，本系統提供的所有資訊僅供參考，因法規日益更新而資料庫可能延遲跟進。如果您對於本研究有任何疑問或需要更多信息，請透過以下電子郵件聯絡：k23018577@kcl.ac.uk
+                請注意，本系統提供的所有資訊僅供參考，因法規日益更新而資料庫可能延遲跟進。最後感謝您閱讀此資訊並考慮參與這項研究 "🔎"
                 """)
 
 
