@@ -39,9 +39,6 @@ def Home():
 
                 **What is the purpose of the study?**  Thank you so much for taking the time to participate in this research for a postgraduate student dissertation. This study aims to design a regulatory tool to correctly filter and select the appropriate regulatory requirements that need to be met by medical devices. The specific objectives of this study are to assess usability of the prototype application and collect initial user experiences to understand the need for the tool and provide insight for improvements in future development.
                 In more detail, this system briefly analyses the European Union (EU) regulation requirements with relative standards for medical devices from the European Medical Device Nomenclature (EMDN), which according to Annex I: general safety and performance requirements (GSPR) as listed in the Medical Device Regulation (MDR) (2017/745) as well as the In Vitro Diagnostic Medical Devices Regulation (IVDR) (2017/746).
-                * **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
-                * **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
-                * **EMDN:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
 
                 **Why have I been invited to take part?**  You are being invited to participate in this study because you are interested in medical device development, e.g. through academic study or are working in the healthcare industry.
 
@@ -68,9 +65,6 @@ def Home():
 
                 **研究目的？**  非常感謝您抽出寶貴時間參與這項碩士生論文研究。本研究旨在設計一種監管工具，以正確過濾和選擇醫療器材所需滿足的適當監管要求。具體目標是評估應用程式的可用性並收集初始使用者體驗，以了解該工具的需求並為未來開發的改進提供見解。
                 該系統根據歐洲醫療器材命名法(EMDN)所提及的醫療器材，簡要分析了歐盟(EU)法規要求的相關標準。而歐盟法規來源於參考醫療器材法規(MDR)(2017/745)、以及體外診斷醫療器材法規(IVDR)(2017/746)中，其中附件一的一般安全和性能要求(GSPR)所列出內容。
-                * **醫療器材法規:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
-                * **體外診斷醫療器材法規:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
-                * **歐洲醫療器材命名法:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
                 
                 **為什麼邀請我參加？**  邀請您參與這項研究是因為您對醫療設備發展感興趣，例如透過學術學習或在醫療產業工作。
                 
@@ -121,8 +115,10 @@ def EMDN(): # Create the EMDN page
 
     with col1:  # Create the EMDN page in English
         st.header("EMDN code")
-        st.write("""Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels""")
-        st.markdown("""**EMDN:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)""")
+        st.markdown("""
+                    **EMDN:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
+                    Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels
+                    """)
         st.dataframe(emdn_E_all) # Display the all EMDN code strature
 
         st.write("""Due to project time limitations, only a few medical devices of the EMDN code are available to search on the application""")
@@ -144,8 +140,10 @@ def EMDN(): # Create the EMDN page
 
     with col2:  # Create the EMDN page in Mandarin
         st.header("EMDN 代碼")
-        st.write("""表格所示為歐洲醫療器材命名法(EMDN)結構，該結構將醫療器材劃分為不同種類""")
-        st.markdown("""**歐洲醫療器材命名法:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)""")
+        st.markdown("""
+                    **歐洲醫療器材命名法:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
+                    表格所示為歐洲醫療器材命名法(EMDN)結構，該結構將醫療器材劃分為不同種類
+                    """)
         st.dataframe(emdn_C_all) # Display the EMDN code data in Mandarin
 
         st.write("""由於專案時間限制，目前該應用程式只能搜尋少數 EMDN 代碼的醫療器材資訊""")
@@ -164,10 +162,10 @@ def EMDN(): # Create the EMDN page
 
 
 def GSPR_E(group_E):  # Create the GSPR page in English
-    st.write("The output medical device information can be searched, fullscreen, and downloaded as a Microsoft Excel file for personal records and edits")
     st.markdown("""
-                * **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745) 
-                * **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
+                **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745) 
+                **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
+                The output medical device information can be searched, fullscreen, and downloaded as a Microsoft Excel file for personal records and edits
                 """)
 
     # Set up different tabs
@@ -197,13 +195,10 @@ def GSPR_E(group_E):  # Create the GSPR page in English
     with List: # Get Standard details in English
         st.subheader("Standard(s) list")
         st.markdown("""
-                    * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
-
-                    * **IEC:** [International Electrotechnical Commission](https://www.iec.ch/homepage)
-                    
-                    * **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
-
-                    * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
+                    **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
+                    **IEC:** [International Electrotechnical Commission](https://www.iec.ch/homepage)
+                    **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
+                    **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_E = standards_E.iloc[:40]
@@ -218,7 +213,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
     with Example:
         st.subheader("Example template")
         st.markdown("""
-                    * **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
+                    **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
                     1. Please click the link to download the template.
                     2. Please confirm the applied medical device(s) comply with :blue-background[EU MDR] or :blue-background[EU IVDR].
                     3. Please change the general safety and performance requirements (GSPR) information if the device(s) follow IVDR since the template uses MDR content. 
@@ -230,10 +225,10 @@ def GSPR_E(group_E):  # Create the GSPR page in English
 
 
 def GSPR_C(group_C):  # Create the GSPR page in Mandarin
-    st.write("所顯示的醫療器材資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯")
     st.markdown("""
                 * **醫療器材法規:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
                 * **體外診斷醫療器材法規:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
+                所顯示的醫療器材資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯
                 """)
     
     #Set up different tabs
@@ -263,13 +258,10 @@ def GSPR_C(group_C):  # Create the GSPR page in Mandarin
     with 清單: # Get Standard details in Mandarin
         st.subheader("標準清單")
         st.markdown("""
-                    * **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
-
-                    * **IEC:** [International Electrotechnical Commission](https://www.iec.ch/homepage)
-                    
-                    * **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
-
-                    * **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
+                    **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
+                    **IEC:** [International Electrotechnical Commission](https://www.iec.ch/homepage)
+                    **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
+                    **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=group_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
         standards_C = standards_C.iloc[:40]
@@ -285,7 +277,7 @@ def GSPR_C(group_C):  # Create the GSPR page in Mandarin
     with 參考範例:
         st.subheader("參考範例")
         st.markdown("""
-                    * **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
+                    **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
                     1. 請點選連結下載模板
                     2. 請確認申請之醫療器材符合:blue-background[歐盟醫療器材法規] 或 :blue-background[歐盟體外診斷醫療器材法規]的要求
                     3. 如果遵循體外診斷醫療器材法規條文，請變更一般安全與性能要求內容，因為模板為醫療器材法規條文
