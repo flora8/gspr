@@ -49,28 +49,31 @@ def Home():
     st.title(" :stethoscope: Medical Device Regulatory Tool Application")
 
     st.markdown("""
-                **Ethical Clearance Reference Number:** MRSU-23/24-45195
+                **Ethical Clearance Reference Number:**  MRSU-23/24-45195
                 
-                **Title of study:** Design of a Medical Device Regulatory Tool Application
+                **Title of study:**  Design of a Medical Device Regulatory Tool Application
 
                 
-                **Invitation paragraph:** I would like to invite you to participate in this research project which forms part of my dissertation research. Before you decide whether you want to take part, it is important for you to understand why the research is being done and what your participation will involve. Please take time to read the following information carefully and discuss it with others if you wish. Ask me if there is anything that is not clear or if you would like more information.
+                **Invitation paragraph:**  I would like to invite you to participate in this research project which forms part of my dissertation research. Before you decide whether you want to take part, it is important for you to understand why the research is being done and what your participation will involve. Please take time to read the following information carefully and discuss it with others if you wish. Ask me if there is anything that is not clear or if you would like more information.
 
 
-                **What is the purpose of the study?** Thank you so much for taking the time to participate in this research for a postgraduate student dissertation. This study aims to design a regulatory tool to correctly filter and select the appropriate regulatory requirements that need to be met by medical devices. The specific objectives of this study are to assess usability of the prototype application and collect initial user experiences to understand the need for the tool and provide insight for improvements in future development.
+                **What is the purpose of the study?**  Thank you so much for taking the time to participate in this research for a postgraduate student dissertation. This study aims to design a regulatory tool to correctly filter and select the appropriate regulatory requirements that need to be met by medical devices. The specific objectives of this study are to assess usability of the prototype application and collect initial user experiences to understand the need for the tool and provide insight for improvements in future development.
                 In more detail, this system briefly analyses the European Union (EU) regulation requirements with relative standards for medical devices from the European Medical Device Nomenclature (EMDN), which according to Annex I: general safety and performance requirements (GSPR) as listed in the Medical Device Regulation (MDR) (2017/745) as well as the In Vitro Diagnostic Medical Devices Regulation (IVDR) (2017/746).
                 * **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
                 * **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
                 * **EMDN:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
 
-                **Why have I been invited to take part?** You are being invited to participate in this study because you are interested in medical device development, e.g. through academic study or are working in the healthcare industry.
+                **Why have I been invited to take part?**  You are being invited to participate in this study because you are interested in medical device development, e.g. through academic study or are working in the healthcare industry.
 
-                **What will happen if I take part?** If you agree to take part, you will test this tool application, complete a survey anonymously, and interact with data analysis. This system will provide a few available EMDN code categories and groups for users to search for. The selected device would return relative standards and EMDN device types according to the GSPR rules. The process will take you approximately 3~5 minutes to complete.   
+                **What will happen if I take part?**  If you agree to take part, you will test this tool application, complete a survey anonymously, and interact with data analysis. This system will provide a few available EMDN code categories and groups for users to search for. The selected device would return relative standards and EMDN device types according to the GSPR rules. The process will take you approximately 3~5 minutes to complete.   
 
-                **Do I have to take part?** Participation is completely voluntary. You should only take part if you want to and choosing not to take part will not disadvantage you in anyway. If you choose to take part you will be asked to provide your consent. To do this you will be asked to indicate that you have read and understand the information provided and that you consent to your anonymous data being used for the purposes explained. You are free to withdraw at any point during completion of the survey, without having to give a reason. Withdrawing from the study will not affect you in any way. Once you submit the survey, it will no longer be possible to withdraw from the study because the data will be fully anonymous. Please do not include any personal identifiable information in your responses.
+                **Do I have to take part?**  Participation is completely voluntary. You should only take part if you want to and choosing not to take part will not disadvantage you in anyway. If you choose to take part you will be asked to provide your consent. To do this you will be asked to indicate that you have read and understand the information provided and that you consent to your anonymous data being used for the purposes explained. You are free to withdraw at any point during completion of the survey, without having to give a reason. Withdrawing from the study will not affect you in any way. Once you submit the survey, it will no longer be possible to withdraw from the study because the data will be fully anonymous. Please do not include any personal identifiable information in your responses.
 
-                **Data handling and confidentiality:** This research is anonymous. This means that nobody, including the researchers, will be aware of your identity, and that nobody will be able to connect you to the answers you provide, even indirectly. Your answers will nevertheless be treated confidentially and the information you provide will not allow you to be identified in any research outputs/publications. Your data will be held securely. Any personal data collected independently of the anonymous survey as described elsewhere in this information sheet will be processed under the terms of UK data protection law (including the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018). If you would like more information about how your data will be processed under the terms of UK data protection laws please visit the link below: [King’s College London Statement on Use of Personal Data in Research](https://www.kcl.ac.uk/research/support/research-ethics/kings-college-london-statement-on-use-of-personal-data-in-research)
+                **Data handling and confidentiality:**  This research is anonymous. This means that nobody, including the researchers, will be aware of your identity, and that nobody will be able to connect you to the answers you provide, even indirectly. Your answers will nevertheless be treated confidentially and the information you provide will not allow you to be identified in any research outputs/publications. Your data will be held securely on password-protected devices with limited access by the researcher. After the completion of the research, the data will be securely destroyed or archived as per ethical guidelines.
 
+                **What will happen to the results of the study?**  The results of the study will be summarised in the dissertation of MSc Healthcare Technologies as part of postgraduate research. All the research data will be anonymous data, and it will not be shared with any third parties or made publicially available.
+
+                **Who should I contact for further information?**  If you have any questions or require more information about this research, please use the following contact details: Yen-Hua Ho k23018577@kcl.ac.uk
                 
                 User participation in this research study is entirely voluntary and will take around 3~5 minutes to complete. The survey is anonymous, and the users' answers will only be utilized for the purpose of writing a research report. Any report or publication resulting from this study cannot and will not personally identify the user.
                 
@@ -79,25 +82,27 @@ def Home():
     
     st.markdown("""
                 
-                **研究主題：** 醫療器材監管工具應用的設計
+                **研究主題：**  醫療器材監管工具應用的設計
 
-                **邀請段落：** 本人誠摯地邀請您參與這個研究項目，這是我碩士學位研究的一部分。在您決定是否參與之前，了解研究的目的及參與的內容是非常重要的。請您仔細閱讀以下信息，如果您願意也可以與他人討論，若有任何不明之處或需要更多信息，請隨時向我詢問。
+                **邀請段落：**  本人誠摯地邀請您參與這個研究項目，這是我碩士學位研究的一部分。在您決定是否參與之前，了解研究的目的及參與的內容是非常重要的。請您仔細閱讀以下信息，如果您願意也可以與他人討論，若有任何不明之處或需要更多信息，請隨時向我詢問。
 
-                **研究目的？** 非常感謝您抽出寶貴時間參與這項碩士生論文研究。本研究旨在設計一種監管工具，以正確過濾和選擇醫療器材所需滿足的適當監管要求。具體目標是評估應用程式的可用性並收集初始使用者體驗，以了解該工具的需求並為未來開發的改進提供見解。
+                **研究目的？**  非常感謝您抽出寶貴時間參與這項碩士生論文研究。本研究旨在設計一種監管工具，以正確過濾和選擇醫療器材所需滿足的適當監管要求。具體目標是評估應用程式的可用性並收集初始使用者體驗，以了解該工具的需求並為未來開發的改進提供見解。
                 該系統根據歐洲醫療器材命名法(EMDN)所提及的醫療器材，簡要分析了歐盟(EU)法規要求的相關標準。而歐盟法規來源於參考醫療器材法規(MDR)(2017/745)、以及體外診斷醫療器材法規(IVDR)(2017/746)中，其中附件一的一般安全和性能要求(GSPR)所列出內容。
                 * **醫療器材法規:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
                 * **體外診斷醫療器材法規:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
                 * **歐洲醫療器材命名法:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
                 
-                **為什麼邀請我參加？** 邀請您參與這項研究是因為您對醫療設備發展感興趣，例如透過學術學習或在醫療產業工作。
+                **為什麼邀請我參加？**  邀請您參與這項研究是因為您對醫療設備發展感興趣，例如透過學術學習或在醫療產業工作。
                 
-                **若參加會發生什麼？** 如果您同意參與，您將測試此工具應用系統、匿名完成調查問卷、並與資料分析進行互動，花費時間約需3~5分鐘完成。
+                **若參加會發生什麼？**  如果您同意參與，您將測試此工具應用系統、匿名完成調查問卷、並與資料分析進行互動，花費時間約需3~5分鐘完成。
 
-                **我必須參加嗎？** 參與完全是自願的，選擇不參加不會對您造成任何不利影響。如果您選擇參加，您將被要求表明您已閱讀並理解所提供的訊息，並同意您的匿名數據用於上述研究目的。在填寫問卷期間，您可以隨時退出，不需要提供理由。退出研究不會對您造成任何影響。一旦您提交問卷，由於數據是完全匿名的，將無法撤回參與。請不要在您的回答中包含任何可識別您的個人資訊。
+                **我必須參加嗎？**  參與完全是自願的，選擇不參加不會對您造成任何不利影響。如果您選擇參加，您將被要求表明您已閱讀並理解所提供的訊息，並同意您的匿名數據用於上述研究目的。在填寫問卷期間，您可以隨時退出，不需要提供理由。退出研究不會對您造成任何影響。一旦您提交問卷，由於數據是完全匿名的，將無法撤回參與。請不要在您的回答中包含任何可識別您的個人資訊。
 
-                **數據處理和保密性：** 這項研究是匿名的。這意味著包括研究人員在內，沒有人會知道您的身份，也沒有人能夠間接地將您與您提供的答案聯繫起來。您的回答將被保密處理，您提供的訊息不會使您在任何研究成果或出版物中被識別。您的數據將被安全地保存。任何獨立於匿名調查收集的個人數據將按照英國數據保護法（包括英國《通用數據保護條例（UK GDPR）》和《2018年數據保護法》）的條款處理。如果您想了解更多關於您的數據如何根據英國數據保護法進行處理的信息，請訪問以下連結：[King’s College London Statement on Use of Personal Data in Research](https://www.kcl.ac.uk/research/support/research-ethics/kings-college-london-statement-on-use-of-personal-data-in-research)
+                **數據處理和保密性：**  這項研究是匿名的。這意味著包括研究人員在內，沒有人會知道您的身份，也沒有人能夠間接地將您與您提供的答案聯繫起來。您的回答將被保密處理，您提供的訊息不會使您在任何研究成果或出版物中被識別，且您的數據將被安全地保存。
                 
-                使用者參與本研究完全是自願的，花費時間約3~5分鐘完成。該調查是匿名的，使用戶的回答將僅用於撰寫研究報告為目的。而本研究產生的任何報告或出版物不能也不會識別使用者的個人身分。
+                **研究結果會如何處理？**  研究結果僅會發表在醫療保健技術碩士學位論文中進行總結，所有研究資料皆為匿名數據，不會與任何第三方分享或公開提供。
+                
+                **應該聯繫誰以獲得更多資訊？**  如果您對於本研究有任何疑問或需要更多信息，請透過以下聯繫方式：Yen-Hua Ho k23018577@kcl.ac.uk
                 
                 請注意，本系統提供的所有資訊僅供參考，因法規日益更新而資料庫可能延遲跟進。如果您對於本研究有任何疑問或需要更多信息，請透過以下電子郵件聯絡：k23018577@kcl.ac.uk
                 """)
