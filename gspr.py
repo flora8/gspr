@@ -166,6 +166,7 @@ def EMDN(): # Create the EMDN page
 def GSPR_E(group_E):  # Create the GSPR page in English
     st.markdown("""
                 **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745) 
+                
                 **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
                 
                 The output medical device information can be searched, fullscreen, and downloaded as a Microsoft Excel file for personal records and edits
@@ -199,8 +200,11 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         st.subheader("Standard(s) list")
         st.markdown("""
                     **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
+                    
                     **IEC:** [International Electrotechnical Commission](https://www.iec.ch/homepage)
+                    
                     **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
+                    
                     **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_E = pd.read_excel(excel_E, sheet_name=group_E, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
@@ -217,6 +221,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
         st.subheader("Example template")
         st.markdown("""
                     **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
+                    
                     1. Please click the link to download the template.
                     2. Please confirm the applied medical device(s) comply with :blue-background[EU MDR] or :blue-background[EU IVDR].
                     3. Please change the general safety and performance requirements (GSPR) information if the device(s) follow IVDR since the template uses MDR content. 
@@ -230,7 +235,9 @@ def GSPR_E(group_E):  # Create the GSPR page in English
 def GSPR_C(group_C):  # Create the GSPR page in Mandarin
     st.markdown("""
                 * **醫療器材法規:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
+                
                 * **體外診斷醫療器材法規:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
+                
                 所顯示的醫療器材資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯
                 """)
     
@@ -262,8 +269,11 @@ def GSPR_C(group_C):  # Create the GSPR page in Mandarin
         st.subheader("標準清單")
         st.markdown("""
                     **ISO:** [International Organization for Standardization](https://www.iso.org/home.html)
+                    
                     **IEC:** [International Electrotechnical Commission](https://www.iec.ch/homepage)
+                    
                     **IMDRF:** [International Medical Device Regulators Forum](https://www.imdrf.org/)
+                    
                     **CEN and CENELEC:** [European Committee for Standardisation and European Committee for Electrotechnical Standardisation](https://www.cencenelec.eu/)
                     """)
         standards_C = pd.read_excel(excel_C, sheet_name=group_C, na_filter = False, usecols="F:G", header=2) # replace NaN as blank
@@ -281,6 +291,7 @@ def GSPR_C(group_C):  # Create the GSPR page in Mandarin
         st.subheader("參考範例")
         st.markdown("""
                     **MDCG 2021-08:** [Checklist of general safety and performance requirements, Standards, common specifications and scientific advice](https://ec.europa.eu/health/sites/default/files/md_sector/docs/mdcg_2021-8_annex6.docx)
+                    
                     1. 請點選連結下載模板
                     2. 請確認申請之醫療器材符合:blue-background[歐盟醫療器材法規] 或 :blue-background[歐盟體外診斷醫療器材法規]的要求
                     3. 如果遵循體外診斷醫療器材法規條文，請變更一般安全與性能要求內容，因為模板為醫療器材法規條文
