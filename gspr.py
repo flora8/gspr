@@ -25,24 +25,6 @@ st.markdown(hide, unsafe_allow_html=True)
 
 
 
-# #---------------------------------#
-# Count page views
-# def Pageviews():
-#     sum = 0
-#     for i in range(10000):
-#         sum = sum+i
-#     return [sum] # convert the integers to list type
-# pageviews = Pageviews()
-# pageviews.append('dummy')
-
-# try:
-#     st.sidebar.markdown('Page viewed: {} times'.format(len(pageviews)))
-# except ValueError:
-#     st.sidebar.markdown('Page viewed: {} times'.format(1))
-
-
-
-
 #---------------------------------#
 # Create the Home page
 def Home():
@@ -52,10 +34,8 @@ def Home():
                 **Ethical Clearance Reference Number:**  MRSU-23/24-45195
                 
                 **Title of study:**  Design of a Medical Device Regulatory Tool Application
-
                 
                 **Invitation paragraph:**  I would like to invite you to participate in this research project which forms part of my dissertation research. Before you decide whether you want to take part, it is important for you to understand why the research is being done and what your participation will involve. Please take time to read the following information carefully and discuss it with others if you wish. Ask me if there is anything that is not clear or if you would like more information.
-
 
                 **What is the purpose of the study?**  Thank you so much for taking the time to participate in this research for a postgraduate student dissertation. This study aims to design a regulatory tool to correctly filter and select the appropriate regulatory requirements that need to be met by medical devices. The specific objectives of this study are to assess usability of the prototype application and collect initial user experiences to understand the need for the tool and provide insight for improvements in future development.
                 In more detail, this system briefly analyses the European Union (EU) regulation requirements with relative standards for medical devices from the European Medical Device Nomenclature (EMDN), which according to Annex I: general safety and performance requirements (GSPR) as listed in the Medical Device Regulation (MDR) (2017/745) as well as the In Vitro Diagnostic Medical Devices Regulation (IVDR) (2017/746).
@@ -77,7 +57,7 @@ def Home():
 
                 **What if I have further questions, or if something goes wrong?**  If this study has harmed you in any way or if you wish to make a complaint about the conduct of the study you can contact King's College London using the details below for further advice and information: Yen-Hua Ho (yen-hua.ho@kcl.ac.uk), Dr. Clare Heaysman (clare.heaysman@kcl.ac.uk) 
 
-                Please be aware that all information this system provides is for reference only, as regulations are updated frequently and the database may delay follow-up. Thank you for reading this information sheet and for considering taking part in this research. "🔎"
+                Please be aware that all information this system provides is for reference only, as regulations are updated frequently and the database may delay follow-up. Thank you for reading this information sheet and for considering taking part in this research. 🔎
                 """)
     
     st.markdown("""
@@ -106,7 +86,7 @@ def Home():
 
                 **如果我有進一步的問題，或者出了問題怎麼辦？**  如果這項研究以任何方式對您造成了傷害，或者如果您希望對研究提出投訴，您可以使用以下詳細資訊聯繫倫敦國王學院以獲取進一步的建議和訊息：Yen-Hua Ho (yen-hua.ho@kcl.ac.uk), Dr. Clare Heaysman (clare.heaysman@kcl.ac.uk)
                 
-                請注意，本系統提供的所有資訊僅供參考，因法規日益更新而資料庫可能延遲跟進。最後感謝您閱讀此資訊並考慮參與這項研究 "🔎"
+                請注意，本系統提供的所有資訊僅供參考，因法規日益更新而資料庫可能延遲跟進。最後感謝您閱讀此資訊並考慮參與這項研究 🔎
                 """)
 
 
