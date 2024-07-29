@@ -117,6 +117,7 @@ def EMDN(): # Create the EMDN page
         st.header("EMDN code")
         st.markdown("""
                     **EMDN:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
+                    
                     Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels
                     """)
         st.dataframe(emdn_E_all) # Display the all EMDN code strature
@@ -142,6 +143,7 @@ def EMDN(): # Create the EMDN page
         st.header("EMDN 代碼")
         st.markdown("""
                     **歐洲醫療器材命名法:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
+                    
                     表格所示為歐洲醫療器材命名法(EMDN)結構，該結構將醫療器材劃分為不同種類
                     """)
         st.dataframe(emdn_C_all) # Display the EMDN code data in Mandarin
@@ -165,6 +167,7 @@ def GSPR_E(group_E):  # Create the GSPR page in English
     st.markdown("""
                 **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745) 
                 **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
+                
                 The output medical device information can be searched, fullscreen, and downloaded as a Microsoft Excel file for personal records and edits
                 """)
 
