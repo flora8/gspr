@@ -63,6 +63,10 @@ def Home():
                 * **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
                 * **EMDN:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
 
+                **Why have I been invited to take part:** You are being invited to participate in this study because you are interested in medical device development, e.g. through academic study or are working in the healthcare industry.
+
+                **What will happen if I take part:** If you agree to take part, you will test this tool application, complete a survey anonymously, and interact with data analysis. This system will provide a few available EMDN code categories and groups for users to search for. The selected device would return relative standards and EMDN device types according to the GSPR rules. The process will take you approximately 3~5 minutes to complete.   
+                
                 User participation in this research study is entirely voluntary and will take around 3~5 minutes to complete. The survey is anonymous, and the users' answers will only be utilized for the purpose of writing a research report. Any report or publication resulting from this study cannot and will not personally identify the user.
                 
                 Please be aware that all information this system provides is for reference only, as regulations are updated frequently and the database may delay follow-up. If you have any questions or require more information about this research, please use the following contact email: k23018577@kcl.ac.uk
@@ -72,14 +76,16 @@ def Home():
                 
                 **研究主題：** 醫療器材監管工具應用的設計
 
-                **邀請段落：** 本人誠摯地邀請您參與這個研究項目，這是我碩士學位研究的一部分。在您決定是否參與之前，了解研究的目的及參與的內容是非常重要的。請您仔細閱讀以下信息，如果您願意也可以與他人討論。若有任何不明之處或需要更多信息，請隨時向我詢問。
+                **邀請段落：** 本人誠摯地邀請您參與這個研究項目，這是我碩士學位研究的一部分。在您決定是否參與之前，了解研究的目的及參與的內容是非常重要的。請您仔細閱讀以下信息，如果您願意也可以與他人討論，若有任何不明之處或需要更多信息，請隨時向我詢問。
 
                 **研究目的：** 非常感謝您抽出寶貴時間參與這項碩士生論文研究。本研究旨在設計一種監管工具，以正確過濾和選擇醫療器材所需滿足的適當監管要求。具體目標是評估應用程式的可用性並收集初始使用者體驗，以了解該工具的需求並為未來開發的改進提供見解。
                 該系統根據歐洲醫療器材命名法(EMDN)所提及的醫療器材，簡要分析了歐盟(EU)法規要求的相關標準。而歐盟法規來源於參考醫療器材法規(MDR)(2017/745)、以及體外診斷醫療器材法規(IVDR)(2017/746)中，其中附件一的一般安全和性能要求(GSPR)所列出內容。
                 * **醫療器材法規:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
                 * **體外診斷醫療器材法規:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
                 * **歐洲醫療器材命名法:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)
-
+                
+                **為什麼邀請我參加：** 邀請您參與這項研究是因為您對醫療設備發展感興趣，例如透過學術學習或在醫療產業工作。
+                
                 使用者參與本研究完全是自願的，花費時間約3~5分鐘完成。該調查是匿名的，使用戶的回答將僅用於撰寫研究報告為目的。而本研究產生的任何報告或出版物不能也不會識別使用者的個人身分。
                 
                 請注意，本系統提供的所有資訊僅供參考，因法規日益更新而資料庫可能延遲跟進。如果您對於本研究有任何疑問或需要更多信息，請透過以下電子郵件聯絡：k23018577@kcl.ac.uk
