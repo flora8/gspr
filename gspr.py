@@ -152,7 +152,7 @@ def EMDN(): # Create the EMDN page
         
         if st.button("搜尋"): # Set up the button
             try:
-                st.success("請稍等幾分鐘；頁面將開啟醫療器材: {} 的資訊".format(group_C))
+                st.success("請稍等幾分鐘；頁面將開啟醫療器材: {}的資訊".format(group_C))
                 group_C = group_C.split()[0]  # Split the string of EMDN type into a list and return the first element, which has the same name as the Excel worksheet
                 GSPR_C(group_C)
             except:
