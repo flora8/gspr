@@ -49,17 +49,12 @@ def Home():
     st.title(" :stethoscope: Medical Device Regulatory Tool Application")
 
     st.markdown("""
-                Ethical Clearance Reference Number: 
-                MRSU-23/24-45195
+                **Ethical Clearance Reference Number:** MRSU-23/24-45195
                 
-                Title of study:
-                
-                Design of a Medical Device Regulatory Tool Application
+                **Title of study:** Design of a Medical Device Regulatory Tool Application
 
                 
-                Invitation paragraph:
-                
-                I would like to invite you to participate in this research project which forms part of my dissertation research. Before you decide whether you want to take part, it is important for you to understand why the research is being done and what your participation will involve. Please take time to read the following information carefully and discuss it with others if you wish. Ask me if there is anything that is not clear or if you would like more information.
+                **Invitation paragraph:** I would like to invite you to participate in this research project which forms part of my dissertation research. Before you decide whether you want to take part, it is important for you to understand why the research is being done and what your participation will involve. Please take time to read the following information carefully and discuss it with others if you wish. Ask me if there is anything that is not clear or if you would like more information.
 
 
                 What is the purpose of the study: 
@@ -77,17 +72,11 @@ def Home():
     
     st.markdown("""
                 
-                研究主題：
-                
-                醫療器材監管工具應用的設計
+                **研究主題：** 醫療器材監管工具應用的設計
 
+                **邀請段落：** 本人誠摯地邀請您參與這個研究項目，這是我碩士學位研究的一部分。在您決定是否參與之前，了解研究的目的及參與的內容是非常重要的。請您仔細閱讀以下信息，如果您願意也可以與他人討論。若有任何不明之處或需要更多信息，請隨時向我詢問。
 
-                邀請段落：
-                
-                本人誠摯地邀請您參與這個研究項目，這是我碩士學位研究的一部分。在您決定是否參與之前，了解研究的目的及參與的內容是非常重要的。請您仔細閱讀以下信息，如果您願意也可以與他人討論。若有任何不明之處或需要更多信息，請隨時向我詢問。
-
-
-                研究目的：
+                **研究目的：**
                 
                 非常感謝您抽出寶貴時間參與這項碩士生論文研究。本研究旨在設計一種監管工具，以正確過濾和選擇醫療器材所需滿足的適當監管要求。具體目標是評估應用程式的可用性並收集初始使用者體驗，以了解該工具的需求並為未來開發的改進提供見解。
                 該系統根據歐洲醫療器材命名法(EMDN)所提及的醫療器材，簡要分析了歐盟(EU)法規要求的相關標準。而歐盟法規來源於參考醫療器材法規(MDR)(2017/745)、以及體外診斷醫療器材法規(IVDR)(2017/746)中，其中附件一的一般安全和性能要求(GSPR)所列出內容。
