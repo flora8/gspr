@@ -122,7 +122,7 @@ def EMDN(): # Create the EMDN page
     with col1:  # Create the EMDN page in English
         st.header("EMDN code")
         st.write("""Shown is the European Medical Device Nomenclature (EMDN) structure, which characterizes medical device information into different levels""")
-        st.markdown("""* **EMDN:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)""")
+        st.markdown("""**EMDN:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)""")
         st.dataframe(emdn_E_all) # Display the all EMDN code strature
 
         st.write("""Due to project time limitations, only a few medical devices of the EMDN code are available to search on the application""")
@@ -145,7 +145,7 @@ def EMDN(): # Create the EMDN page
     with col2:  # Create the EMDN page in Mandarin
         st.header("EMDN 代碼")
         st.write("""表格所示為歐洲醫療器材命名法(EMDN)結構，該結構將醫療器材劃分為不同種類""")
-        st.markdown("""* **歐洲醫療器材命名法:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)""")
+        st.markdown("""**歐洲醫療器材命名法:** [European Medical Device Nomenclature (EMDN)](https://webgate.ec.europa.eu/dyna2/emdn/)""")
         st.dataframe(emdn_C_all) # Display the EMDN code data in Mandarin
 
         st.write("""由於專案時間限制，目前該應用程式只能搜尋少數 EMDN 代碼的醫療器材資訊""")
@@ -166,8 +166,8 @@ def EMDN(): # Create the EMDN page
 def GSPR_E(group_E):  # Create the GSPR page in English
     st.write("The output medical device information can be searched, fullscreen, and downloaded as a Microsoft Excel file for personal records and edits")
     st.markdown("""
-                * **醫療器材法規:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
-                * **體外診斷醫療器材法規:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)")
+                * **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745) 
+                * **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
                 """)
 
     # Set up different tabs
@@ -232,8 +232,8 @@ def GSPR_E(group_E):  # Create the GSPR page in English
 def GSPR_C(group_C):  # Create the GSPR page in Mandarin
     st.write("所顯示的醫療器材資訊結果可以搜尋、全螢幕顯示，也可以下載為Microsoft Excel檔案，以供個人後續記錄和編輯")
     st.markdown("""
-                * **MDR:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745) 
-                * **IVDR:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)")
+                * **醫療器材法規:** [Regulation (EU) 2017/745 of the European Parliament and of the Council of 5 April 2017 on medical devices](https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32017R0745)
+                * **體外診斷醫療器材法規:** [Regulation (EU) 2017/746 of the European Parliament and of the Council of 5 April 2017 on in vitro diagnostic medical devices](https://eur-lex.europa.eu/eli/reg/2017/746/oj)
                 """)
     
     #Set up different tabs
