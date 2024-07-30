@@ -358,7 +358,7 @@ def Survey(): # Collecting user inputs for later analysis
         others_C = st.text_area("請問您希望在此網站上看到哪些其他資訊？")
         feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
         
-        st.write("通過提交您的回覆，請確認您已閱讀並理解所提供的研究相關資訊，並同意您的匿名數據用於研究目的")
+        st.write("通過提交回覆，請確認您已閱讀並理解所提供的研究相關資訊，並同意您的匿名數據用於研究目的")
         submit_C = st.button(label="提交")
 
         if submit_C == True: # if the submit button is pressed
