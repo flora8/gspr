@@ -28,7 +28,7 @@ st.markdown(hide, unsafe_allow_html=True)
 #---------------------------------#
 # Create the Home page
 def Home():
-    st.title(" :stethoscope: Medical Device Regulatory Tool Application")
+    st.title(" :stethoscope: Medical Device Regulatory Tool Application  醫療器材監管工具應用")
 
     st.markdown("""
                 **Ethical Clearance Reference Number:**  MRSU-23/24-45195
