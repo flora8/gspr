@@ -327,9 +327,10 @@ def Survey(): # Collecting user inputs for later analysis
         
         others = st.text_area("What other information would you like to see on this tool application? (Optional)")
         feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve? (Optional)")
+        
+        st.write("By submitting your response, you are confirming that you have read and understood the information provided about the research project and consent to your anonymous data being used for the purposes explained.")
         submit = st.button(label="Submit")
 
-        st.write("By submitting your response, you are confirming that you have read and understood the information provided about the research project and consent to your anonymous data being used for the purposes explained.")
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ")       
             sheet = client.open_by_url(url).worksheet('survey')  # Access the Google Sheet
@@ -356,9 +357,10 @@ def Survey(): # Collecting user inputs for later analysis
         
         others_C = st.text_area("請問您希望在此網站上看到哪些其他資訊？")
         feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
+        
+        st.write("通過提交您的回覆，請確認您已閱讀並理解所提供的研究相關資訊，並同意您的匿名數據用於研究目的")
         submit_C = st.button(label="提交")
 
-        st.write("通過提交您的回覆，請確認您已閱讀並理解所提供的研究相關資訊，並同意您的匿名數據用於研究目的")
         if submit_C == True: # if the submit button is pressed
             st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")      
             sheet_C = client.open_by_url(url).worksheet('調查')  # Access the Google Sheet
