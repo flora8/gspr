@@ -38,7 +38,7 @@ def Home():
                 **Invitation paragraph:**  I would like to invite you to participate in this research project which forms part of my dissertation research. Before you decide whether you want to take part, it is important for you to understand why the research is being done and what your participation will involve. Please take time to read the following information carefully and discuss it with others if you wish. Ask me if there is anything that is not clear or if you would like more information.
 
                 **What is the purpose of the study?**  Thank you so much for taking the time to participate in this research for a postgraduate student dissertation. This study aims to design a regulatory tool to correctly filter and select the appropriate regulatory requirements that need to be met by medical devices. The specific objectives of this study are to assess usability of the prototype application and collect initial user experiences to understand the need for the tool and provide insight for improvements in future development.
-                In more detail, this system briefly analyses the European Union (EU) regulation requirements with relative standards for medical devices from the European Medical Device Nomenclature (EMDN), which according to Annex I: general safety and performance requirements (GSPR) as listed in the Medical Device Regulation (MDR) (2017/745) as well as the In Vitro Diagnostic Medical Devices Regulation (IVDR) (2017/746).
+                In more detail, this system briefly analyses the European Union (EU) regulation requirements with relative standards for medical devices from the European Medical Device Nomenclature (EMDN), according to Annex I: general safety and performance requirements (GSPR) as listed in the Medical Device Regulation (MDR) (2017/745) as well as the In Vitro Diagnostic Medical Devices Regulation (IVDR) (2017/746).
 
                 **Why have I been invited to take part?**  You are being invited to participate in this study because you are interested in medical device development, e.g. through academic study or are working in the healthcare industry.
 
@@ -48,13 +48,13 @@ def Home():
 
                 **Data handling and confidentiality:**  This research is anonymous. This means that nobody, including the researchers, will be aware of your identity, and that nobody will be able to connect you to the answers you provide, even indirectly. Your answers will nevertheless be treated confidentially and the information you provide will not allow you to be identified in any research outputs/publications. Your data will be held securely on password-protected devices with limited access by the researcher. After the completion of the research, the data will be securely destroyed or archived as per ethical guidelines.
 
-                **What will happen to the results of the study?**  The results of the study will be summarised in the dissertation of MSc Healthcare Technologies as part of postgraduate research. All the research data will be anonymous data, and it will not be shared with any third parties or made publicially available.
+                **What will happen to the results of the study?**  The results of the study will be summarised in the dissertation of MSc Healthcare Technologies as part of postgraduate research. All the research data will be anonymous data, and it will not be shared with any third parties or made publicly available.
 
                 **Who should I contact for further information?**  If you have any questions or require more information about this research, please use the following contact details: Yen-Hua Ho (yen-hua.ho@kcl.ac.uk)
 
                 **What if I have further questions, or if something goes wrong?**  If this study has harmed you in any way or if you wish to make a complaint about the conduct of the study you can contact King's College London using the details below for further advice and information: Yen-Hua Ho (yen-hua.ho@kcl.ac.uk), Dr. Clare Heaysman (clare.heaysman@kcl.ac.uk) 
 
-                Please be aware that all information this system provides is for reference only, as regulations are updated frequently and the database may delay follow-up. Thank you for reading this information sheet and for considering taking part in this research. 🔎
+                Please be aware that all information this system provides is for reference only, as regulations and standards are updated frequently and the database may not contain current information. Thank you for reading this information sheet and for considering taking part in this research. 🔎
                 """)
     
     st.markdown("""
@@ -80,7 +80,7 @@ def Home():
 
                 **如果我有進一步的問題，或者出了問題怎麼辦？**  如果這項研究以任何方式對您造成了傷害，或者如果您希望對研究提出投訴，您可以使用以下詳細資訊聯繫倫敦國王學院以獲取進一步的建議和訊息：Yen-Hua Ho (yen-hua.ho@kcl.ac.uk), Dr. Clare Heaysman (clare.heaysman@kcl.ac.uk)
                 
-                請注意，本系統提供的所有資訊僅供參考，因法規日益更新而資料庫可能延遲跟進。最後感謝您閱讀此資訊並考慮參與這項研究 🔎
+                請注意，本系統提供的所有資訊僅供參考，因法規和標準日益更新而資料庫可能不涵蓋最新消息。最後感謝您閱讀本資訊並考慮參與這項研究 🔎
                 """)
 
 
@@ -298,7 +298,7 @@ def GSPR_C(group_C):  # Create the GSPR page in Mandarin
 def Survey(): # Collecting user inputs for later analysis
     st.header(" :memo: Survey 調查")
     st.markdown("""
-                Thank you so much for providing your experience after testing this system in English or Mandarin for later analysis, and the collected result data will displayed on the next page for every participant to understand more information. :thought_balloon:
+                Thank you so much for providing your experience after testing this system in English or Mandarin for further analysis. A summary of the collected results will be displayed on the next page for every participant to understand more information. :thought_balloon:
                 
                 非常感謝您在測試系統後，提供英文或中文的使用經驗供後續分析，而收集的結果數據將顯示在下一頁，供每位參與者了解更多信息。:thought_balloon:
                 """)
@@ -328,7 +328,8 @@ def Survey(): # Collecting user inputs for later analysis
         others = st.text_area("What other information would you like to see on this tool application? (Optional)")
         feedback = st.text_area("Do you have any additional comments, concerns, feedback, or suggestions on this system that we could improve? (Optional)")
         submit = st.button(label="Submit")
-        
+
+        st.write("By submitting your response, you are confirming that you have read and understood the information provided about the research project and consent to your anonymous data being used for the purposes explained.")
         if submit == True: # if the submit button is pressed
             st.success("Successfully submitted. !! Thank you so much for your support !! ")       
             sheet = client.open_by_url(url).worksheet('survey')  # Access the Google Sheet
@@ -356,7 +357,8 @@ def Survey(): # Collecting user inputs for later analysis
         others_C = st.text_area("請問您希望在此網站上看到哪些其他資訊？")
         feedback_C = st.text_area("請問您對於此系統有任何意見、疑慮、回饋或建議可以幫助我們改進嗎？")
         submit_C = st.button(label="提交")
-        
+
+        st.write("通過提交您的回覆，請確認您已閱讀並理解所提供的研究相關資訊，並同意您的匿名數據用於研究目的")
         if submit_C == True: # if the submit button is pressed
             st.success("提交成功 !! 非常感謝您寶貴的意見及支持 !! ")      
             sheet_C = client.open_by_url(url).worksheet('調查')  # Access the Google Sheet
