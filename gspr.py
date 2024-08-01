@@ -55,7 +55,7 @@ def Home():
 
                     **What if I have further questions, or if something goes wrong?**  If this study has harmed you in any way or if you wish to make a complaint about the conduct of the study you can contact King's College London using the details below for further advice and information: Yen-Hua Ho (yen-hua.ho@kcl.ac.uk), Dr. Clare Heaysman (clare.heaysman@kcl.ac.uk) 
 
-                    Please be aware that all information this system provides is for reference only, as regulations and standards are updated frequently and the database may not contain current information. Thank you for reading this information sheet and for considering taking part in this research; please click the small triangle symbol on the side **>** to review the next page and execute the test.
+                    Please be aware that all information this system provides is for reference only, as regulations and standards are updated frequently and the database may not contain current information. Thank you for reading this information sheet and for considering taking part in this research; please click the small triangle symbol on the side :blue-background[>] to review the next page and execute the test.
                     """)
 
     with col2:
@@ -84,7 +84,7 @@ def Home():
     
                     **如果我有進一步的問題，或者出了問題怎麼辦？**  如果這項研究以任何方式對您造成了傷害，或者如果您希望對研究提出投訴，您可以使用以下詳細資訊聯繫倫敦國王學院以獲取進一步的建議和訊息：Yen-Hua Ho (yen-hua.ho@kcl.ac.uk), Dr. Clare Heaysman (clare.heaysman@kcl.ac.uk)
                     
-                    請注意，本系統提供的所有資訊僅供參考，因法規和標準日益更新而資料庫可能不涵蓋最新消息。最後感謝您閱讀本資訊並考慮參與這項研究，煩請點選旁邊的小三角符號 **>** 查看下一頁並進行測試。
+                    請注意，本系統提供的所有資訊僅供參考，因法規和標準日益更新而資料庫可能不涵蓋最新消息。最後感謝您閱讀本資訊並考慮參與這項研究，煩請點選旁邊的小三角符號:blue-background[>]查看下一頁並進行測試。
                     """)
 
 
