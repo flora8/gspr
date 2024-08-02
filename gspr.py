@@ -49,7 +49,7 @@ def Home():
 
                     **Data handling and confidentiality:**  This research is anonymous. This means that nobody, including the researchers, will be aware of your identity, and that nobody will be able to connect you to the answers you provide, even indirectly. Your answers will nevertheless be treated confidentially and the information you provide will not allow you to be identified in any research outputs/publications. Your data will be held securely on password-protected devices with limited access by the researcher. After the completion of the research, the data will be securely destroyed or archived as per ethical guidelines.
 
-                    **What will happen to the results of the study?**  The results of the study will be summarised in the dissertation of MSc Healthcare Technologies as part of postgraduate research. All the research data will be anonymous data, and it will not be shared with any third parties or made publicly available.
+                    **What will happen to the results of the study?** The results of the study will be summarised in the dissertation of King's College London MSc Healthcare Technologies as part of postgraduate research. All the research data will be anonymous, and it will not be shared with any third parties or made publicly available.
 
                     **Who should I contact for further information?**  If you have any questions or require more information about this research, please use the following contact details: Yen-Hua Ho (yen-hua.ho@kcl.ac.uk)
 
@@ -78,7 +78,7 @@ def Home():
     
                     **數據處理和保密性：**  這項研究是匿名的。這意味著包括研究人員在內，沒有人會知道您的身份，也沒有人能夠間接地將您與您提供的答案聯繫起來。您的回答將被保密處理，您提供的訊息不會使您在任何研究成果或出版物中被識別，且您的數據將被安全地保存。
                     
-                    **研究結果會如何處理？**  研究結果僅會發表在倫敦醫療保健技術碩士學位論文中進行總結，所有研究資料皆為匿名數據，不會與任何第三方分享或公開提供。
+                    **研究結果會如何處理？**  研究結果僅會發表在倫敦國王學院醫療保健技術碩士學位論文中進行總結，所有研究資料皆為匿名數據，不會與任何第三方分享或公開提供。
                     
                     **應該聯繫誰以獲得更多資訊？**  如果您對於本研究有任何疑問或需要更多信息，請透過以下聯繫方式：Yen-Hua Ho (yen-hua.ho@kcl.ac.uk)
     
