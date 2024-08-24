@@ -400,9 +400,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
         count_E = data_E[xvalue_E].value_counts().reset_index()
-        # fig_E = px.bar(data_E, x=xvalue_E, title="Bar chart: {} distribution".format(xvalue_E)) # Show the distribution of x-axis across all species
-        # st.plotly_chart(fig_E)
-        fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
+        fig2_E = px.pie(count_E, values=xvalue_E, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
+        #fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
         st.plotly_chart(fig2_E)
         
         expander_E = st.expander("Count Results")
@@ -418,9 +417,6 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         color_E = st.color_picker("Please select the plot color") # user select the particular color                
         plot_E.update_traces(marker=dict(color=color_E)) # Update the plot color after the user chosen 
         st.plotly_chart(plot_E) # Display the data
-        # plot2_E = px.box(data_E, x=xaxis_E, y=yaxis_E, title="Box plot: The searched {} by {}".format(yaxis_E,xaxis_E)) # visualize the distribution of y-axis for each x-axis using a box plot
-        # plot2_E.update_traces(marker=dict(color=color_E))
-        # st.plotly_chart(plot2_E)
 
         expander2_E = st.expander("Analysis Results")
         data3_E = data_E[[xaxis_E, yaxis_E]].groupby(by=xaxis_E)[yaxis_E].value_counts().sum()
@@ -431,9 +427,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with 數量: # User select the x-axis to plot the counts  
         xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[0:5])
         count_C = data_C[xvalue_C].value_counts().reset_index()
-        # fig_C = px.bar(data_C, x=xvalue_C, title="長條圖: {}分佈".format(xvalue_C)) # Show the distribution of x-axis across all species
-        # st.plotly_chart(fig_C)
-        fig2_C = px.pie(count_C, values=xvalue_C, names="index", title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
+        #fig2_C = px.pie(count_C, values=xvalue_C, names="index", title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
+        fig2_C = px.pie(count_C, values=xvalue_C, title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
         st.plotly_chart(fig2_C)
         
         expander_C = st.expander("計算結果")
@@ -447,8 +442,6 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         yaxis_C = st.selectbox("請選擇Y軸值", options=data_C.columns[1:5])        
         plot_C = px.scatter(data_C, x=xaxis_C, y=yaxis_C, title="散佈圖: 依照{}搜尋{}".format(yaxis_C,xaxis_C))
         st.plotly_chart(plot_C) # Display the data
-        # plot2_C = px.box(data_C, x=xaxis_C, y=yaxis_C, title="箱形圖: 依照{}搜尋{}".format(yaxis_C,xaxis_C)) # visualize the distribution of y-axis for each x-axis using a box plot
-        # st.plotly_chart(plot2_C)
         
         expander2_C = st.expander("分析結果")
         data3_C = data_C[[xaxis_C, yaxis_C]].groupby(by=xaxis_C)[yaxis_C].value_counts().sum()
