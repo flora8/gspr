@@ -1,10 +1,10 @@
 altair==5.1.1
-streamlit==1.36.0
+streamlit
 pandas
 pip==24.1
 xlrd==2.0.1
 openpyxl==3.1.4
-plotly==5.22.0
+plotly
 numpy==1.26.0
 requests==2.32.3
 matplotlib==3.9.0
@@ -15,3 +15,4 @@ streamlit_dynamic_filters
 
 #streamlit==1.37.0
 #streamlit_gsheets
+#plotly==5.22.0
