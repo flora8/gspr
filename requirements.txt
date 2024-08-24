@@ -1,5 +1,5 @@
 altair==5.1.1
-streamlit==1.36.0
+streamlit==1.37.0
 pandas
 pip==24.1
 xlrd==2.0.1
