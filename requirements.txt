@@ -1,5 +1,5 @@
 altair==5.1.1
-streamlit==1.37.0
+streamlit
 pandas
 pip==24.1
 xlrd==2.0.1
@@ -12,8 +12,6 @@ gspread
 oauth2client
 git+https://github.com/streamlit/gsheets-connection
 streamlit_dynamic_filters
-#streamlit.dataframe_util
 
-#pandas==2.2.2
-#seaborn==0.13.2
+#streamlit==1.37.0
 #streamlit_gsheets
