@@ -400,8 +400,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
         count_E = data_E[xvalue_E].value_counts().reset_index()
-        fig2_E = px.pie(count_E, values=xvalue_E, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
-        #fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
+        #fig2_E = px.pie(count_E, values=xvalue_E, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
+        fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
         st.plotly_chart(fig2_E)
         
         expander_E = st.expander("Count Results")
@@ -427,8 +427,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     with 數量: # User select the x-axis to plot the counts  
         xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[0:5])
         count_C = data_C[xvalue_C].value_counts().reset_index()
-        #fig2_C = px.pie(count_C, values=xvalue_C, names="index", title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
-        fig2_C = px.pie(count_C, values=xvalue_C, title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
+        fig2_C = px.pie(count_C, values=xvalue_C, names="index", title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
+        #fig2_C = px.pie(count_C, values=xvalue_C, title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
         st.plotly_chart(fig2_C)
         
         expander_C = st.expander("計算結果")
