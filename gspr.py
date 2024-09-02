@@ -397,7 +397,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
-    # with Counts: # User select the x-axis to plot the counts
+    with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
         count_E = data_E[xvalue_E].value_counts().reset_index()
         selected = data_E[xvalue_E]
@@ -426,18 +426,18 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         expander2_E.write(data3_E)
         expander2_E.write(data4_E)
     
-    # with 數量: # User select the x-axis to plot the counts  
-    #     xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[0:5])
-    #     count_C = data_C[xvalue_C].value_counts().reset_index()
-    #     fig2_C = px.pie(count_C, values=xvalue_C, names="index", title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
-    #     #fig2_C = px.pie(count_C, values=xvalue_C, title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
-    #     st.plotly_chart(fig2_C)
+    with 數量: # User select the x-axis to plot the counts  
+        xvalue_C = st.selectbox("請選擇X軸值來計算總數量", options=data_C.columns[0:5])
+        count_C = data_C[xvalue_C].value_counts().reset_index()
+        fig2_C = px.pie(count_C, values=xvalue_C, names="index", title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
+        #fig2_C = px.pie(count_C, values=xvalue_C, title="圓餅圖: {}分佈".format(xvalue_C)) # Display the distribution of species in the data
+        st.plotly_chart(fig2_C)
         
-    #     expander_C = st.expander("計算結果")
-    #     data1_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts().sum()
-    #     data2_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts()
-    #     expander_C.write(data1_C)
-    #     expander_C.write(data2_C)
+        expander_C = st.expander("計算結果")
+        data1_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts().sum()
+        data2_C = data_C[[xvalue_C]].groupby(by=xvalue_C).value_counts()
+        expander_C.write(data1_C)
+        expander_C.write(data2_C)
 
     with 分析: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_C = st.selectbox("請選擇X軸值", options=data_C.columns[0:5])
