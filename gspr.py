@@ -402,10 +402,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
         selected = data_E[xvalue_E]
         count_E = data_E[xvalue_E].value_counts().reset_index()
-        #count_E = data_E[xvalue_E].value_counts()
-        
-        #fig2_E = px.pie(count_E, values=xvalue_E, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
-        fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
+        fig2_E = px.pie(count_E, values=xvalue_E, names="xvalue_E.index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
         st.plotly_chart(fig2_E)
 
         
