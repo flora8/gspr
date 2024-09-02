@@ -390,7 +390,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     sheet_E = client.open_by_url(url).worksheet("survey") # the survey in English
     data_E = sheet_E.get_all_values()
     #data_E = pd.DataFrame(data_E[1:], columns=data_E[0])
-    data_E = pd.DataFrame(data_E[1:], columns=data_E[0], index=data_E[0])
+    data_E = pd.DataFrame(data_E[1:], columns=data_E[0], index=data_E)
     
     sheet_C = client.open_by_url(url).worksheet("調查") # the survey in Mandarin
     data_C = sheet_C.get_all_values()
