@@ -389,7 +389,8 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     
     sheet_E = client.open_by_url(url).worksheet("survey") # the survey in English
     data_E = sheet_E.get_all_values()
-    data_E = pd.DataFrame(data_E[1:], columns=data_E[0])
+    #data_E = pd.DataFrame(data_E[1:], columns=data_E[0])
+    data_E = pd.DataFrame(data_E[1:], columns=data_E[0], index=data_E[1:])
     
     sheet_C = client.open_by_url(url).worksheet("調查") # the survey in Mandarin
     data_C = sheet_C.get_all_values()
@@ -400,7 +401,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
 
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
-        selected = data_E[xvalue_E].mean()
+        selected = data_E[xvalue_E]
         count_E = data_E[xvalue_E].value_counts().reset_index()
         #count_E = data_E[xvalue_E].value_counts()
         
