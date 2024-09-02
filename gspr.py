@@ -389,8 +389,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     
     sheet_E = client.open_by_url(url).worksheet("survey") # the survey in English
     data_E = sheet_E.get_all_values()
-    #data_E = pd.DataFrame(data_E[1:], columns=data_E[0])
-    data_E = pd.DataFrame(data_E[1:], columns=data_E[0], index)
+    data_E = pd.DataFrame(data_E[1:], columns=data_E[0])
     
     sheet_C = client.open_by_url(url).worksheet("調查") # the survey in Mandarin
     data_C = sheet_C.get_all_values()
@@ -406,7 +405,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         #count_E = data_E[xvalue_E].value_counts()
         
         #fig2_E = px.pie(count_E, values=xvalue_E, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
-        fig2_E = px.pie(count_E, values=xvalue_E, names=selected, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
+        fig2_E = px.pie(count_E, values=xvalue_E, names="selected.index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
         st.plotly_chart(fig2_E)
 
         
