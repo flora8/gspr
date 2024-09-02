@@ -398,19 +398,19 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
     # with Counts: # User select the x-axis to plot the counts
-    #     xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
-    #     count_E = data_E[xvalue_E].value_counts().reset_index()
-    #     selected = data_E[xvalue_E]
-    #     #fig2_E = px.pie(count_E, values=xvalue_E, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
-    #     fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
-    #     st.plotly_chart(fig2_E)
+        xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
+        count_E = data_E[xvalue_E].value_counts().reset_index()
+        selected = data_E[xvalue_E]
+        #fig2_E = px.pie(count_E, values=xvalue_E, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
+        fig2_E = px.pie(count_E, values=xvalue_E, names="index", title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
+        st.plotly_chart(fig2_E)
 
         
-    #     expander_E = st.expander("Count Results")
-    #     data1_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts().sum()
-    #     data2_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts()
-    #     expander_E.write(data1_E)
-    #     expander_E.write(data2_E)
+        expander_E = st.expander("Count Results")
+        data1_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts().sum()
+        data2_E = data_E[[xvalue_E]].groupby(xvalue_E).value_counts()
+        expander_E.write(data1_E)
+        expander_E.write(data2_E)
 
     with Analysis: # User select the x-axis and y-axis value to plot the analysis data
         xaxis_E = st.selectbox("Please select X-Axis value", options=data_E.columns[0:5])
