@@ -394,13 +394,14 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     sheet_C = client.open_by_url(url).worksheet("調查") # the survey in Mandarin
     data_C = sheet_C.get_all_values()
     data_C = pd.DataFrame(data_C[1:], columns=data_C[0])
+    
 
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
     with Counts: # User select the x-axis to plot the counts
         xvalue_E = st.selectbox("Please select X-Axis value to calculate the total values", options=data_E.columns[0:5])
         count_E = data_E[xvalue_E].value_counts().reset_index()
-        selected = data_E.set_index(xvalue_E)
+        selected = st.dataframe(xvalue_E.style.hide(axis="index"))
         #fig2_E = px.pie(count_E, values=xvalue_E, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
         fig2_E = px.pie(count_E, values=xvalue_E, names=selected, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
         st.plotly_chart(fig2_E)
