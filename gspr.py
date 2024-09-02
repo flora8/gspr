@@ -393,7 +393,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
     
     sheet_C = client.open_by_url(url).worksheet("調查") # the survey in Mandarin
     data_C = sheet_C.get_all_values()
-    data_C = pd.DataFrame(data_C[1:], columns=data_C[0])
+    #data_C = pd.DataFrame(data_C[1:], columns=data_C[0])
 
     Counts, Analysis, 數量, 分析 = st.tabs(["Counts", "Analysis", "數量", "分析"])
 
