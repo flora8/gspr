@@ -405,7 +405,7 @@ def Analysis(): # Plotting and data visualisation to analyse user experience sur
         #count_E = data_E[xvalue_E].value_counts()
         
         #fig2_E = px.pie(count_E, values=xvalue_E, title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
-        fig2_E = px.pie(count_E, values=xvalue_E, names=index([xvalue_E]), title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
+        fig2_E = px.pie(count_E, values=xvalue_E, names=xvalue_E.index(), title="Pie chart: {} distribution".format(xvalue_E)) # Display the distribution of species in the data
         st.plotly_chart(fig2_E)
 
         
